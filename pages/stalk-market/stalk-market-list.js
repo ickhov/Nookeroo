@@ -21,7 +21,7 @@ import {
 
 import PopUpDialog from '../components/popUpDialog';
 
-export default class StackMarketList extends Component {
+export default class StalkMarketList extends Component {
     constructor(props) {
         super(props);
         this.state = {};
