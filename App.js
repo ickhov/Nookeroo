@@ -11,13 +11,13 @@ import {
 } from 'react-native';
 
 import CustomStatusBar from './pages/components/statusBar';
-import StalkMarketList from './pages/stalk-market/stalk-market-new-listing';
+import HostingIsland from './pages/hosting-island/hosting-island';
 
 const App = () => {
   return (
     <>
       <CustomStatusBar/>
-      <StalkMarketList/>
+      <HostingIsland/>
     </>
   );
 };

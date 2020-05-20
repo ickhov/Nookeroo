@@ -16,16 +16,17 @@ import {
     TextInput,
     TouchableOpacity,
     TouchableHighlight,
-    StatusBar,
 } from 'react-native';
 
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import PopUpDialog from '../components/popUpDialog';
 
-export default class StalkMarketList extends Component {
+export default class HostingIsland extends Component {
     constructor(props) {
         super(props);
         this.state = {
             optionSelected: 0,
+            turnipSelected: true,
             optionTurnipsColor: Colors.primary,
             optionCatalogingColor: Colors.none,
             optionCraftingColor: Colors.none,
@@ -33,6 +34,8 @@ export default class StalkMarketList extends Component {
             dodoCode: '',
             islandName: '',
             turnipPrice: '',
+            maxQueueSize: '',
+            maxIslandSize: '',
             entryFee: '',
             additionalInfo: '',
         };
@@ -43,8 +46,10 @@ export default class StalkMarketList extends Component {
         this.otherSelected = this.otherSelected.bind(this);
     }
 
+    // highlight 'Turnip' option
     turnipSelected = () => {
         this.setState({
+            turnipSelected: true,
             optionTurnipsColor: Colors.primary,
             optionCatalogingColor: Colors.none,
             optionCraftingColor: Colors.none,
@@ -52,8 +57,10 @@ export default class StalkMarketList extends Component {
         })
     }
 
+    // highlight 'Cataloging' option
     catalogingSelected = () => {
         this.setState({
+            turnipSelected: false,
             optionTurnipsColor: Colors.none,
             optionCatalogingColor: Colors.primary,
             optionCraftingColor: Colors.none,
@@ -61,8 +68,10 @@ export default class StalkMarketList extends Component {
         })
     }
 
+    // highlight 'Crafting/DIY' option
     craftingSelected = () => {
         this.setState({
+            turnipSelected: false,
             optionTurnipsColor: Colors.none,
             optionCatalogingColor: Colors.none,
             optionCraftingColor: Colors.primary,
@@ -70,8 +79,10 @@ export default class StalkMarketList extends Component {
         })
     }
 
+    // highlight 'Other' option
     otherSelected = () => {
         this.setState({
+            turnipSelected: false,
             optionTurnipsColor: Colors.none,
             optionCatalogingColor: Colors.none,
             optionCraftingColor: Colors.none,
@@ -81,11 +92,16 @@ export default class StalkMarketList extends Component {
 
     render() {
         return (
-            <View style={styles.container}>
+            <KeyboardAwareScrollView
+                style={{ backgroundColor: Colors.primary }}
+                resetScrollToCoords={{ x: 0, y: 0 }}
+                contentContainerStyle={styles.container}
+                scrollEnabled={false}>
                 <Text style={styles.title}>Host Your Island</Text>
 
                 <Text style={styles.header}>What are you hosting for?</Text>
 
+                {/* Menu for selecting the purpose for hosting island */}
                 <View style={styles.optionContainer}>
                     <TouchableHighlight
                         style={[styles.optionBtn, {
@@ -114,7 +130,7 @@ export default class StalkMarketList extends Component {
                         activeOpacity={0.5}
                         underlayColor={Colors.primary}
                         onPress={this.craftingSelected}>
-                        <Text style={styles.btnTextWhite}>Crafting</Text>
+                        <Text style={styles.btnTextWhite}>Crafting/DIY</Text>
                     </TouchableHighlight>
 
                     <TouchableHighlight
@@ -133,70 +149,113 @@ export default class StalkMarketList extends Component {
                     marginBottom: 10,
                 }]}>* indicates a required field.</Text>
 
+                {/* Dodo Code */}
                 <View style={styles.inputContainer}>
                     <Text style={styles.inputHeader}>Dodo Code*</Text>
                     <TextInput
-                    style={styles.input}
-                    onChangeText={(dodoCode) => this.setState({ dodoCode })}
-                    value={this.state.dodoCode}
-                    keyboardType="default"
-                    autoCapitalize="characters"
-                    returnKeyType="done"
-                />
+                        style={styles.input}
+                        onChangeText={(dodoCode) => this.setState({ dodoCode })}
+                        value={this.state.dodoCode}
+                        keyboardType="default"
+                        autoCapitalize="characters"
+                        returnKeyType="done"
+                    />
                 </View>
 
+                {/* Island Name */}
                 <View style={styles.inputContainer}>
                     <Text style={styles.inputHeader}>Island Name*</Text>
                     <TextInput
-                    style={styles.input}
-                    onChangeText={(islandName) => this.setState({ islandName })}
-                    value={this.state.islandName}
-                    keyboardType="default"
-                    autoCapitalize="words"
-                    returnKeyType="done"
-                />
+                        style={styles.input}
+                        onChangeText={(islandName) => this.setState({ islandName })}
+                        value={this.state.islandName}
+                        keyboardType="default"
+                        autoCapitalize="words"
+                        returnKeyType="done"
+                    />
                 </View>
 
+                {/* Turnip Price (Only for hosting turnip) */}
+                {
+                    this.state.turnipSelected &&
+                    <View style={styles.inputContainer}>
+                        <Text style={styles.inputHeader}>Turnip Price*</Text>
+                        <TextInput
+                            style={styles.input}
+                            onChangeText={(turnipPrice) => this.setState({ turnipPrice })}
+                            value={this.state.turnipPrice}
+                            keyboardType="number-pad"
+                            autoCapitalize="none"
+                            returnKeyType="done"
+                        />
+                    </View>
+                }
+
+                {/* Maximum number of people that can be in the queue */}
                 <View style={styles.inputContainer}>
-                    <Text style={styles.inputHeader}>Turnip Price*</Text>
+                    <Text style={styles.inputHeader}>Queue Size*</Text>
                     <TextInput
-                    style={styles.input}
-                    onChangeText={(turnipPrice) => this.setState({ turnipPrice })}
-                    value={this.state.turnipPrice}
-                    keyboardType="number-pad"
-                    autoCapitalize="none"
-                    returnKeyType="done"
-                />
+                        placeholder="Maximum queue size"
+                        style={styles.input}
+                        onChangeText={(turnipPrice) => this.setState({ turnipPrice })}
+                        value={this.state.turnipPrice}
+                        keyboardType="number-pad"
+                        autoCapitalize="none"
+                        returnKeyType="done"
+                    />
                 </View>
 
+                {/* Maximum number of people that can be on the island */}
+                <View style={styles.inputContainer}>
+                    <Text style={styles.inputHeader}>Max Vistors*</Text>
+                    <TextInput
+                        placeholder="Maximum visitors at a time"
+                        style={styles.input}
+                        onChangeText={(turnipPrice) => this.setState({ turnipPrice })}
+                        value={this.state.turnipPrice}
+                        keyboardType="number-pad"
+                        autoCapitalize="none"
+                        returnKeyType="done"
+                    />
+                </View>
+
+                {/* Entry fee (optional) */}
                 <View style={styles.inputContainer}>
                     <Text style={styles.inputHeader}>Entry Fee</Text>
                     <TextInput
-                    style={styles.input}
-                    onChangeText={(entryFee) => this.setState({ entryFee })}
-                    value={this.state.entryFee}
-                    keyboardType="default"
-                    autoCapitalize="none"
-                    returnKeyType="done"
-                />
+                        style={styles.input}
+                        onChangeText={(entryFee) => this.setState({ entryFee })}
+                        value={this.state.entryFee}
+                        keyboardType="default"
+                        autoCapitalize="none"
+                        returnKeyType="done"
+                    />
                 </View>
 
+                {/* Additional info regarding hosting */}
                 <View style={styles.inputContainer}>
                     <Text style={styles.inputHeader}>Additional Information</Text>
                     <TextInput
-                    style={styles.input}
-                    onChangeText={(additionalInfo) => this.setState({ additionalInfo })}
-                    value={this.state.additionalInfo}
-                    keyboardType="default"
-                    autoCapitalize="sentences"
-                    returnKeyType="done"
-                    blurOnSubmit={true}
-                    multiline={true}
-                />
+                        style={styles.input}
+                        onChangeText={(additionalInfo) => this.setState({ additionalInfo })}
+                        value={this.state.additionalInfo}
+                        keyboardType="default"
+                        autoCapitalize="sentences"
+                        returnKeyType="done"
+                        blurOnSubmit={true}
+                        multiline={true}
+                    />
                 </View>
 
-                
+                <TouchableHighlight
+                    style={styles.btn}
+                    activeOpacity={0.5}
+                    underlayColor={Colors.primary}
+                    onPress={this.signInUser}>
+                    <Text style={styles.btnTextWhite}>Host My Island</Text>
+                </TouchableHighlight>
 
+                {/* Show an alert when there's something wrong */}
                 <PopUpDialog
                     showAlert={this.state.showAlert}
                     title="Something went wrong!"
@@ -206,7 +265,7 @@ export default class StalkMarketList extends Component {
                         this.setState({ showAlert: false });
                     }}
                 />
-            </View>
+            </KeyboardAwareScrollView>
         );
     }
 }
@@ -265,44 +324,28 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         width: '30%',
         color: Colors.white,
-        paddingTop: 10,
-        paddingBottom: 10,
+        padding: 10,
     },
     input: {
         fontFamily: Fonts.normal,
-        width: '70%',
+        width: '67%',
         height: '100%',
         backgroundColor: Colors.white,
         paddingLeft: 10,
         paddingRight: 10,
     },
-
-
-
     btn: {
-        backgroundColor: Colors.dark,
+        backgroundColor: Colors.primary,
         padding: 16,
         width: '50%',
         borderRadius: 20,
         marginTop: 10,
         marginBottom: 10,
     },
-    btnNoBackground: {
-        backgroundColor: Colors.none,
-        padding: 8,
-        width: '90%',
-    },
     btnTextWhite: {
         fontFamily: Fonts.normal,
         fontSize: 16,
         textAlign: 'center',
         color: Colors.white,
-    },
-    btnTextBlack: {
-        fontFamily: Fonts.normal,
-        fontSize: 16,
-        textAlign: 'center',
-        color: Colors.black,
-        textDecorationLine: 'underline',
-    },
+    }
 });
