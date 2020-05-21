@@ -9,7 +9,7 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import CustomStatusBar from './pages/components/statusBar';
-import HostingIsland from './pages/hosting-island/hosting-island';
+import HostingIsland from './pages/listings/hosting-island';
 import Colors from './assets/colors';
 import Fonts from './assets/fonts';
 
