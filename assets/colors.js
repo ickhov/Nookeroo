@@ -7,6 +7,8 @@ const Colors = {
     black: '#000',
     error: '#cc0000',
     success: '#4BB543',
+    background: '#333333',
+    headerbackground: '#434343',
     none: 'transparent'
   }
   
