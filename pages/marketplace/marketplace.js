@@ -32,8 +32,6 @@ export default class Marketplace extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text style={styles.title}>Marketplace</Text>
-
                 {/* Menu for selecting the purpose for hosting island */}
                 <View style={styles.optionContainer}>
                     <TouchableHighlight
@@ -76,117 +74,6 @@ export default class Marketplace extends Component {
                         <Text style={styles.btnTextWhite}>Other</Text>
                     </TouchableHighlight>
                 </View>
-
-                <Text style={[styles.header, {
-                    marginTop: 0,
-                    marginBottom: 10,
-                }]}>* indicates a required field.</Text>
-
-                {/* Dodo Code */}
-                <View style={styles.inputContainer}>
-                    <Text style={styles.inputHeader}>Dodo Code*</Text>
-                    <TextInput
-                        style={styles.input}
-                        onChangeText={(dodoCode) => this.setState({ dodoCode })}
-                        value={this.state.dodoCode}
-                        keyboardType="default"
-                        autoCapitalize="characters"
-                        returnKeyType="done"
-                    />
-                </View>
-
-                {/* Island Name */}
-                <View style={styles.inputContainer}>
-                    <Text style={styles.inputHeader}>Island Name*</Text>
-                    <TextInput
-                        style={styles.input}
-                        onChangeText={(islandName) => this.setState({ islandName })}
-                        value={this.state.islandName}
-                        keyboardType="default"
-                        autoCapitalize="words"
-                        returnKeyType="done"
-                    />
-                </View>
-
-                {/* Turnip Price (Only for hosting turnip) */}
-                {
-                    this.state.turnipSelected &&
-                    <View style={styles.inputContainer}>
-                        <Text style={styles.inputHeader}>Turnip Price*</Text>
-                        <TextInput
-                            style={styles.input}
-                            onChangeText={(turnipPrice) => this.setState({ turnipPrice })}
-                            value={this.state.turnipPrice}
-                            keyboardType="number-pad"
-                            autoCapitalize="none"
-                            returnKeyType="done"
-                        />
-                    </View>
-                }
-
-                {/* Maximum number of people that can be in the queue */}
-                <View style={styles.inputContainer}>
-                    <Text style={styles.inputHeader}>Queue Size*</Text>
-                    <TextInput
-                        placeholder="Maximum queue size"
-                        style={styles.input}
-                        onChangeText={(turnipPrice) => this.setState({ turnipPrice })}
-                        value={this.state.turnipPrice}
-                        keyboardType="number-pad"
-                        autoCapitalize="none"
-                        returnKeyType="done"
-                    />
-                </View>
-
-                {/* Maximum number of people that can be on the island */}
-                <View style={styles.inputContainer}>
-                    <Text style={styles.inputHeader}>Max Vistors*</Text>
-                    <TextInput
-                        placeholder="Maximum visitors at a time"
-                        style={styles.input}
-                        onChangeText={(turnipPrice) => this.setState({ turnipPrice })}
-                        value={this.state.turnipPrice}
-                        keyboardType="number-pad"
-                        autoCapitalize="none"
-                        returnKeyType="done"
-                    />
-                </View>
-
-                {/* Entry fee (optional) */}
-                <View style={styles.inputContainer}>
-                    <Text style={styles.inputHeader}>Entry Fee</Text>
-                    <TextInput
-                        style={styles.input}
-                        onChangeText={(entryFee) => this.setState({ entryFee })}
-                        value={this.state.entryFee}
-                        keyboardType="default"
-                        autoCapitalize="none"
-                        returnKeyType="done"
-                    />
-                </View>
-
-                {/* Additional info regarding hosting */}
-                <View style={styles.inputContainer}>
-                    <Text style={styles.inputHeader}>Additional Information</Text>
-                    <TextInput
-                        style={styles.input}
-                        onChangeText={(additionalInfo) => this.setState({ additionalInfo })}
-                        value={this.state.additionalInfo}
-                        keyboardType="default"
-                        autoCapitalize="sentences"
-                        returnKeyType="done"
-                        blurOnSubmit={true}
-                        multiline={true}
-                    />
-                </View>
-
-                <TouchableHighlight
-                    style={styles.btn}
-                    activeOpacity={0.5}
-                    underlayColor={Colors.primary}
-                    onPress={this.signInUser}>
-                    <Text style={styles.btnTextWhite}>Host My Island</Text>
-                </TouchableHighlight>
 
                 {/* Show an alert when there's something wrong */}
                 <PopUpDialog

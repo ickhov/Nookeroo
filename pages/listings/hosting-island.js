@@ -93,7 +93,7 @@ export default class HostingIsland extends Component {
     render() {
         return (
             <KeyboardAwareScrollView
-                style={{ backgroundColor: Colors.primary }}
+                style={{ backgroundColor: Colors.background }}
                 resetScrollToCoords={{ x: 0, y: 0 }}
                 contentContainerStyle={styles.container}
                 scrollEnabled={true}>
