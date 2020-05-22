@@ -13,7 +13,7 @@
  * @flow strict-local
  */
 
-import React, { Component } from 'react';
+import React from 'react';
 
 import {
     View,
@@ -23,23 +23,28 @@ import {
     Image,
 } from 'react-native';
 
-export default class ImageButton extends Component {
+export default function ImageButton({
+    style,
+    onPress,
+    imageSource,
+    imageStyle,
+    textStyle,
+    text
+}) {
 
-    render() {
-        return (
-            <TouchableOpacity
-                style={[styles.container, this.props.style]}
-                activeOpacity={0.5}
-                onPress={this.props.onPress}>
-                <Image
-                    source={this.props.imageSource ?? require('../../assets/icons/villagers/cat23.png')}
-                    style={[styles.imageStyle, this.props.imageStyle]}
-                />
-                <View style={styles.lineSeparator} />
-                <Text style={[styles.textStyle, this.props.textStyle]}>{this.props.text ?? "Raymond"}</Text>
-            </TouchableOpacity>
-        );
-    }
+    return (
+        <TouchableOpacity
+            style={[styles.container, style]}
+            activeOpacity={0.5}
+            onPress={onPress}>
+            <Image
+                source={imageSource ?? require('../../assets/icons/villagers/cat23.png')}
+                style={[styles.imageStyle, imageStyle]}
+            />
+            <View style={styles.lineSeparator} />
+            <Text style={[styles.textStyle, textStyle]}>{text ?? "Raymond"}</Text>
+        </TouchableOpacity>
+    );
 };
 
 const styles = StyleSheet.create({

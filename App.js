@@ -65,14 +65,12 @@ const GuideStack = () => {
 }
 
 // Temporary code for initial release
-const App = () => {
+function App () {
   return (
-    <>
-      <CustomStatusBar />
       <NavigationContainer>
+        <CustomStatusBar />
         <GuideStack />
       </NavigationContainer>
-    </>
   );
 };
 

@@ -1,14 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Colors from '../../assets/colors';
 import { View, StatusBar, StyleSheet, Platform } from 'react-native';
 
-export default class CustomStatusBar extends Component {
-    render() {
-        return (
-            <View style={[styles.statusBar, this.props.style || {}]}>
-            </View>
-        );
-    }
+export default function CustomStatusBar({
+    style
+}) {
+    return (
+        <View style={[styles.statusBar, style]}>
+        </View>
+    );
+
 }
 
 const styles = StyleSheet.create({

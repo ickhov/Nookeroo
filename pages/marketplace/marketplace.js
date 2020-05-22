@@ -12,79 +12,88 @@ import Fonts from '../../assets/fonts';
 import {
     StyleSheet,
     View,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    TouchableHighlight,
 } from 'react-native';
 
-import PopUpDialog from '../components/popUpDialog';
+import ImageButton from '../components/imageButton';
 
 export default class Marketplace extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            
-        };
 
+        this.artSelected = this.artSelected.bind(this);
+        this.bugSelected = this.bugSelected.bind(this);
+        this.fishSelected = this.fishSelected.bind(this);
+        this.fossilSelected = this.fossilSelected.bind(this);
+        this.villagerSelected = this.villagerSelected.bind(this);
     }
+
+    artSelected = () => {
+        this.props.navigation.navigate('GuideArts');
+    };
+
+    bugSelected = () => {
+        this.props.navigation.navigate('GuideBugs');
+    };
+
+    fishSelected = () => {
+        this.props.navigation.navigate('GuideFishes');
+    };
+
+    fossilSelected = () => {
+        this.props.navigation.navigate('GuideFossils');
+    };
+
+    villagerSelected = () => {
+        this.props.navigation.navigate('GuideVillagers');
+    };
 
     render() {
         return (
             <View style={styles.container}>
                 {/* Menu for selecting the purpose for hosting island */}
                 <View style={styles.optionContainer}>
-                    <TouchableHighlight
-                        style={[styles.optionBtn, {
-                            backgroundColor: this.state.optionTurnipsColor
-                        }]}
-                        activeOpacity={0.5}
-                        underlayColor={Colors.primary}
-                        onPress={this.turnipSelected}>
-                        <Text style={styles.btnTextWhite}>Turnips</Text>
-                    </TouchableHighlight>
 
-                    <TouchableHighlight
-                        style={[styles.optionBtn, {
-                            backgroundColor: this.state.optionCatalogingColor
-                        }]}
-                        activeOpacity={0.5}
-                        underlayColor={Colors.primary}
-                        onPress={this.catalogingSelected}>
-                        <Text style={styles.btnTextWhite}>Cataloging</Text>
-                    </TouchableHighlight>
+                    <ImageButton
+                        style={styles.btn}
+                        onPress={this.artSelected}
+                        imageSource={require('../../assets/icons/art/amazing_painting.png')}
+                        imageStyle={styles.image}
+                        textStyle={styles.btnTextWhite}
+                        text={'Stalk Market'} />
 
-                    <TouchableHighlight
-                        style={[styles.optionBtn, {
-                            backgroundColor: this.state.optionCraftingColor
-                        }]}
-                        activeOpacity={0.5}
-                        underlayColor={Colors.primary}
-                        onPress={this.craftingSelected}>
-                        <Text style={styles.btnTextWhite}>Crafting/DIY</Text>
-                    </TouchableHighlight>
+                    <ImageButton
+                        style={styles.btn}
+                        onPress={this.bugSelected}
+                        imageSource={require('../../assets/icons/bugs/queen_alexandras_birdwing.png')}
+                        imageStyle={styles.image}
+                        textStyle={styles.btnTextWhite}
+                        text={'Cataloging'} />
 
-                    <TouchableHighlight
-                        style={[styles.optionBtn, {
-                            backgroundColor: this.state.optionOtherColor
-                        }]}
-                        activeOpacity={0.5}
-                        underlayColor={Colors.primary}
-                        onPress={this.otherSelected}>
-                        <Text style={styles.btnTextWhite}>Other</Text>
-                    </TouchableHighlight>
+                    <ImageButton
+                        style={styles.btn}
+                        onPress={this.fishSelected}
+                        imageSource={require('../../assets/icons/fish/koi.png')}
+                        imageStyle={styles.image}
+                        textStyle={styles.btnTextWhite}
+                        text={'Crafting & DIY'} />
+
+                    <ImageButton
+                        style={styles.btn}
+                        onPress={this.fossilSelected}
+                        imageSource={require('../../assets/images/fossils/trilobite.png')}
+                        imageStyle={styles.image}
+                        textStyle={styles.btnTextWhite}
+                        text={'Special Villagers'} />
+
+                    <ImageButton
+                        style={styles.btn}
+                        onPress={this.villagerSelected}
+                        imageSource={require('../../assets/icons/villagers/cat23.png')}
+                        imageStyle={styles.image}
+                        textStyle={styles.btnTextWhite}
+                        text={'Other'} />
                 </View>
 
-                {/* Show an alert when there's something wrong */}
-                <PopUpDialog
-                    showAlert={this.state.showAlert}
-                    title="Something went wrong!"
-                    message={this.state.errorMessage}
-                    cancelText="Dismiss"
-                    onCancelPressed={() => {
-                        this.setState({ showAlert: false });
-                    }}
-                />
             </View>
         );
     }
@@ -97,75 +106,29 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: Colors.background,
     },
-    title: {
-        fontFamily: Fonts.bold,
-        fontSize: 30,
-        textAlign: 'center',
-        paddingTop: 24,
-        paddingBottom: 8,
-        backgroundColor: Colors.primary,
-        width: '100%',
-    },
-    header: {
-        fontFamily: Fonts.normal,
-        fontSize: 16,
-        textAlign: 'left',
-        width: '100%',
-        padding: 10,
-        marginTop: 16,
-        color: Colors.white,
-        backgroundColor: Colors.headerbackground
-    },
     optionContainer: {
         flexWrap: 'wrap',
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        justifyContent: 'space-evenly',
         width: '90%',
         paddingTop: 10,
         paddingBottom: 10,
     },
-    optionBtn: {
-        backgroundColor: Colors.none,
-        padding: 8,
-        borderRadius: 20,
-        width: '30%',
-    },
-    inputContainer: {
-        flexDirection: 'row',
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        width: '100%',
-        backgroundColor: Colors.headerbackground,
-        marginBottom: 10,
-    },
-    inputHeader: {
-        fontFamily: Fonts.normal,
-        fontSize: 16,
-        textAlign: 'center',
-        width: '30%',
-        color: Colors.white,
-        padding: 10,
-    },
-    input: {
-        fontFamily: Fonts.normal,
-        width: '67%',
-        height: '100%',
-        backgroundColor: Colors.white,
-        paddingLeft: 10,
-        paddingRight: 10,
+    image: {
+        width: 70,
+        height: 70,
     },
     btn: {
         backgroundColor: Colors.primary,
-        padding: 16,
-        width: '50%',
+        padding: 8,
         borderRadius: 20,
-        marginTop: 10,
-        marginBottom: 10,
+        width: '40%',
+        marginBottom: 10
     },
     btnTextWhite: {
         fontFamily: Fonts.normal,
         fontSize: 16,
         textAlign: 'center',
-        color: Colors.white,
-    }
+        color: Colors.black,
+    },
 });

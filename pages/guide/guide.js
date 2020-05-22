@@ -5,7 +5,7 @@
  * @flow strict-local
  */
 
-import React, { Component } from 'react';
+import React, { useCallback } from 'react';
 import Colors from '../../assets/colors';
 import Fonts from '../../assets/fonts';
 
@@ -16,87 +16,77 @@ import {
 
 import ImageButton from '../components/imageButton';
 
-export default class Marketplace extends Component {
-    constructor(props) {
-        super(props);
+export default function Guide({ navigation }) {
 
-        this.artSelected = this.artSelected.bind(this);
-        this.bugSelected = this.bugSelected.bind(this);
-        this.fishSelected = this.fishSelected.bind(this);
-        this.fossilSelected = this.fossilSelected.bind(this);
-        this.villagerSelected = this.villagerSelected.bind(this);
-    }
+    const artSelected = useCallback(() => {
+        navigation.navigate('GuideArts');
+    }, []);
 
-    artSelected = () => {
-        this.props.navigation.navigate('GuideArts');
-    };
+    const bugSelected = useCallback(() => {
+        navigation.navigate('GuideBugs');
+    }, []);
 
-    bugSelected = () => {
-        this.props.navigation.navigate('GuideBugs');
-    };
+    const fishSelected = useCallback(() => {
+        navigation.navigate('GuideFishes');
+    }, []);
 
-    fishSelected = () => {
-        this.props.navigation.navigate('GuideFishes');
-    };
+    const fossilSelected = useCallback(() => {
+        navigation.navigate('GuideFossils');
+    }, []);
 
-    fossilSelected = () => {
-        this.props.navigation.navigate('GuideFossils');
-    };
+    const villagerSelected = useCallback(() => {
+        navigation.navigate('GuideVillagers');
+    }, []);
 
-    villagerSelected = () => {
-        this.props.navigation.navigate('GuideVillagers');
-    };
+    return (
+        <View style={styles.container}>
+            {/* Menu for selecting the guide options */}
+            <View style={styles.optionContainer}>
 
-    render() {
-        return (
-            <View style={styles.container}>
-                {/* Menu for selecting the purpose for hosting island */}
-                <View style={styles.optionContainer}>
+                <ImageButton
+                    style={styles.btn}
+                    onPress={artSelected}
+                    imageSource={require('../../assets/icons/art/amazing_painting.png')}
+                    imageStyle={styles.image}
+                    textStyle={styles.btnTextWhite}
+                    text={'Arts'} />
 
-                    <ImageButton
-                        style={styles.btn}
-                        onPress={this.artSelected}
-                        imageSource={require('../../assets/icons/art/amazing_painting.png')}
-                        imageStyle={styles.image}
-                        textStyle={styles.btnTextWhite}
-                        text={'Arts'} />
+                <ImageButton
+                    style={styles.btn}
+                    onPress={bugSelected}
+                    imageSource={require('../../assets/icons/bugs/queen_alexandras_birdwing.png')}
+                    imageStyle={styles.image}
+                    textStyle={styles.btnTextWhite}
+                    text={'Bugs'} />
 
-                    <ImageButton
-                        style={styles.btn}
-                        onPress={this.bugSelected}
-                        imageSource={require('../../assets/icons/bugs/queen_alexandras_birdwing.png')}
-                        imageStyle={styles.image}
-                        textStyle={styles.btnTextWhite}
-                        text={'Bugs'} />
+                <ImageButton
+                    style={styles.btn}
+                    onPress={fishSelected}
+                    imageSource={require('../../assets/icons/fish/koi.png')}
+                    imageStyle={styles.image}
+                    textStyle={styles.btnTextWhite}
+                    text={'Fishes'} />
 
-                    <ImageButton
-                        style={styles.btn}
-                        onPress={this.fishSelected}
-                        imageSource={require('../../assets/icons/fish/koi.png')}
-                        imageStyle={styles.image}
-                        textStyle={styles.btnTextWhite}
-                        text={'Fishes'} />
+                <ImageButton
+                    style={styles.btn}
+                    onPress={fossilSelected}
+                    imageSource={require('../../assets/images/fossils/trilobite.png')}
+                    imageStyle={styles.image}
+                    textStyle={styles.btnTextWhite}
+                    text={'Fossils'} />
 
-                    <ImageButton
-                        style={styles.btn}
-                        onPress={this.fossilSelected}
-                        imageSource={require('../../assets/images/fossils/trilobite.png')}
-                        imageStyle={styles.image}
-                        textStyle={styles.btnTextWhite}
-                        text={'Fossils'} />
-
-                    <ImageButton
-                        style={styles.btn}
-                        onPress={this.villagerSelected}
-                        imageSource={require('../../assets/icons/villagers/cat23.png')}
-                        imageStyle={styles.image}
-                        textStyle={styles.btnTextWhite}
-                        text={'Villagers'} />
-                </View>
-
+                <ImageButton
+                    style={styles.btn}
+                    onPress={villagerSelected}
+                    imageSource={require('../../assets/icons/villagers/cat23.png')}
+                    imageStyle={styles.image}
+                    textStyle={styles.btnTextWhite}
+                    text={'Villagers'} />
             </View>
-        );
-    }
+
+        </View>
+    );
+
 }
 
 const styles = StyleSheet.create({
