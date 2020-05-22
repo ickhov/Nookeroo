@@ -13,7 +13,7 @@ export default class CustomStatusBar extends Component {
 
 const styles = StyleSheet.create({
     statusBar: {
-        height: (Platform.OS === 'ios') ? 20 : StatusBar.currentHeight,
+        height: (Platform.OS === 'ios') ? 20 : 0,
         backgroundColor: Colors.primary,
     }
 });
