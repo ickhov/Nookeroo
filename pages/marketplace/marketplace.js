@@ -18,88 +18,21 @@ import {
     TouchableHighlight,
 } from 'react-native';
 
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import PopUpDialog from '../components/popUpDialog';
 
-export default class HostingIsland extends Component {
+export default class Marketplace extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            optionSelected: 0,
-            turnipSelected: true,
-            optionTurnipsColor: Colors.primary,
-            optionCatalogingColor: Colors.none,
-            optionCraftingColor: Colors.none,
-            optionOtherColor: Colors.none,
-            dodoCode: '',
-            islandName: '',
-            turnipPrice: '',
-            maxQueueSize: '',
-            maxIslandSize: '',
-            entryFee: '',
-            additionalInfo: '',
+            
         };
 
-        this.turnipSelected = this.turnipSelected.bind(this);
-        this.catalogingSelected = this.catalogingSelected.bind(this);
-        this.craftingSelected = this.craftingSelected.bind(this);
-        this.otherSelected = this.otherSelected.bind(this);
-    }
-
-    // highlight 'Turnip' option
-    turnipSelected = () => {
-        this.setState({
-            turnipSelected: true,
-            optionTurnipsColor: Colors.primary,
-            optionCatalogingColor: Colors.none,
-            optionCraftingColor: Colors.none,
-            optionOtherColor: Colors.none,
-        })
-    }
-
-    // highlight 'Cataloging' option
-    catalogingSelected = () => {
-        this.setState({
-            turnipSelected: false,
-            optionTurnipsColor: Colors.none,
-            optionCatalogingColor: Colors.primary,
-            optionCraftingColor: Colors.none,
-            optionOtherColor: Colors.none,
-        })
-    }
-
-    // highlight 'Crafting/DIY' option
-    craftingSelected = () => {
-        this.setState({
-            turnipSelected: false,
-            optionTurnipsColor: Colors.none,
-            optionCatalogingColor: Colors.none,
-            optionCraftingColor: Colors.primary,
-            optionOtherColor: Colors.none,
-        })
-    }
-
-    // highlight 'Other' option
-    otherSelected = () => {
-        this.setState({
-            turnipSelected: false,
-            optionTurnipsColor: Colors.none,
-            optionCatalogingColor: Colors.none,
-            optionCraftingColor: Colors.none,
-            optionOtherColor: Colors.primary,
-        })
     }
 
     render() {
         return (
-            <KeyboardAwareScrollView
-                style={{ backgroundColor: Colors.primary }}
-                resetScrollToCoords={{ x: 0, y: 0 }}
-                contentContainerStyle={styles.container}
-                scrollEnabled={true}>
-                <Text style={styles.title}>Host Your Island</Text>
-
-                <Text style={styles.header}>What are you hosting for?</Text>
+            <View style={styles.container}>
+                <Text style={styles.title}>Marketplace</Text>
 
                 {/* Menu for selecting the purpose for hosting island */}
                 <View style={styles.optionContainer}>
@@ -265,7 +198,7 @@ export default class HostingIsland extends Component {
                         this.setState({ showAlert: false });
                     }}
                 />
-            </KeyboardAwareScrollView>
+            </View>
         );
     }
 }
