@@ -19,8 +19,8 @@
  */
 
 import React, { Component } from 'react';
-import Colors from '../../assets/colors'
-import Fonts from '../../assets/fonts'
+import Colors from '../../assets/colors';
+import Fonts from '../../assets/fonts';
 
 import {
   StyleSheet

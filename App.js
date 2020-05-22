@@ -13,31 +13,70 @@ import Colors from './assets/colors';
 import Fonts from './assets/fonts';
 import Icons from 'react-native-vector-icons/MaterialIcons';
 import CustomStatusBar from './pages/components/statusBar';
-import HostingIsland from './pages/listings/hosting-island';
-import Marketplace from './pages/marketplace/marketplace';
+//import HostingIsland from './pages/listings/hosting-island';
+//import Marketplace from './pages/marketplace/marketplace';
+
+// Guide Stack
+import Guide from './pages/guide/guide';
+import GuideVillagers from './pages/guide/villagers';
+import GuideBugs from './pages/guide/bugs';
+import GuideFishes from './pages/guide/fishes';
+import GuideFossils from './pages/guide/fossils';
+import GuideArts from './pages/guide/arts';
 
 import {
   StyleSheet,
-  Text
 } from 'react-native';
 
 const Stack = createStackNavigator();
-
+/*
 const MarketplaceStack = () => {
   return (
-    <Stack.Navigator 
+    <Stack.Navigator
       initialRouteName="Marketplace">
-      <Stack.Screen 
-      name="Marketplace" 
-      component={Marketplace} 
-      options={{
+      <Stack.Screen
+        name="Marketplace"
+        component={Marketplace}
+        options={{
+          headerTitleStyle: styles.header,
+          headerStyle: { backgroundColor: Colors.primary },
+        }} />
+    </Stack.Navigator>
+  );
+}*/
+
+const GuideStack = () => {
+  return (
+    <Stack.Navigator
+      initialRouteName="Guide"
+      screenOptions={() => ({
         headerTitleStyle: styles.header,
-        headerStyle: {backgroundColor: Colors.primary},
-      }}/>
+        headerStyle: { backgroundColor: Colors.primary },
+        headerTintColor: Colors.white
+      })}>
+      <Stack.Screen name="Guide" component={Guide} options={{ title: 'Guide' }} />
+      <Stack.Screen name="GuideVillagers" component={GuideVillagers} options={{ title: 'Villagers' }} />
+      <Stack.Screen name="GuideBugs" component={GuideBugs} options={{ title: 'Bugs' }}/>
+      <Stack.Screen name="GuideFishes" component={GuideFishes} options={{ title: 'Fishes' }}/>
+      <Stack.Screen name="GuideFossils" component={GuideFossils} options={{ title: 'Fossils' }}/>
+      <Stack.Screen name="GuideArts" component={GuideArts} options={{ title: 'Arts' }}/>
     </Stack.Navigator>
   );
 }
 
+// Temporary code for initial release
+const App = () => {
+  return (
+    <>
+      <CustomStatusBar />
+      <NavigationContainer>
+        <GuideStack />
+      </NavigationContainer>
+    </>
+  );
+};
+
+/*
 const Tab = createBottomTabNavigator();
 
 const App = () => {
@@ -78,12 +117,12 @@ const App = () => {
     </>
   );
 };
-
+*/
 const styles = StyleSheet.create({
   header: {
-      fontFamily: Fonts.bold,
-      fontSize: 30,
-      color: Colors.black,
+    fontFamily: Fonts.bold,
+    fontSize: 30,
+    color: Colors.black,
   },
 });
 

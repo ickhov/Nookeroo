@@ -1,5 +1,5 @@
 const Fonts = {
-    normal: 'ZillaSlab-Regular',
+    normal: 'OpenSans-Regular',
     bold: 'ZillaSlab-SemiBold'
 }
   
