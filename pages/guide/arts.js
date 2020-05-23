@@ -16,15 +16,7 @@ import {
     FlatList,
 } from 'react-native';
 
-import Art from '../objects/artObject';
-
-function Item({ text }) {
-    return (
-        <View style={styles.cell}>
-            <Text style={styles.cellText}>{text}</Text>
-        </View>
-    );
-}
+import CustomButton from '../components/customButton';
 
 export default function ArtGuide({ navigation }) {
 
@@ -33,16 +25,20 @@ export default function ArtGuide({ navigation }) {
     useEffect(() => {
         fetch('http://acnhapi.com/art')
             .then((response) => response.json())
-            .then((json) => setData(json))
+            .then((json) => setData(Object.values(json)))
             .catch((error) => console.error(error))
     }, []);
 
     return (
         <SafeAreaView style={styles.container}>
             <FlatList
+                style={{ width: '100%' }}
                 data={data}
-                renderItem={({ item }) => <Item text={item.id} />}
-                keyExtractor={item => item.id}
+                renderItem={({ item }) => <CustomButton
+                    name={item.name['name-en']}
+                    imageSource={'art/' + item.id}
+                />}
+                keyExtractor={item => item.id.toString()}
             />
         </SafeAreaView>
     );
@@ -52,18 +48,8 @@ export default function ArtGuide({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'flex-start',
+        justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: Colors.background,
-    },
-    cell: {
-        backgroundColor: Colors.subBackground,
-        padding: 20,
-    },
-    cellText: {
-        fontFamily: Fonts.normal,
-        fontSize: 16,
-        textAlign: 'center',
-        color: Colors.white,
     },
 });
