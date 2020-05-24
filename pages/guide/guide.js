@@ -6,15 +6,12 @@
  */
 
 import React, { useCallback } from 'react';
+import { StyleSheet, View } from 'react-native';
 import Colors from '../../assets/colors';
 import Fonts from '../../assets/fonts';
-
-import {
-    StyleSheet,
-    View,
-} from 'react-native';
-
 import ImageButton from '../components/imageButton';
+
+
 
 export default function Guide({ navigation }) {
 
@@ -74,7 +71,7 @@ export default function Guide({ navigation }) {
                 <ImageButton
                     style={styles.btn}
                     onPress={fossilSelected}
-                    imageSource={require('../../assets/images/fossils/trilobite.png')}
+                    imageSource={require('../../assets/icons/fossils/trilobite.png')}
                     imageStyle={styles.image}
                     textStyle={styles.btnTextWhite}
                     text={'Fossils'} />
@@ -121,7 +118,7 @@ const styles = StyleSheet.create({
         marginBottom: 10
     },
     btnTextWhite: {
-        fontFamily: Fonts.normal,
+        fontFamily: Fonts.regular,
         fontSize: 16,
         textAlign: 'center',
         color: Colors.black,

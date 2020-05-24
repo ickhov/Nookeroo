@@ -1,13 +1,8 @@
 import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 import Colors from '../../assets/colors';
 import Fonts from '../../assets/fonts';
-import Icons from 'react-native-vector-icons/MaterialIcons';
 
-import {
-    View,
-    Text,
-    StyleSheet,
-} from 'react-native';
 
 export default function RoundBorderText({
     text,
@@ -30,7 +25,7 @@ const styles = StyleSheet.create({
         borderRadius: 20,
     },
     textStyle: {
-        fontFamily: Fonts.normal,
+        fontFamily: Fonts.regular,
         fontSize: 16,
         textAlign: 'center',
         color: Colors.white,

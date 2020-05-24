@@ -1,8 +1,7 @@
 const Colors = {
-    primary: '#c9731e',
-    light: '#ffa24e',
-    dark: '#934700',
-    lightdark: '#9e4b00',
+    primary: '#00897B',
+    secondary: '#00695C',
+    tertiary: '#26A69A',
     white: '#fff',
     black: '#000',
     error: '#cc0000',
@@ -10,19 +9,6 @@ const Colors = {
     background: '#333333',
     subBackground: '#434343',
     none: 'transparent',
-    bluegray: '#546E7A',
-    pinkdark: '#880E4F',
-    pinklight: '#D81B60',
-    purpledark: '#4A148C',
-    purplelight: '#8E24AA',
-    deeppurpledark: '#311B92',
-    deeppurplelight: '#5E35B1',
-    indigodark: '#1A237E',
-    indigolight: '#3949AB',
-    bluedark: '#0D47A1',
-    bluelight: '#1E88E5',
-    tealdark: '#004D40',
-    teallight: '#00897B',
   }
   
 export default Colors;

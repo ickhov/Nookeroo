@@ -1,6 +1,6 @@
 import React from 'react';
 import Colors from '../../assets/colors';
-import { View, StatusBar, StyleSheet, Platform } from 'react-native';
+import { View, StyleSheet, Platform } from 'react-native';
 
 export default function CustomStatusBar({
     style

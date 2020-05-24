@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
         resizeMode: 'contain'
     },
     textStyle: {
-        fontFamily: Fonts.normal,
+        fontFamily: Fonts.regular,
         fontSize: 16,
         textAlign: 'left',
         color: Colors.white,

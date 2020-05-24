@@ -17,13 +17,14 @@ import {
 } from 'react-native';
 
 import CustomButton from '../../components/customButton';
+import ImageButton from '../../components/imageButton';
 
 export default function VillagerGuide({ navigation }) {
 
     const [data, setData] = useState([]);
 
-    const detailClicked = useCallback(item => {
-        navigation.navigate('GuideVillagerDetail', { 
+    const detailSelected = useCallback(item => {
+        navigation.navigate('VillagerDetail', { 
             name: item.name['name-en'],
             data: item
         })
@@ -38,16 +39,23 @@ export default function VillagerGuide({ navigation }) {
     }, []);
 
     return (
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={styles.root}>
             <FlatList
-                style={{ width: '100%' }}
+                contentContainerStyle={styles.container}
+                showsVerticalScrollIndicator={false}
                 data={data}
-                renderItem={({ item }) => <CustomButton
-                    name={item.name['name-en']}
+                renderItem={({ item }) =>
+                <ImageButton
+                    style={styles.btn}
+                    onPress={() => detailSelected(item)}
                     imageSource={'villagers/' + item.id}
-                    onPress={() => detailClicked(item)}
-                />}
+                    imageStyle={styles.image}
+                    textStyle={styles.btnTextWhite}
+                    text={item.name['name-en']} 
+                    />
+                }
                 keyExtractor={item => item.id.toString()}
+                numColumns={2}
             />
         </SafeAreaView>
     );
@@ -55,10 +63,29 @@ export default function VillagerGuide({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-    container: {
+    root: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: Colors.background,
+    },
+    container: {
+        width: '90%',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    btn: {
+        backgroundColor: Colors.tertiary,
+        padding: 8,
+        borderRadius: 20,
+        width: '45%',
+        marginTop: 10,
+        marginHorizontal: 10,
+    },
+    btnTextWhite: {
+        fontFamily: Fonts.regular,
+        fontSize: 16,
+        textAlign: 'center',
+        color: Colors.black,
     },
 });

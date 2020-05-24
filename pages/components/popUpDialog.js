@@ -18,15 +18,13 @@
  * @flow strict-local
  */
 
-import React, { Component } from 'react';
+import React from 'react';
+import { StyleSheet } from 'react-native';
+import AwesomeAlert from 'react-native-awesome-alerts';
 import Colors from '../../assets/colors';
 import Fonts from '../../assets/fonts';
 
-import {
-  StyleSheet
-} from 'react-native';
 
-import AwesomeAlert from 'react-native-awesome-alerts';
 
 export default function PopUpDialog({
   showAlert,
@@ -79,7 +77,7 @@ const styles = StyleSheet.create({
     color: Colors.black
   },
   popUpText: {
-    fontFamily: Fonts.normal,
+    fontFamily: Fonts.regular,
     fontSize: 16,
     textAlign: 'center',
     color: Colors.black
@@ -88,7 +86,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.error
   },
   popUpBtnText: {
-    fontFamily: Fonts.normal,
+    fontFamily: Fonts.regular,
     fontSize: 16,
     textAlign: 'center',
     color: Colors.white

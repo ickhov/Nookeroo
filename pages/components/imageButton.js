@@ -29,8 +29,11 @@ export default function ImageButton({
     imageSource,
     imageStyle,
     textStyle,
-    text
+    text,
+    isIcon = true,
 }) {
+
+    const source = isIcon ? 'http://acnhapi.com/icons/' : 'http://acnhapi.com/images/';
 
     return (
         <TouchableOpacity
@@ -38,7 +41,7 @@ export default function ImageButton({
             activeOpacity={0.5}
             onPress={onPress}>
             <Image
-                source={imageSource ?? require('../../assets/icons/villagers/cat23.png')}
+                source={imageSource ? { uri: source + imageSource } : require('../../assets/icons/villagers/cat23.png')}
                 style={[styles.imageStyle, imageStyle]}
             />
             <View style={styles.lineSeparator} />

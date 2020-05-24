@@ -1,6 +1,7 @@
 const Fonts = {
-    normal: 'OpenSans-Regular',
-    bold: 'ZillaSlab-SemiBold'
+    regular: 'Quicksand-Medium',
+    medium: 'Quicksand-SemiBold',
+    bold: 'Quicksand-Bold'
 }
   
 export default Fonts;

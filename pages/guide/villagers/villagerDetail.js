@@ -6,16 +6,12 @@
  */
 
 import React from 'react';
+import { Image, StyleSheet, View } from 'react-native';
 import Colors from '../../../assets/colors';
 import Fonts from '../../../assets/fonts';
-
-import {
-    StyleSheet,
-    View,
-    Image,
-} from 'react-native';
-
 import RoundBorderText from '../../components/roundBorderText';
+
+
 
 export default function VillagerDetailGuide({ route, navigation }) {
 
@@ -39,15 +35,11 @@ export default function VillagerDetailGuide({ route, navigation }) {
             <View style={styles.infoContainer}>
                 <RoundBorderText
                     text="SPECIES"
-                    containerStyle={[styles.infoTitleContainer, {
-                        backgroundColor: Colors.pinkdark
-                    }]}
+                    containerStyle={styles.infoTitleContainer}
                     textStyle={styles.infoTitle} />
                 <RoundBorderText
                     text={data.species}
-                    containerStyle={[styles.infoTextContainer, {
-                        backgroundColor: Colors.pinklight
-                    }]}
+                    containerStyle={styles.infoTextContainer}
                     textStyle={styles.infoText} />
             </View>
 
@@ -55,15 +47,11 @@ export default function VillagerDetailGuide({ route, navigation }) {
             <View style={styles.infoContainer}>
                 <RoundBorderText
                     text="PERSONALITY"
-                    containerStyle={[styles.infoTitleContainer, {
-                        backgroundColor: Colors.purpledark
-                    }]}
+                    containerStyle={styles.infoTitleContainer}
                     textStyle={styles.infoTitle} />
                 <RoundBorderText
                     text={data.personality}
-                    containerStyle={[styles.infoTextContainer, {
-                        backgroundColor: Colors.purplelight
-                    }]}
+                    containerStyle={styles.infoTextContainer}
                     textStyle={styles.infoText} />
             </View>
 
@@ -71,15 +59,11 @@ export default function VillagerDetailGuide({ route, navigation }) {
             <View style={styles.infoContainer}>
                 <RoundBorderText
                     text="BIRTHDAY"
-                    containerStyle={[styles.infoTitleContainer, {
-                        backgroundColor: Colors.deeppurpledark
-                    }]}
+                    containerStyle={styles.infoTitleContainer}
                     textStyle={styles.infoTitle} />
                 <RoundBorderText
                     text={data['birthday-string']}
-                    containerStyle={[styles.infoTextContainer, {
-                        backgroundColor: Colors.deeppurplelight
-                    }]}
+                    containerStyle={styles.infoTextContainer}
                     textStyle={styles.infoText} />
             </View>
 
@@ -87,15 +71,11 @@ export default function VillagerDetailGuide({ route, navigation }) {
             <View style={styles.infoContainer}>
                 <RoundBorderText
                     text="GENDER"
-                    containerStyle={[styles.infoTitleContainer, {
-                        backgroundColor: Colors.bluedark
-                    }]}
+                    containerStyle={styles.infoTitleContainer}
                     textStyle={styles.infoTitle} />
                 <RoundBorderText
                     text={data.gender}
-                    containerStyle={[styles.infoTextContainer, {
-                        backgroundColor: Colors.bluelight
-                    }]}
+                    containerStyle={styles.infoTextContainer}
                     textStyle={styles.infoText} />
             </View>
 
@@ -103,15 +83,11 @@ export default function VillagerDetailGuide({ route, navigation }) {
             <View style={styles.infoContainer}>
                 <RoundBorderText
                     text="CATCHPHRASE"
-                    containerStyle={[styles.infoTitleContainer, {
-                        backgroundColor: Colors.tealdark
-                    }]}
+                    containerStyle={styles.infoTitleContainer}
                     textStyle={styles.infoTitle} />
                 <RoundBorderText
                     text={data['catch-phrase']}
-                    containerStyle={[styles.infoTextContainer, {
-                        backgroundColor: Colors.teallight
-                    }]}
+                    containerStyle={styles.infoTextContainer}
                     textStyle={styles.infoText} />
             </View>
 
@@ -148,7 +124,7 @@ const styles = StyleSheet.create({
     nameContainer: {
         flex: 1,
         width: '60%',
-        backgroundColor: Colors.bluegray,
+        backgroundColor: Colors.primary,
         marginLeft: 20,
         borderRadius: 100,
     },
@@ -164,7 +140,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 10,
     },
     infoTitleContainer: {
-        backgroundColor: Colors.dark,
+        backgroundColor: Colors.secondary,
         borderRadius: 0,
         borderTopStartRadius: 20,
         borderTopEndRadius: 20,
@@ -178,15 +154,16 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
     },
     infoTextContainer: {
-        backgroundColor: Colors.primary,
+        backgroundColor: Colors.tertiary,
         borderRadius: 0,
         width: '100%',
     },
     infoText: {
-        fontFamily: Fonts.normal,
-        fontSize: 16,
+        fontFamily: Fonts.medium,
+        fontSize: 18,
         padding: 0,
         paddingBottom: 10,
         paddingHorizontal: 10,
+        color: Colors.black
     }
 });
