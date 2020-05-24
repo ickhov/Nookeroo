@@ -45,26 +45,26 @@ export default function Museum({ navigation }) {
     return (
         <SafeAreaView style={styles.root}>
             <ImageButtonWithProgressBar
-                onPress={() => artSelected}
+                onPress={artSelected}
                 imageSource={require('../../../assets/icons/museum-menu/arts.png')}
                 text={"Arts"}
                 _progress={50}
             />
 
             <ImageButtonWithProgressBar
-                onPress={() => bugSelected}
+                onPress={bugSelected}
                 imageSource={require('../../../assets/icons/museum-menu/bugs.png')}
                 text={"Bugs"}
             />
 
             <ImageButtonWithProgressBar
-                onPress={() => fishSelected}
+                onPress={fishSelected}
                 imageSource={require('../../../assets/icons/museum-menu/fishes.png')}
                 text={"Fishes"}
             />
 
             <ImageButtonWithProgressBar
-                onPress={() => fossilSelected}
+                onPress={fossilSelected}
                 imageSource={require('../../../assets/icons/museum-menu/fossils.png')}
                 text={"Fossils"}
             />
