@@ -1,5 +1,5 @@
 /**
- * Stack market list
+ * Art list
  *
  * @format
  * @flow strict-local
@@ -22,9 +22,16 @@ export default function ArtGuide({ navigation }) {
 
     const [data, setData] = useState([]);
 
+    const detailSelected = useCallback(item => {
+        navigation.navigate('ArtDetail', { 
+            name: item.name['name-en'],
+            data: item
+        })
+    }, []);
+
     useEffect(() => {
-        {/* Fetch art data from acnh API */}
-        fetch('http://acnhapi.com/art')
+        {/* Fetch art data from Nookeroo API */}
+        fetch('https://ickhov.github.io/nookeroo/art.json')
             .then((response) => response.json())
             .then((json) => setData(Object.values(json)))
             .catch((error) => console.error(error))
@@ -37,7 +44,8 @@ export default function ArtGuide({ navigation }) {
                 data={data}
                 renderItem={({ item }) => <CustomButton
                     name={item.name['name-en']}
-                    imageSource={'art/' + item.id}
+                    imageSource={'art/' + item['file-name']}
+                    onPress={() => detailSelected(item)}
                 />}
                 keyExtractor={item => item.id.toString()}
             />

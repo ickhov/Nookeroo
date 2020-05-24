@@ -79,15 +79,15 @@ const styles = StyleSheet.create({
     root: {
         justifyContent: 'center',
         alignItems: 'center',
-        width: '90%',
+        width: '70%',
     },
     container: {
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: Colors.tertiary,
         padding: 8,
-        borderTopStartRadius: 30,
-        borderTopEndRadius: 30,
+        borderTopStartRadius: 20,
+        borderTopEndRadius: 20,
         width: '100%',
         marginTop: 20,
         marginHorizontal: 10,
@@ -114,8 +114,8 @@ const styles = StyleSheet.create({
     },
     progressTextContainer: {
         backgroundColor: Colors.tertiary,
-        borderBottomStartRadius: 30,
-        borderBottomEndRadius: 30,
+        borderBottomStartRadius: 20,
+        borderBottomEndRadius: 20,
         width: '100%'
     },
     progressTextStyle: {

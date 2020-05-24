@@ -1,5 +1,5 @@
 /**
- * Stack market list
+ * Villager list
  *
  * @format
  * @flow strict-local
@@ -31,8 +31,8 @@ export default function VillagerGuide({ navigation }) {
     }, []);
 
     useEffect(() => {
-        {/* Fetch villager data from acnh API */}
-        fetch('http://acnhapi.com/villagers')
+        {/* Fetch villager data from Nookeroo API */}
+        fetch('https://ickhov.github.io/nookeroo/villagers.json')
             .then((response) => response.json())
             .then((json) => setData(Object.values(json)))
             .catch((error) => console.error(error))
@@ -48,7 +48,7 @@ export default function VillagerGuide({ navigation }) {
                 <ImageButton
                     style={styles.btn}
                     onPress={() => detailSelected(item)}
-                    imageSource={'villagers/' + item.id}
+                    imageSource={'villagers/' + item['file-name']}
                     imageStyle={styles.image}
                     textStyle={styles.btnTextWhite}
                     text={item.name['name-en']} 

@@ -28,7 +28,7 @@ export default function CustomButton({
 }) {
 
     const text = convertJSONString(name);
-    const source = isIcon ? 'http://acnhapi.com/icons/' : 'http://acnhapi.com/images/';
+    const source = isIcon ? 'https://ickhov.github.io/nookeroo/icons/' : 'https://ickhov.github.io/nookeroo/images/';
 
     return (
 
@@ -38,13 +38,15 @@ export default function CustomButton({
             onPress={onPress}>
 
             <Image
-                source={imageSource ? { uri: source + imageSource } : require('../../assets/icons/villagers/cat23.png')}
+                source={imageSource ? { uri: source + imageSource + '.png' } : require('../../assets/icons/menu/villagers.png')}
                 style={styles.imageStyle}
             />
 
             <Text style={styles.textStyle}>{text}</Text>
 
-            <Text style={styles.collectedTextStyle}>{hasCollected ? 'Collected' : ''}</Text>
+            <View style={hasCollected ? styles.collectedStyle : styles.missingStyle}>
+                <Text style={styles.collectedTextStyle}>{hasCollected ? 'Collected' : ''}</Text>
+            </View>
 
             <Text style={styles.arrowStyle}>
                 <Icons name={'chevron-right'} size={26} color={Colors.white} />;
@@ -77,17 +79,26 @@ const styles = StyleSheet.create({
         textAlign: 'left',
         color: Colors.white,
         paddingLeft: 20,
-        width: '50%',
+        width: '55%',
+    },
+    collectedStyle: {
+        width: '25%',
+        backgroundColor: Colors.primary,
+        borderRadius: 20,
+    },
+    missingStyle: {
+        width: '25%',
+        height: 0,
     },
     collectedTextStyle: {
-        fontFamily: Fonts.bold,
+        fontFamily: Fonts.medium,
         fontSize: 16,
         textAlign: 'center',
-        color: Colors.success,
-        width: '20%',
+        color: Colors.white,
+        padding: 10,
     },
     arrowStyle: {
-        width: '20%',
+        width: '10%',
         textAlign: 'right',
         color: Colors.none,
     }

@@ -1,5 +1,5 @@
 /**
- * Villager Detail
+ * Art detail page
  *
  * @format
  * @flow strict-local
@@ -7,86 +7,69 @@
 
 import React from 'react';
 import { Image, StyleSheet, View } from 'react-native';
-import Colors from '../../../assets/colors';
-import Fonts from '../../../assets/fonts';
-import RoundBorderText from '../../components/roundBorderText';
+import Colors from '../../../../assets/colors';
+import Fonts from '../../../../assets/fonts';
+import RoundBorderText from '../../../components/roundBorderText';
 
-
-
-export default function VillagerDetail({ route, navigation }) {
+export default function VillagerDetailGuide({ route, navigation }) {
 
     const data = route.params.data;
+    const name = lowercasetoUppercase(route.params.name);
+
+    function lowercasetoUppercase(str) {
+        var splitString = str.split(' ');
+        for (i = 0; i < splitString.length; i++) {
+            splitString[i] = splitString[i].charAt(0).toUpperCase() + splitString[i].substring(1);
+        }
+        return splitString.join(' ');
+    };
 
     return (
         <View style={styles.container}>
             <View style={styles.imageContainer}>
-                {/* Villager Image */}
+                {/* Art Image */}
                 <Image
-                    source={{ uri: 'https://ickhov.github.io/nookeroo/images/villagers/' + data['file-name'] + '.png' }}
+                    source={{ uri: 'https://ickhov.github.io/nookeroo/images/bugs/' + data['file-name'] + '.png' }}
                     style={styles.image} />
                 {/* Name Tab */}
                 <RoundBorderText
-                    text={route.params.name}
+                    text={name}
                     containerStyle={styles.nameContainer}
                     textStyle={styles.nameText} />
             </View>
 
-            {/* Species Tab */}
+            {/* Buy Price Tab */}
             <View style={styles.infoContainer}>
                 <RoundBorderText
-                    text="SPECIES"
+                    text="BUY PRICE"
                     containerStyle={styles.infoTitleContainer}
                     textStyle={styles.infoTitle} />
                 <RoundBorderText
-                    text={data.species}
+                    text={data['buy-price']}
                     containerStyle={styles.infoTextContainer}
                     textStyle={styles.infoText} />
             </View>
 
-            {/* Personality Tab */}
+            {/* Sell Price Tab */}
             <View style={styles.infoContainer}>
                 <RoundBorderText
-                    text="PERSONALITY"
+                    text="SELL PRICE"
                     containerStyle={styles.infoTitleContainer}
                     textStyle={styles.infoTitle} />
                 <RoundBorderText
-                    text={data.personality}
+                    text={data['sell-price']}
                     containerStyle={styles.infoTextContainer}
                     textStyle={styles.infoText} />
             </View>
 
-            {/* Birthday Tab */}
+            {/* Has Fake Tab */}
             <View style={styles.infoContainer}>
                 <RoundBorderText
-                    text="BIRTHDAY"
+                    text="Has Fake Version"
                     containerStyle={styles.infoTitleContainer}
                     textStyle={styles.infoTitle} />
                 <RoundBorderText
-                    text={data['birthday-string']}
-                    containerStyle={styles.infoTextContainer}
-                    textStyle={styles.infoText} />
-            </View>
-
-            {/* Gender Tab */}
-            <View style={styles.infoContainer}>
-                <RoundBorderText
-                    text="GENDER"
-                    containerStyle={styles.infoTitleContainer}
-                    textStyle={styles.infoTitle} />
-                <RoundBorderText
-                    text={data.gender}
-                    containerStyle={styles.infoTextContainer}
-                    textStyle={styles.infoText} />
-            </View>
-
-            {/* Catchphrase Tab */}
-            <View style={styles.infoContainer}>
-                <RoundBorderText
-                    text="CATCHPHRASE"
-                    containerStyle={styles.infoTitleContainer}
-                    textStyle={styles.infoTitle} />
-                <RoundBorderText
-                    text={data['catch-phrase']}
+                    text={data['hasFake'] ? 'Yes' : 'No'}
                     containerStyle={styles.infoTextContainer}
                     textStyle={styles.infoText} />
             </View>
@@ -119,7 +102,6 @@ const styles = StyleSheet.create({
         width: 150,
         height: 150,
         resizeMode: 'contain',
-        borderRadius: 75,
     },
     nameContainer: {
         flex: 1,

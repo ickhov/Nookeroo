@@ -1,5 +1,5 @@
 /**
- * Stack market list
+ * Museum menu
  *
  * @format
  * @flow strict-local

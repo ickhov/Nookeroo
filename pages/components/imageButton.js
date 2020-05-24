@@ -33,7 +33,7 @@ export default function ImageButton({
     isIcon = true,
 }) {
 
-    const source = isIcon ? 'http://acnhapi.com/icons/' : 'http://acnhapi.com/images/';
+    const source = isIcon ? 'https://ickhov.github.io/nookeroo/icons/' : 'https://ickhov.github.io/nookeroo/images/';
 
     return (
         <TouchableOpacity
@@ -41,7 +41,7 @@ export default function ImageButton({
             activeOpacity={0.5}
             onPress={onPress}>
             <Image
-                source={imageSource ? { uri: source + imageSource } : require('../../assets/icons/villagers/cat23.png')}
+                source={imageSource ? { uri: source + imageSource + '.png' } : require('../../assets/icons/menu/villagers.png')}
                 style={[styles.imageStyle, imageStyle]}
             />
             <View style={styles.lineSeparator} />

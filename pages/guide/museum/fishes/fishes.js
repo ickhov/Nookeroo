@@ -1,5 +1,5 @@
 /**
- * Stack market list
+ * Fish list
  *
  * @format
  * @flow strict-local
@@ -23,8 +23,8 @@ export default function FishGuide({ navigation }) {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        {/* Fetch fish data from acnh API */}
-        fetch('http://acnhapi.com/fish')
+        {/* Fetch fish data from Nookeroo API */}
+        fetch('https://ickhov.github.io/nookeroo/fish.json')
             .then((response) => response.json())
             .then((json) => setData(Object.values(json)))
             .catch((error) => console.error(error))
@@ -37,7 +37,7 @@ export default function FishGuide({ navigation }) {
                 data={data}
                 renderItem={({ item }) => <CustomButton
                     name={item.name['name-en']}
-                    imageSource={'fish/' + item.id}
+                    imageSource={'fish/' + item['file-name']}
                 />}
                 keyExtractor={item => item.id.toString()}
             />

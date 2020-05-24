@@ -1,5 +1,5 @@
 /**
- * Stack market list
+ * Bug list
  *
  * @format
  * @flow strict-local
@@ -22,9 +22,16 @@ export default function BugGuide({ navigation }) {
 
     const [data, setData] = useState([]);
 
+    const detailSelected = useCallback(item => {
+        navigation.navigate('BugDetail', { 
+            name: item.name['name-en'],
+            data: item
+        })
+    }, []);
+
     useEffect(() => {
-        {/* Fetch bug data from acnh API */}
-        fetch('http://acnhapi.com/bugs')
+        {/* Fetch bug data from Nookeroo API */}
+        fetch('https://ickhov.github.io/nookeroo/bugs.json')
             .then((response) => response.json())
             .then((json) => setData(Object.values(json)))
             .catch((error) => console.error(error))
@@ -37,7 +44,8 @@ export default function BugGuide({ navigation }) {
                 data={data}
                 renderItem={({ item }) => <CustomButton
                     name={item.name['name-en']}
-                    imageSource={'bugs/' + item.id}
+                    imageSource={'bugs/' + item['file-name']}
+                    onPress={() => detailSelected(item)}
                 />}
                 keyExtractor={item => item.id.toString()}
             />

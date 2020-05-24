@@ -23,9 +23,11 @@ import VillagerDetail from './pages/guide/villagers/villagerDetail';
 // Museum Stack
 import Museum from './pages/guide/museum/museum';
 import Bugs from './pages/guide/museum/bugs/bugs';
+import BugDetail from './pages/guide/museum/bugs/bugDetail';
 import Fishes from './pages/guide/museum/fishes/fishes';
 import Fossils from './pages/guide/museum/fossils/fossils';
 import Arts from './pages/guide/museum/arts/arts';
+import ArtDetail from './pages/guide/museum/arts/artDetail';
 
 import {
   StyleSheet, Image,
@@ -64,6 +66,9 @@ const MuseumStack = () => {
       <Stack.Screen name="Fishes" component={Fishes} />
       <Stack.Screen name="Fossils" component={Fossils} />
       <Stack.Screen name="Arts" component={Arts} />
+
+      <Stack.Screen name="ArtDetail" component={ArtDetail} options={{ title: 'Details' }} />
+      <Stack.Screen name="BugDetail" component={BugDetail} options={{ title: 'Details' }} />
     </Stack.Navigator>
   );
 }

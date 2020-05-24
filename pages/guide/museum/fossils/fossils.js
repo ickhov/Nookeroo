@@ -1,5 +1,5 @@
 /**
- * Stack market list
+ * Fossil list
  *
  * @format
  * @flow strict-local
@@ -23,8 +23,8 @@ export default function FossilGuide({ navigation }) {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        {/* Fetch fossil data from acnh API */}
-        fetch('http://acnhapi.com/fossils')
+        {/* Fetch fossil data from Nookeroo API */}
+        fetch('https://ickhov.github.io/nookeroo/fossils.json')
             .then((response) => response.json())
             .then((json) => setData(Object.values(json)))
             .catch((error) => console.error(error))
