@@ -43,6 +43,7 @@ export default function Guide({ navigation }) {
             {/* Menu for selecting the guide options */}
             <View style={styles.optionContainer}>
 
+                {/* Art Tab */}
                 <ImageButton
                     style={styles.btn}
                     onPress={artSelected}
@@ -51,6 +52,7 @@ export default function Guide({ navigation }) {
                     textStyle={styles.btnTextWhite}
                     text={'Arts'} />
 
+                {/* Bug Tab */}
                 <ImageButton
                     style={styles.btn}
                     onPress={bugSelected}
@@ -59,6 +61,7 @@ export default function Guide({ navigation }) {
                     textStyle={styles.btnTextWhite}
                     text={'Bugs'} />
 
+                {/* Fish Tab */}
                 <ImageButton
                     style={styles.btn}
                     onPress={fishSelected}
@@ -67,6 +70,7 @@ export default function Guide({ navigation }) {
                     textStyle={styles.btnTextWhite}
                     text={'Fishes'} />
 
+                {/* Fossil Tab */}
                 <ImageButton
                     style={styles.btn}
                     onPress={fossilSelected}
@@ -75,6 +79,7 @@ export default function Guide({ navigation }) {
                     textStyle={styles.btnTextWhite}
                     text={'Fossils'} />
 
+                {/* Villager Tab */}
                 <ImageButton
                     style={styles.btn}
                     onPress={villagerSelected}

@@ -6,8 +6,8 @@
  */
 
 import React, { useState, useEffect, useCallback } from 'react';
-import Colors from '../../assets/colors';
-import Fonts from '../../assets/fonts';
+import Colors from '../../../assets/colors';
+import Fonts from '../../../assets/fonts';
 
 import {
     SafeAreaView,
@@ -16,14 +16,15 @@ import {
     FlatList,
 } from 'react-native';
 
-import CustomButton from '../components/customButton';
+import CustomButton from '../../components/customButton';
 
-export default function BugGuide({ navigation }) {
+export default function ArtGuide({ navigation }) {
 
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        fetch('http://acnhapi.com/bugs')
+        {/* Fetch art data from acnh API */}
+        fetch('http://acnhapi.com/art')
             .then((response) => response.json())
             .then((json) => setData(Object.values(json)))
             .catch((error) => console.error(error))
@@ -36,7 +37,7 @@ export default function BugGuide({ navigation }) {
                 data={data}
                 renderItem={({ item }) => <CustomButton
                     name={item.name['name-en']}
-                    imageSource={'bugs/' + item.id}
+                    imageSource={'art/' + item.id}
                 />}
                 keyExtractor={item => item.id.toString()}
             />

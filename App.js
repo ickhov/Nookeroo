@@ -18,11 +18,14 @@ import CustomStatusBar from './pages/components/statusBar';
 
 // Guide Stack
 import Guide from './pages/guide/guide';
-import GuideVillagers from './pages/guide/villagers';
-import GuideBugs from './pages/guide/bugs';
-import GuideFishes from './pages/guide/fishes';
-import GuideFossils from './pages/guide/fossils';
-import GuideArts from './pages/guide/arts';
+import GuideVillagers from './pages/guide/villagers/villagers';
+import GuideBugs from './pages/guide/bugs/bugs';
+import GuideFishes from './pages/guide/fishes/fishes';
+import GuideFossils from './pages/guide/fossils/fossils';
+import GuideArts from './pages/guide/arts/arts';
+
+// Guide Stack: Details
+import GuideVillagerDetail from './pages/guide/villagers/villagerDetail';
 
 import {
   StyleSheet,
@@ -60,6 +63,8 @@ const GuideStack = () => {
       <Stack.Screen name="GuideFishes" component={GuideFishes} options={{ title: 'Fishes' }}/>
       <Stack.Screen name="GuideFossils" component={GuideFossils} options={{ title: 'Fossils' }}/>
       <Stack.Screen name="GuideArts" component={GuideArts} options={{ title: 'Arts' }}/>
+      
+      <Stack.Screen name="GuideVillagerDetail" component={GuideVillagerDetail} options={({ route }) => ({ title: route.params.name })}/>
     </Stack.Navigator>
   );
 }

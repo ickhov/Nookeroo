@@ -6,8 +6,8 @@
  */
 
 import React, { useState, useEffect, useCallback } from 'react';
-import Colors from '../../assets/colors';
-import Fonts from '../../assets/fonts';
+import Colors from '../../../assets/colors';
+import Fonts from '../../../assets/fonts';
 
 import {
     SafeAreaView,
@@ -16,13 +16,14 @@ import {
     FlatList,
 } from 'react-native';
 
-import CustomButton from '../components/customButton';
+import CustomButton from '../../components/customButton';
 
 export default function FishGuide({ navigation }) {
 
     const [data, setData] = useState([]);
 
     useEffect(() => {
+        {/* Fetch fish data from acnh API */}
         fetch('http://acnhapi.com/fish')
             .then((response) => response.json())
             .then((json) => setData(Object.values(json)))

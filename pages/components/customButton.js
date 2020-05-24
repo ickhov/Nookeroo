@@ -68,7 +68,8 @@ const styles = StyleSheet.create({
     },
     imageStyle: {
         width: '10%',
-        height: 50
+        height: 50,
+        resizeMode: 'contain'
     },
     textStyle: {
         fontFamily: Fonts.normal,
