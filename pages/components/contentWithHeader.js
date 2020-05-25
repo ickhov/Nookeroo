@@ -29,18 +29,21 @@ import Fonts from '../../assets/fonts';
 import RoundBorderText from './roundBorderText';
 
 export default function contentWithHeader({
+    containerStyle,
     title,
-    text
+    titleStyle,
+    text,
+    textStyle,
 }) {
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, containerStyle]}>
             <RoundBorderText
                 text={title}
-                containerStyle={styles.infoTitleContainer}
+                containerStyle={[styles.infoTitleContainer, titleStyle]}
                 textStyle={styles.infoTitle} />
             <RoundBorderText
                 text={text}
-                containerStyle={styles.infoTextContainer}
+                containerStyle={[styles.infoTextContainer, textStyle]}
                 textStyle={styles.infoText} />
         </View>
     );
@@ -75,7 +78,7 @@ const styles = StyleSheet.create({
         fontFamily: Fonts.medium,
         fontSize: 16,
         padding: 10,
-        color: Colors.black,
+        color: Colors.white,
         textAlign: 'center',
     },
 });
