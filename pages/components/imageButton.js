@@ -8,6 +8,7 @@
  * imageStyle
  * textStyle
  * text
+ * isIcon = true,
  *
  * @format
  * @flow strict-local

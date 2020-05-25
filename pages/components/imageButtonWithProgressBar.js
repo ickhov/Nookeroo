@@ -2,12 +2,10 @@
  * Custom imageButton component
  * 
  * Properties that can be initialize:
- * style
  * onPress
  * imageSource
- * imageStyle
- * textStyle
  * text
+ * _progress = 0,
  *
  * @format
  * @flow strict-local
@@ -59,7 +57,7 @@ export default function ImageButtonWithProgressBar({
                 activeOpacity={0.5}
                 onPress={onPress}>
                 <Image
-                    source={imageSource ?? require('../../assets/icons/villagers/cat23.png')}
+                    source={imageSource ?? require('../../assets/icons/menu/villagers.png')}
                     style={styles.imageStyle}
                 />
                 <View style={styles.lineSeparator} />

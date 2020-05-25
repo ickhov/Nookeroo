@@ -1,3 +1,17 @@
+/**
+ * Custom buttons component to use with museum list
+ * 
+ * Properties that can be initialize:
+ * name
+ * onPress
+ * imageSource
+ * isIcon = true
+ * hasCollected = false,
+ *
+ * @format
+ * @flow strict-local
+ */
+
 import React from 'react';
 import Colors from '../../assets/colors';
 import Fonts from '../../assets/fonts';

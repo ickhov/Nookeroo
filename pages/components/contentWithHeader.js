@@ -2,26 +2,21 @@
  * Custom imageButton component
  * 
  * Properties that can be initialize:
- * style
- * onPress
- * imageSource
- * imageStyle
- * textStyle
+ * containerStyle
+ * title
+ * titleStyle
  * text
+ * textStyle
  *
  * @format
  * @flow strict-local
  */
 
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 
 import {
     View,
-    Text,
     StyleSheet,
-    TouchableOpacity,
-    Image,
-    Animated,
 } from 'react-native';
 
 import Colors from '../../assets/colors';

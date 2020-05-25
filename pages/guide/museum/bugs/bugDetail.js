@@ -10,9 +10,8 @@ import { Image, StyleSheet, View, Text, SafeAreaView, ScrollView } from 'react-n
 import Colors from '../../../../assets/colors';
 import Fonts from '../../../../assets/fonts';
 import RoundBorderText from '../../../components/roundBorderText';
-
-import Months from '../../../helper/month';
 import ContentWithHeader from '../../../components/contentWithHeader';
+import TextWithImages from '../../../components/textWithImages';
 
 export default function VillagerDetailGuide({ route, navigation }) {
 
@@ -73,7 +72,6 @@ export default function VillagerDetailGuide({ route, navigation }) {
         for (var i = 0; i < numMonths; i++) {
             let index = (start - 1 + i) % 12;
 
-            console.log(months[index]);
             if (isNorth) {
                 // handle north months
                 if (months[index] == 'S' || months[index] == 'N & S') {
@@ -120,6 +118,19 @@ export default function VillagerDetailGuide({ route, navigation }) {
                             text={name}
                             containerStyle={styles.nameContainer}
                             textStyle={styles.nameText} />
+                    </View>
+
+                    <View style={styles.bellContainer}>
+                        <TextWithImages 
+                        containerStyle={{ width: '50%' }}
+                        leftImageSource={require('../../../../assets/icons/miscellaneous/cranny.png')}
+                        rightImageSource={require('../../../../assets/icons/miscellaneous/bells.png')}
+                        text={data['price']}/>
+                        <TextWithImages
+                        containerStyle={{ width: '50%' }}
+                        leftImageSource={require('../../../../assets/icons/miscellaneous/flick.png')}
+                        rightImageSource={require('../../../../assets/icons/miscellaneous/bells.png')}
+                        text={data['price-flick']}/>
                     </View>
 
                     {/* Blathers' Description Tab */}
@@ -283,5 +294,14 @@ const styles = StyleSheet.create({
         borderRadius: 0,
         borderColor: Colors.white,
         borderWidth: 1,
+    },
+    bellContainer: {
+        alignItems: 'center',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        backgroundColor: Colors.tertiary,
+        width: '100%',
+        marginVertical: 20,
+        padding: 10,
     }
 });
