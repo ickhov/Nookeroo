@@ -1,5 +1,5 @@
 /**
- * Bug detail page
+ * Fish detail page
  *
  * @format
  * @flow strict-local
@@ -13,7 +13,7 @@ import RoundBorderText from '../../../components/roundBorderText';
 import ContentWithHeader from '../../../components/contentWithHeader';
 import TextWithImages from '../../../components/textWithImages';
 
-export default function BugDetail({ route, navigation }) {
+export default function FishDetail({ route, navigation }) {
 
     const data = route.params.data;
     const name = lowercasetoUppercase(route.params.name);
@@ -115,7 +115,7 @@ export default function BugDetail({ route, navigation }) {
                     <View style={styles.imageContainer}>
                         {/* Bug Image */}
                         <Image
-                            source={{ uri: 'https://ickhov.github.io/nookeroo/images/bugs/' + data['file-name'] + '.png' }}
+                            source={{ uri: 'https://ickhov.github.io/nookeroo/images/fish/' + data['file-name'] + '.png' }}
                             style={styles.image} />
                         {/* Name Tab */}
                         <RoundBorderText
@@ -137,9 +137,9 @@ export default function BugDetail({ route, navigation }) {
                             text={data.price} />
                         <TextWithImages
                             containerStyle={{ width: '45%' }}
-                            leftImageSource={require('../../../../assets/icons/miscellaneous/flick.png')}
+                            leftImageSource={require('../../../../assets/icons/miscellaneous/cj.png')}
                             rightImageSource={require('../../../../assets/icons/miscellaneous/bells.png')}
-                            text={data['price-flick']} />
+                            text={data['price-cj']} />
                     </View>
 
                     {/* Rarity Tab */}
@@ -238,7 +238,7 @@ const styles = StyleSheet.create({
         width: '100%',
     },
     image: {
-        width: 100,
+        width: 150,
         height: 100,
         resizeMode: 'contain',
     },
@@ -250,6 +250,7 @@ const styles = StyleSheet.create({
     nameText: {
         fontFamily: Fonts.bold,
         fontSize: 20,
+        paddingLeft: 0
     },
     descriptionContainer: {
         backgroundColor: Colors.secondary,

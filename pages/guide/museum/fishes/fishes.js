@@ -22,6 +22,13 @@ export default function FishGuide({ navigation }) {
 
     const [data, setData] = useState([]);
 
+    const detailSelected = useCallback(item => {
+        navigation.navigate('FishDetail', { 
+            name: item.name['name-en'],
+            data: item
+        })
+    }, []);
+
     useEffect(() => {
         {/* Fetch fish data from Nookeroo API */}
         fetch('https://ickhov.github.io/nookeroo/fish.json')
@@ -38,6 +45,7 @@ export default function FishGuide({ navigation }) {
                 renderItem={({ item }) => <CustomButton
                     name={item.name['name-en']}
                     imageSource={'fish/' + item['file-name']}
+                    onPress={() => detailSelected(item)}
                 />}
                 keyExtractor={item => item.id.toString()}
             />

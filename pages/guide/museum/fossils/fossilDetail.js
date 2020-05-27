@@ -1,5 +1,5 @@
 /**
- * Art detail page
+ * Fossil detail page
  *
  * @format
  * @flow strict-local
@@ -13,7 +13,7 @@ import RoundBorderText from '../../../components/roundBorderText';
 import ContentWithHeader from '../../../components/contentWithHeader';
 import TextWithImages from '../../../components/textWithImages';
 
-export default function ArtDetail({ route, navigation }) {
+export default function FossilDetail({ route, navigation }) {
 
     const data = route.params.data;
     const name = lowercasetoUppercase(route.params.name);
@@ -29,43 +29,37 @@ export default function ArtDetail({ route, navigation }) {
     return (
         <View style={styles.rootContainer}>
             <View style={styles.container}>
-                <View style={styles.imageContainer}>
-                    {/* Bug Image */}
-                    <Image
-                        source={{ uri: 'https://ickhov.github.io/nookeroo/icons/art/' + data['file-name'] + '.png' }}
-                        style={styles.image} />
-                    {/* Name Tab */}
+                    <View style={styles.imageContainer}>
+                        {/* Fossil Image */}
+                        <Image
+                            source={{ uri: 'https://ickhov.github.io/nookeroo/images/fossils/' + data['file-name'] + '.png' }}
+                            style={styles.image} />
+                        {/* Name Tab */}
+                        <RoundBorderText
+                            text={name}
+                            containerStyle={styles.nameContainer}
+                            textStyle={styles.nameText} />
+                    </View>
+
+                    {/* Price Tab */}
                     <RoundBorderText
-                        text={name}
-                        containerStyle={styles.nameContainer}
-                        textStyle={styles.nameText} />
-                </View>
+                        text="Price"
+                        containerStyle={styles.infoTitleContainer}
+                        textStyle={styles.infoTitle} />
+                    <View style={styles.bellContainer}>
+                        <TextWithImages
+                            containerStyle={{ width: '45%' }}
+                            leftImageSource={require('../../../../assets/icons/miscellaneous/cranny.png')}
+                            rightImageSource={require('../../../../assets/icons/miscellaneous/bells.png')}
+                            text={data.price} />
+                    </View>
 
-                {/* Price Tab */}
-                <RoundBorderText
-                    text="Price"
-                    containerStyle={styles.infoTitleContainer}
-                    textStyle={styles.infoTitle} />
-                <View style={styles.bellContainer}>
-                    <TextWithImages
-                        containerStyle={{ width: '45%' }}
-                        leftImageSource={require('../../../../assets/icons/miscellaneous/cranny.png')}
-                        rightImageSource={require('../../../../assets/icons/miscellaneous/bells.png')}
-                        text={data['sell-price']} />
-                    <TextWithImages
-                        containerStyle={{ width: '45%' }}
-                        leftImageSource={require('../../../../assets/icons/miscellaneous/redd.png')}
-                        rightImageSource={require('../../../../assets/icons/miscellaneous/bells.png')}
-                        text={data['buy-price']} />
+                    {/* Blathers' Description Tab */}
+                    <RoundBorderText
+                        text={data['museum-phrase'] + '\n' + `\t\t\t\t\t\t\t - Blathers`}
+                        containerStyle={styles.descriptionContainer}
+                        textStyle={styles.descriptionText} />
                 </View>
-
-                {/* Rarity Tab */}
-                <ContentWithHeader title={'Authenticity'}
-                    text={data['hasFake'] ? 'Can Be Fake' : 'Always Real'}
-                    containerStyle={[styles.infoTitleContainer, {
-                        marginBottom: 20,
-                    }]} />
-            </View>
         </View>
     );
 
@@ -109,6 +103,18 @@ const styles = StyleSheet.create({
     nameText: {
         fontFamily: Fonts.bold,
         fontSize: 20,
+    },
+    descriptionContainer: {
+        backgroundColor: Colors.secondary,
+        borderRadius: 0,
+        width: '100%',
+        marginVertical: 20,
+    },
+    descriptionText: {
+        fontFamily: Fonts.bold,
+        fontSize: 16,
+        padding: 20,
+        textAlign: 'left',
     },
     infoTitleContainer: {
         backgroundColor: Colors.secondary,

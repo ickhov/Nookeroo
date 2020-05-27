@@ -25,7 +25,9 @@ import Museum from './pages/guide/museum/museum';
 import Bugs from './pages/guide/museum/bugs/bugs';
 import BugDetail from './pages/guide/museum/bugs/bugDetail';
 import Fishes from './pages/guide/museum/fishes/fishes';
+import FishDetail from './pages/guide/museum/fishes/fishDetail';
 import Fossils from './pages/guide/museum/fossils/fossils';
+import FossilDetail from './pages/guide/museum/fossils/fossilDetail';
 import Arts from './pages/guide/museum/arts/arts';
 import ArtDetail from './pages/guide/museum/arts/artDetail';
 
@@ -69,6 +71,8 @@ const MuseumStack = () => {
 
       <Stack.Screen name="ArtDetail" component={ArtDetail} options={{ title: 'Details' }} />
       <Stack.Screen name="BugDetail" component={BugDetail} options={{ title: 'Details' }} />
+      <Stack.Screen name="FishDetail" component={FishDetail} options={{ title: 'Details' }} />
+      <Stack.Screen name="FossilDetail" component={FossilDetail} options={{ title: 'Details' }} />
     </Stack.Navigator>
   );
 }

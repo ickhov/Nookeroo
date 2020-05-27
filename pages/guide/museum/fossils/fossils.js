@@ -22,6 +22,13 @@ export default function FossilGuide({ navigation }) {
 
     const [data, setData] = useState([]);
 
+    const detailSelected = useCallback(item => {
+        navigation.navigate('FossilDetail', { 
+            name: item.name['name-en'],
+            data: item
+        })
+    }, []);
+
     useEffect(() => {
         {/* Fetch fossil data from Nookeroo API */}
         fetch('https://ickhov.github.io/nookeroo/fossils.json')
@@ -39,6 +46,7 @@ export default function FossilGuide({ navigation }) {
                     name={item.name['name-en']}
                     imageSource={'fossils/' + item['file-name']}
                     isIcon={false}
+                    onPress={() => detailSelected(item)}
                 />}
                 keyExtractor={item => item['file-name']}
             />
