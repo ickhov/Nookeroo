@@ -14,6 +14,7 @@ import {
     StyleSheet,
     View,
     FlatList,
+    ScrollView
 } from 'react-native';
 
 import ImageButtonWithProgressBar from '../../components/imageButtonWithProgressBar';
@@ -43,8 +44,12 @@ export default function Museum({ navigation }) {
     }, []);
 
     return (
-        <SafeAreaView style={styles.root}>
-            <ImageButtonWithProgressBar
+        <SafeAreaView style={{ flex: 1 }}>
+            <ScrollView
+                showsVerticalScrollIndicator={false}
+                style={styles.rootStyle}
+                contentContainerStyle={styles.rootContainer}>
+                    <ImageButtonWithProgressBar
                 onPress={artSelected}
                 imageSource={require('../../../assets/icons/museum-menu/arts.png')}
                 text={"Arts"}
@@ -68,16 +73,19 @@ export default function Museum({ navigation }) {
                 imageSource={require('../../../assets/icons/museum-menu/fossils.png')}
                 text={"Fossils"}
             />
+                </ScrollView>
         </SafeAreaView>
     );
 
 }
 
 const styles = StyleSheet.create({
-    root: {
-        flex: 1,
+    rootStyle: {
+        backgroundColor: Colors.background,
+        width: '100%',
+    },
+    rootContainer: {
         justifyContent: 'flex-start',
         alignItems: 'center',
-        backgroundColor: Colors.background,
     },
 });
