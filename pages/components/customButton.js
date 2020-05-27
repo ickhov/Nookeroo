@@ -7,12 +7,13 @@
  * imageSource
  * isIcon = true
  * hasCollected = false,
+ * toggleCheckBox
  *
  * @format
  * @flow strict-local
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import Colors from '../../assets/colors';
 import Fonts from '../../assets/fonts';
 import Icons from 'react-native-vector-icons/MaterialIcons';
@@ -23,7 +24,10 @@ import {
     StyleSheet,
     TouchableOpacity,
     Image,
+    Platform,
 } from 'react-native';
+
+import CheckBox from '@react-native-community/checkbox';
 
 function convertJSONString(str) {
     var splitString = str.split('_');
@@ -33,12 +37,36 @@ function convertJSONString(str) {
     return splitString.join(' ');
 };
 
+const CustomCheckBox = (props) => {
+    return (
+
+        Platform.OS === 'ios' ?
+            <CheckBox
+                style={styles.checkBoxStyle}
+                value={props.hasCollected}
+                onValueChange={props.onPress}
+                tintColor={Colors.white}
+                onCheckColor={Colors.tertiary}
+                onTintColor={Colors.tertiary}
+            />
+            :
+            <CheckBox
+                style={styles.checkBoxStyle}
+                value={propshasCollected}
+                onValueChange={props.toggleCheckBox}
+                tintColors={{ true: Colors.primary, false: Colors.white }}
+            />
+
+    )
+}
+
 export default function CustomButton({
     name,
     onPress,
     imageSource,
     isIcon = true,
     hasCollected = false,
+    toggleCheckBox,
 }) {
 
     const text = convertJSONString(name);
@@ -46,26 +74,36 @@ export default function CustomButton({
 
     return (
 
-        <TouchableOpacity
-            style={styles.container}
-            activeOpacity={0.5}
-            onPress={onPress}>
+        <View style={styles.container}>
 
-            <Image
-                source={imageSource ? { uri: source + imageSource + '.png' } : require('../../assets/icons/menu/villagers.png')}
-                style={styles.imageStyle}
-            />
+            <TouchableOpacity
+                style={styles.buttonContainer}
+                activeOpacity={0.5}
+                onPress={onPress}>
 
-            <Text style={styles.textStyle}>{text}</Text>
+                <Image
+                    source={imageSource ? { uri: source + imageSource + '.png' } : require('../../assets/icons/menu/villagers.png')}
+                    style={styles.imageStyle}
+                />
 
-            <View style={hasCollected ? styles.collectedStyle : styles.missingStyle}>
-                <Text style={styles.collectedTextStyle}>{hasCollected ? 'Collected' : ''}</Text>
-            </View>
+                <Text style={styles.textStyle}>{text}</Text>
 
-            <Text style={styles.arrowStyle}>
-                <Icons name={'chevron-right'} size={26} color={Colors.white} />;
-            </Text>
-        </TouchableOpacity>
+            </TouchableOpacity>
+
+            <CustomCheckBox hasCollected={hasCollected} onPress={toggleCheckBox} />
+
+            <TouchableOpacity
+                style={styles.arrowContainer}
+                activeOpacity={0.5}
+                onPress={onPress}>
+
+                <Text style={styles.arrowStyle}>
+                    <Icons name={'chevron-right'} size={26} color={Colors.white} />;
+                </Text>
+
+            </TouchableOpacity>
+
+        </View>
 
     );
 };
@@ -76,14 +114,22 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flexDirection: 'row',
         justifyContent: 'flex-start',
-        width: '100%',
+        backgroundColor: Colors.subBackground,
         padding: 10,
         paddingLeft: 20,
-        backgroundColor: Colors.subBackground,
-        marginTop: 10
+        width: '100%',
+        borderBottomWidth: 1,
+        borderColor: Colors.black
+    },
+    buttonContainer: {
+        flex: 1,
+        alignItems: 'center',
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        width: '80%',
     },
     imageStyle: {
-        width: '10%',
+        width: 50,
         height: 50,
         resizeMode: 'contain'
     },
@@ -93,26 +139,15 @@ const styles = StyleSheet.create({
         textAlign: 'left',
         color: Colors.white,
         paddingLeft: 20,
-        width: '55%',
     },
-    collectedStyle: {
-        width: '25%',
-        backgroundColor: Colors.primary,
-        borderRadius: 20,
+    checkBoxStyle: {
+        width: '10%',
+
     },
-    missingStyle: {
-        width: '25%',
-        height: 0,
-    },
-    collectedTextStyle: {
-        fontFamily: Fonts.medium,
-        fontSize: 16,
-        textAlign: 'center',
-        color: Colors.white,
-        padding: 10,
+    arrowContainer: {
+        width: '10%',
     },
     arrowStyle: {
-        width: '10%',
         textAlign: 'right',
         color: Colors.none,
     }

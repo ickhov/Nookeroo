@@ -14,6 +14,8 @@ import {
     StyleSheet,
     View,
     FlatList,
+    SectionList,
+    Text,
 } from 'react-native';
 
 import CustomButton from '../../../components/customButton';
@@ -23,35 +25,62 @@ export default function BugGuide({ navigation }) {
     const [data, setData] = useState([]);
 
     const detailSelected = useCallback(item => {
-        navigation.navigate('BugDetail', { 
+        navigation.navigate('BugDetail', {
             name: item.name['name-en'],
             data: item
         })
     }, []);
 
     useEffect(() => {
-        {/* Fetch bug data from Nookeroo API */}
+        {/* Fetch bug data from Nookeroo API */ }
         fetch('https://ickhov.github.io/nookeroo/bugs.json')
             .then((response) => response.json())
-            .then((json) => setData(Object.values(json)))
+            .then((json) => {
+                const items = Object.values(json);
+
+                var collectedData = [];
+                var missingData = [];
+
+                items.forEach((element, index) => {
+                    if (index < 5) {
+                        collectedData.push(element);
+                    } else {
+                        missingData.push(element);
+                    }
+                })
+
+                setData([
+                    {
+                        title: "Collected",
+                        data: collectedData
+                    },
+                    {
+                        title: "Missing",
+                        data: missingData
+                    }
+                ]);
+            })
             .catch((error) => console.error(error))
     }, []);
 
     return (
         <SafeAreaView style={styles.container}>
-            <FlatList
-                style={{ width: '100%' }}
-                data={data}
-                renderItem={({ item }) => <CustomButton
-                    name={item.name['name-en']}
-                    imageSource={'bugs/' + item['file-name']}
-                    onPress={() => detailSelected(item)}
-                />}
+            <SectionList
+            style={{ width: '100%' }}
+                sections={data}
                 keyExtractor={item => item.id.toString()}
+                renderItem={({ item }) => <CustomButton
+                name={item.name['name-en']}
+                imageSource={'bugs/' + item['file-name']}
+                onPress={() => detailSelected(item)}
+                toggleCheckBox={() => {}}
+            />}
+                renderSectionHeader={({ section: { title } }) => (
+                    <Text style={styles.header}>{title}</Text>
+                )}
             />
         </SafeAreaView>
     );
-
 }
 
 const styles = StyleSheet.create({
@@ -60,5 +89,13 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: Colors.background,
+    },
+    header: {
+        fontFamily: Fonts.medium,
+        fontSize: 20,
+        backgroundColor: Colors.background,
+        color: Colors.white,
+        textAlign: 'center',
+        padding: 10,
     },
 });
