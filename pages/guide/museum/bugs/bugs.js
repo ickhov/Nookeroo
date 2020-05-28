@@ -56,7 +56,6 @@ export default function BugGuide({ navigation }) {
         try {
             const values = JSON.stringify(value);
             await AsyncStorage.setItem(storageKey, values);
-            console.log("Storing " + values + " into " + storageKey);
         } catch (e) {
             console.log("Storing Error: " + e);
         }
@@ -65,24 +64,20 @@ export default function BugGuide({ navigation }) {
     const getCollectedList = useCallback(async () => {
         try {
             const values = await AsyncStorage.getItem(storageKey)
-            return values != null ? JSON.parse(values) : [];
+            const array = values != null ? JSON.parse(values) : []
+            setCollectedList(array);
+            populateData(array);
         } catch (e) {
             console.log("Retrieving Error: " + e);
         }
     }, []);
 
-    useEffect(() => {
-        {/* Fetch collected data from Async Storage */ }
-        setCollectedList(getCollectedList());
-
+    const populateData = useCallback((collected) => {
         {/* Fetch bug data from Nookeroo API */ }
         fetch('https://ickhov.github.io/nookeroo/bugs.json')
             .then((response) => response.json())
             .then((json) => {
                 const items = Object.values(json);
-                const collected = Array.from(collectedList);
-
-                console.log(collected);
 
                 var collectedData = [];
                 var missingData = [];
@@ -95,7 +90,12 @@ export default function BugGuide({ navigation }) {
                     }
                 })
 
-
+                if (collectedData.length == 0) {
+                    collectedData.push({
+                        id: -1,
+                        text: "You haven't caught any bug yet."
+                    })
+                }
 
                 setData([
                     {
@@ -111,19 +111,30 @@ export default function BugGuide({ navigation }) {
             .catch((error) => console.error(error))
     }, []);
 
+    useEffect(() => {
+        {/* Fetch collected data from Async Storage and populate the tables */ }
+        getCollectedList()
+    }, []);
+
     return (
         <SafeAreaView style={styles.container}>
             <SectionList
                 style={{ width: '100%' }}
                 sections={data}
                 keyExtractor={item => item.id.toString()}
-                renderItem={({ item }) => <CustomButton
-                    name={item.name['name-en']}
-                    imageSource={'bugs/' + item['file-name']}
-                    onPress={() => detailSelected(item)}
-                    hasCollected={Array.from(collectedList).includes(item['file-name'])}
-                    toggleCheckBox={() => checkBoxToggle(item)}
-                />}
+                renderItem={({ item }) => {
+                    if (item.id == -1) {
+                        return <Text style={styles.emptyTextStyle}>{item.text}</Text>
+                    } else {
+                        return <CustomButton
+                            name={item.name['name-en']}
+                            imageSource={'bugs/' + item['file-name']}
+                            onPress={() => detailSelected(item)}
+                            hasCollected={Array.from(collectedList).includes(item['file-name'])}
+                            toggleCheckBox={() => checkBoxToggle(item)}
+                        />
+                    }
+                }}
                 renderSectionHeader={({ section: { title } }) => (
                     <Text style={styles.header}>{title}</Text>
                 )}
@@ -147,4 +158,12 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         padding: 10,
     },
+    emptyTextStyle: {
+        fontFamily: Fonts.regular,
+        fontSize: 16,
+        textAlign: 'center',
+        color: Colors.white,
+        backgroundColor: Colors.subBackground,
+        padding: 20
+    }
 });
