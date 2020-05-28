@@ -12,8 +12,6 @@ import Fonts from '../../../../assets/fonts';
 import {
     SafeAreaView,
     StyleSheet,
-    View,
-    FlatList,
     SectionList,
     Text,
 } from 'react-native';
