@@ -22,6 +22,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 export default function FishGuide({ navigation }) {
 
     const [collectedList, setCollectedList] = useState([]);
+    const [rawData, setRawData] = useState([])
     const [data, setData] = useState([]);
     const storageKey = 'fish-collected';
 
@@ -31,6 +32,7 @@ export default function FishGuide({ navigation }) {
             data: item
         })
     }, []);
+    
     const checkBoxToggle = useCallback((item) => {
         // no data if first toggled, set to true if not in the list
         const data = Array.from(collectedList);
@@ -54,64 +56,67 @@ export default function FishGuide({ navigation }) {
             const values = JSON.stringify(value);
             await AsyncStorage.setItem(storageKey, values);
         } catch (e) {
-            console.log("Storing Error: " + e);
+            console.error("Storing Error: " + e);
         }
     }, []);
 
     const getCollectedList = useCallback(async () => {
         try {
             const values = await AsyncStorage.getItem(storageKey)
-            const array = values != null ? JSON.parse(values) : []
-            setCollectedList(array);
-            populateData(array);
+            setCollectedList(values != null ? JSON.parse(values) : [])
         } catch (e) {
-            console.log("Retrieving Error: " + e);
+            console.error("Retrieving Error: " + e);
         }
     }, []);
 
-    const populateData = useCallback((collected) => {
+    const fetchData = useCallback(() => {
         {/* Fetch bug data from Nookeroo API */ }
         fetch('https://ickhov.github.io/nookeroo/fish.json')
             .then((response) => response.json())
-            .then((json) => {
-                const items = Object.values(json);
-
-                var collectedData = [];
-                var missingData = [];
-
-                items.forEach((element) => {
-                    if (collected.includes(element['file-name'])) {
-                        collectedData.push(element);
-                    } else {
-                        missingData.push(element);
-                    }
-                })
-
-                if (collectedData.length == 0) {
-                    collectedData.push({
-                        id: -1,
-                        text: "You haven't caught any fish yet."
-                    })
-                }
-
-                setData([
-                    {
-                        title: "Collected",
-                        data: collectedData
-                    },
-                    {
-                        title: "Missing",
-                        data: missingData
-                    }
-                ]);
-            })
+            .then((json) => setRawData(Object.values(json)))
             .catch((error) => console.error(error))
+    }, [])
+
+    useEffect(() => {
+        {/* Fetch Data form server and storage (if any) */ }
+        fetchData();
+        getCollectedList();
     }, []);
 
     useEffect(() => {
-        {/* Fetch collected data from Async Storage and populate the tables */ }
-        getCollectedList()
-    }, []);
+        {/* Populate the tables */ }
+        const items = Array.from(rawData);
+        const collected = Array.from(collectedList);
+
+        var collectedData = [];
+        var missingData = [];
+
+        items.forEach((element) => {
+            if (collected.includes(element['file-name'])) {
+                collectedData.push(element);
+            } else {
+                missingData.push(element);
+            }
+        })
+
+        if (collectedData.length == 0) {
+            collectedData.push({
+                id: -1,
+                text: "You haven't caught any fish yet."
+            })
+        }
+
+        setData([
+            {
+                title: "Collected",
+                data: collectedData
+            },
+            {
+                title: "Missing",
+                data: missingData
+            }
+        ]);
+    }, [collectedList, rawData]);
 
     return (
         <SafeAreaView style={styles.container}>

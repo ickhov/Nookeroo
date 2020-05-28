@@ -63,7 +63,7 @@ const MuseumStack = () => {
         headerTintColor: Colors.white,
         headerBackTitleStyle: { fontFamily: Fonts.regular }
       })}>
-      <Stack.Screen name="Museum" component={Museum} />
+      <Stack.Screen name="Museum" component={Museum} initialParams={{ data: [], collected: [] }} />
       <Stack.Screen name="Bugs" component={Bugs} />
       <Stack.Screen name="Fishes" component={Fishes} />
       <Stack.Screen name="Fossils" component={Fossils} />

@@ -49,31 +49,32 @@ export default function Museum({ navigation }) {
                 showsVerticalScrollIndicator={false}
                 style={styles.rootStyle}
                 contentContainerStyle={styles.rootContainer}>
-                    <ImageButtonWithProgressBar
-                onPress={artSelected}
-                imageSource={require('../../../assets/icons/museum-menu/arts.png')}
-                text={"Arts"}
-                _progress={50}
-            />
+                    
+                <ImageButtonWithProgressBar
+                    onPress={artSelected}
+                    imageSource={require('../../../assets/icons/museum-menu/arts.png')}
+                    text={"Arts"}
+                    _progress={50}
+                />
 
-            <ImageButtonWithProgressBar
-                onPress={bugSelected}
-                imageSource={require('../../../assets/icons/museum-menu/bugs.png')}
-                text={"Bugs"}
-            />
+                <ImageButtonWithProgressBar
+                    onPress={bugSelected}
+                    imageSource={require('../../../assets/icons/museum-menu/bugs.png')}
+                    text={"Bugs"}
+                />
 
-            <ImageButtonWithProgressBar
-                onPress={fishSelected}
-                imageSource={require('../../../assets/icons/museum-menu/fishes.png')}
-                text={"Fishes"}
-            />
+                <ImageButtonWithProgressBar
+                    onPress={fishSelected}
+                    imageSource={require('../../../assets/icons/museum-menu/fishes.png')}
+                    text={"Fishes"}
+                />
 
-            <ImageButtonWithProgressBar
-                onPress={fossilSelected}
-                imageSource={require('../../../assets/icons/museum-menu/fossils.png')}
-                text={"Fossils"}
-            />
-                </ScrollView>
+                <ImageButtonWithProgressBar
+                    onPress={fossilSelected}
+                    imageSource={require('../../../assets/icons/museum-menu/fossils.png')}
+                    text={"Fossils"}
+                />
+            </ScrollView>
         </SafeAreaView>
     );
 
