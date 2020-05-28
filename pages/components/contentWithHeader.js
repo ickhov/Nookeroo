@@ -26,19 +26,19 @@ import RoundBorderText from './roundBorderText';
 export default function contentWithHeader({
     containerStyle,
     title,
-    titleStyle,
+    titleContainerStyle,
     text,
-    textStyle,
+    textContainerStyle,
 }) {
     return (
         <View style={[styles.container, containerStyle]}>
             <RoundBorderText
                 text={title}
-                containerStyle={[styles.infoTitleContainer, titleStyle]}
+                containerStyle={[styles.infoTitleContainer, titleContainerStyle]}
                 textStyle={styles.infoTitle} />
             <RoundBorderText
                 text={text}
-                containerStyle={[styles.infoTextContainer, textStyle]}
+                containerStyle={[styles.infoTextContainer, textContainerStyle]}
                 textStyle={styles.infoText} />
         </View>
     );

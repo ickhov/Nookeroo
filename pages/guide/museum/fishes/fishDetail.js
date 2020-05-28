@@ -145,15 +145,23 @@ export default function FishDetail({ route, navigation }) {
                     {/* Rarity Tab */}
                     <ContentWithHeader title={'Rarity'}
                         text={availability.rarity}
-                        containerStyle={styles.infoTitleContainer} />
+                        containerStyle={[styles.availabilityContainer, {
+                            marginTop: 20,
+                        }]}
+                        titleContainerStyle={styles.availabilityTitle}
+                        textContainerStyle={styles.availabilityText} />
                     {/* Location Tab */}
                     <ContentWithHeader title={'Location'}
                         text={availability.location}
-                        containerStyle={styles.infoTitleContainer} />
+                        containerStyle={styles.availabilityContainer}
+                        titleContainerStyle={styles.availabilityTitle}
+                        textContainerStyle={styles.availabilityText} />
                     {/* Time Tab */}
                     <ContentWithHeader title={'Time'}
                         text={availability.isAllDay ? 'All Day' : availability.time}
-                        containerStyle={styles.infoTitleContainer} />
+                        containerStyle={styles.availabilityContainer}
+                        titleContainerStyle={styles.availabilityTitle}
+                        textContainerStyle={styles.availabilityText} />
 
                     {/* Months Tab */}
                     <RoundBorderText
@@ -163,40 +171,40 @@ export default function FishDetail({ route, navigation }) {
                     <View style={styles.calenderContainer}>
                         <ContentWithHeader title={'Jan'}
                             text={availabilityMonth[0]}
-                            textStyle={{ backgroundColor: monthColor[0] }} />
+                            textContainerStyle={{ backgroundColor: monthColor[0] }} />
                         <ContentWithHeader title={'Feb'}
                             text={availabilityMonth[1]}
-                            textStyle={{ backgroundColor: monthColor[1] }} />
+                            textContainerStyle={{ backgroundColor: monthColor[1] }} />
                         <ContentWithHeader title={'Mar'}
                             text={availabilityMonth[2]}
-                            textStyle={{ backgroundColor: monthColor[2] }} />
+                            textContainerStyle={{ backgroundColor: monthColor[2] }} />
                         <ContentWithHeader title={'Apr'}
                             text={availabilityMonth[3]}
-                            textStyle={{ backgroundColor: monthColor[3] }} />
+                            textContainerStyle={{ backgroundColor: monthColor[3] }} />
                         <ContentWithHeader title={'May'}
                             text={availabilityMonth[4]}
-                            textStyle={{ backgroundColor: monthColor[4] }} />
+                            textContainerStyle={{ backgroundColor: monthColor[4] }} />
                         <ContentWithHeader title={'Jun'}
                             text={availabilityMonth[5]}
-                            textStyle={{ backgroundColor: monthColor[5] }} />
+                            textContainerStyle={{ backgroundColor: monthColor[5] }} />
                         <ContentWithHeader title={'Jul'}
                             text={availabilityMonth[6]}
-                            textStyle={{ backgroundColor: monthColor[6] }} />
+                            textContainerStyle={{ backgroundColor: monthColor[6] }} />
                         <ContentWithHeader title={'Aug'}
                             text={availabilityMonth[7]}
-                            textStyle={{ backgroundColor: monthColor[7] }} />
+                            textContainerStyle={{ backgroundColor: monthColor[7] }} />
                         <ContentWithHeader title={'Sept'}
                             text={availabilityMonth[8]}
-                            textStyle={{ backgroundColor: monthColor[8] }} />
+                            textContainerStyle={{ backgroundColor: monthColor[8] }} />
                         <ContentWithHeader title={'Oct'}
                             text={availabilityMonth[9]}
-                            textStyle={{ backgroundColor: monthColor[9] }} />
+                            textContainerStyle={{ backgroundColor: monthColor[9] }} />
                         <ContentWithHeader title={'Nov'}
                             text={availabilityMonth[10]}
-                            textStyle={{ backgroundColor: monthColor[10] }} />
+                            textContainerStyle={{ backgroundColor: monthColor[10] }} />
                         <ContentWithHeader title={'Dec'}
                             text={availabilityMonth[11]}
-                            textStyle={{ backgroundColor: monthColor[11] }} />
+                            textContainerStyle={{ backgroundColor: monthColor[11] }} />
                     </View>
 
                     {/* Blathers' Description Tab */}
@@ -310,5 +318,25 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.tertiary,
         width: '100%',
         padding: 10,
-    }
+    },
+    availabilityContainer: {
+        flexDirection: 'row',
+        backgroundColor: Colors.secondary,
+        borderRadius: 0,
+        width: '100%',
+        borderWidth: 0,
+        borderTopWidth: 1,
+        borderBottomWidth: 1,
+        borderColor: Colors.primary,
+    },
+    availabilityTitle: {
+        width: '30%',
+        textAlign: 'left',
+        paddingLeft: 10,
+    },
+    availabilityText: {
+        width: '70%',
+        textAlign: 'left',
+        paddingLeft: 10,
+    },
 });

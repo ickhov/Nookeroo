@@ -26,7 +26,7 @@ import {
 import Colors from '../../assets/colors';
 import Fonts from '../../assets/fonts';
 
-export default function contentWithHeader({
+export default function textWithImages({
     containerStyle,
     leftImageSource,
     rightImageSource,

@@ -10,7 +10,6 @@ import { Image, StyleSheet, View, Text, SafeAreaView, ScrollView } from 'react-n
 import Colors from '../../../../assets/colors';
 import Fonts from '../../../../assets/fonts';
 import RoundBorderText from '../../../components/roundBorderText';
-import ContentWithHeader from '../../../components/contentWithHeader';
 import TextWithImages from '../../../components/textWithImages';
 
 export default function FossilDetail({ route, navigation }) {
