@@ -142,27 +142,6 @@ export default function BugDetail({ route, navigation }) {
                             text={data['price-flick']} />
                     </View>
 
-                    {/* Rarity Tab */}
-                    <ContentWithHeader title={'Rarity'}
-                        text={availability.rarity}
-                        containerStyle={[styles.availabilityContainer, {
-                            marginTop: 20,
-                        }]}
-                        titleContainerStyle={styles.availabilityTitle}
-                        textContainerStyle={styles.availabilityText} />
-                    {/* Location Tab */}
-                    <ContentWithHeader title={'Location'}
-                        text={availability.location}
-                        containerStyle={styles.availabilityContainer}
-                        titleContainerStyle={styles.availabilityTitle}
-                        textContainerStyle={styles.availabilityText} />
-                    {/* Time Tab */}
-                    <ContentWithHeader title={'Time'}
-                        text={availability.isAllDay ? 'All Day' : availability.time}
-                        containerStyle={styles.availabilityContainer}
-                        titleContainerStyle={styles.availabilityTitle}
-                        textContainerStyle={styles.availabilityText} />
-
                     {/* Months Tab */}
                     <RoundBorderText
                         text="Months"
@@ -206,6 +185,27 @@ export default function BugDetail({ route, navigation }) {
                             text={availabilityMonth[11]}
                             textContainerStyle={{ backgroundColor: monthColor[11] }} />
                     </View>
+
+                    {/* Rarity Tab */}
+                    <ContentWithHeader title={'Rarity'}
+                        text={availability.rarity}
+                        containerStyle={[styles.availabilityContainer, {
+                            marginTop: 20,
+                        }]}
+                        titleContainerStyle={styles.availabilityTitle}
+                        textContainerStyle={styles.availabilityText} />
+                    {/* Location Tab */}
+                    <ContentWithHeader title={'Location'}
+                        text={availability.location}
+                        containerStyle={styles.availabilityContainer}
+                        titleContainerStyle={styles.availabilityTitle}
+                        textContainerStyle={styles.availabilityText} />
+                    {/* Time Tab */}
+                    <ContentWithHeader title={'Time'}
+                        text={availability.isAllDay ? 'All Day' : availability.time}
+                        containerStyle={styles.availabilityContainer}
+                        titleContainerStyle={styles.availabilityTitle}
+                        textContainerStyle={styles.availabilityText} />
 
                     {/* Blathers' Description Tab */}
                     <RoundBorderText

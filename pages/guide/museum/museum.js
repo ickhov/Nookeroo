@@ -47,28 +47,30 @@ export default function Museum({ navigation }) {
         }
     };
 
-    const artSelected = useCallback(() => {
-        navigation.navigate('Arts')
-    }, []);
+    const artSelected = () => {
+        navigation.navigate(CONSTANTS.art.text);
+    };
 
-    const bugSelected = useCallback(() => {
-        navigation.navigate('Bugs')
-    }, []);
+    const bugSelected = () => {
+        navigation.navigate(CONSTANTS.bug.text);
+    };
 
-    const fishSelected = useCallback(() => {
-        navigation.navigate('Fishes')
-    }, []);
+    const fishSelected = () => {
+        navigation.navigate(CONSTANTS.fish.text);
+    };
 
-    const fossilSelected = useCallback(() => {
-        navigation.navigate('Fossils')
-    }, []);
+    const fossilSelected = () => {
+        navigation.navigate(CONSTANTS.fossil.text);
+    };
 
     // get the collected and total count
-    const getCount = useCallback(async (totalCountStorageKey, collectedCountStorageKey, url, index) => {
+    const getCount = async (totalCountStorageKey, collectedCountStorageKey, url, index) => {
         try {
             // store the list as string and count separately for faster reading
             var totalCount = await AsyncStorage.getItem(totalCountStorageKey);
             const collectedCount = await AsyncStorage.getItem(collectedCountStorageKey);
+
+            const realCollectedCount = collectedCount != null ? parseInt(collectedCount) : 0;
 
             // if null, then it's the first time loading so retrieve it from server
             if (totalCount == null) {
@@ -76,22 +78,20 @@ export default function Museum({ navigation }) {
                 fetch(url)
                     .then((response) => response.json())
                     .then((json) => {
-                        // set the data to use to populate the data after filtering
-                        totalCount = Object.values(json).length;
-
-                        setCount(index, [collectedCount != null ? parseInt(collectedCount) : 0, totalCount]);
+                        return([realCollectedCount, Object.values(json).length]);
                     })
+                    .then((object) => setCount(index, object))
                     .catch((error) => console.error(error))
             } else {
-                setCount(index, [collectedCount != null ? parseInt(collectedCount) : 0, parseInt(totalCount)]);
+                setCount(index, [realCollectedCount, parseInt(totalCount)]);
             }
         } catch (e) {
             console.error("Retrieving Error: " + e);
         }
-    }, []);
+    };
 
     // set the collected and total count
-    const setCount = useCallback((index, array) => {
+    const setCount = (index, array) => {
         switch (index) {
             case 0:
                 setArtCounts(array);
@@ -106,9 +106,9 @@ export default function Museum({ navigation }) {
                 setFossilCounts(array);
                 break;
         }
-    }, []);
+    };
 
-    const finalizeData = useCallback(async () => {
+    const finalizeData = useCallback(() => {
         const artPercent = (artCounts[0] * 1.0 / artCounts[1]) * 100;
         const bugPercent = (bugCounts[0] * 1.0 / bugCounts[1]) * 100;
         const fishPercent = (fishCounts[0] * 1.0 / fishCounts[1]) * 100;
@@ -146,24 +146,36 @@ export default function Museum({ navigation }) {
         ]);
     }, [artCounts, bugCounts, fishCounts, fossilCounts]);
 
-    useEffect(() => {
-        {/* Fetch async data for progress tracking */ }
+    const fetchArtData = () => {
         getCount(CONSTANTS.art.totalCountStorageKey,
             CONSTANTS.art.collectedCountStorageKey,
-            CONSTANTS.art.url,
-            0);
+            CONSTANTS.art.url, 0);
+    }
+
+    const fetchBugData = () => {
         getCount(CONSTANTS.bug.totalCountStorageKey,
             CONSTANTS.bug.collectedCountStorageKey,
-            CONSTANTS.bug.url,
-            1);
+            CONSTANTS.bug.url, 1);
+    }
+
+    const fetchFishData = () => {
         getCount(CONSTANTS.fish.totalCountStorageKey,
             CONSTANTS.fish.collectedCountStorageKey,
-            CONSTANTS.fish.url,
-            2);
+            CONSTANTS.fish.url, 2);
+    }
+
+    const fetchFossilData = () => {
         getCount(CONSTANTS.fossil.totalCountStorageKey,
             CONSTANTS.fossil.collectedCountStorageKey,
-            CONSTANTS.fossil.url,
-            3);
+            CONSTANTS.fossil.url, 3);
+    }
+
+    useEffect(() => {
+        {/* Fetch async data for progress tracking */ }
+        fetchArtData();
+        fetchBugData();
+        fetchFishData();
+        fetchFossilData();
     }, []);
 
     useEffect(() => {
@@ -177,19 +189,11 @@ export default function Museum({ navigation }) {
 
     }, [artCounts, bugCounts, fishCounts, fossilCounts]);
 
-    // useEffect(() => {
-    //     navigation.addListener(
-    //         'didFocus',
-    //         payload => {
-    //             getBugCount();
-    //         }
-    //     );
-    // }, []);
-
     return (
         <SafeAreaView style={styles.container}>
             <FlatList
                 style={{ width: '85%' }}
+                showsVerticalScrollIndicator={false}
                 data={data}
                 renderItem={({ item }) =>
                     <ImageButtonWithProgressBar
@@ -199,7 +203,6 @@ export default function Museum({ navigation }) {
                         _progress={item.progress}
                     />}
                 keyExtractor={item => item.id.toString()}
-                extraData={data}
             />
         </SafeAreaView>
     );

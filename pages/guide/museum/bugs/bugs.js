@@ -18,15 +18,14 @@ import {
 
 import CustomButton from '../../../components/customButton';
 import AsyncStorage from '@react-native-community/async-storage';
+import ProgressBar from '../../../components/progressBar';
 
 export default function BugGuide({ navigation }) {
 
     const [collectedList, setCollectedList] = useState([]);
-    const [collectedCount, setCollectedCount] = useState(0);
     const [rawData, setRawData] = useState([])
     const [data, setData] = useState([]);
     const storageKey = 'bug-collected';
-    const collectedCountStorageKey = 'bug-collected-count';
     const totalCountStorageKey = 'bug-total-count';
 
     const detailSelected = useCallback(item => {
@@ -49,13 +48,10 @@ export default function BugGuide({ navigation }) {
             data.push(item['file-name']);
         }
 
-        const length = data.length;
-        setCollectedCount(length);
         setCollectedList(data);
         storeCollectedList(data);
-        storeCollectedCount(length);
 
-    }, [collectedList, collectedCount]);
+    }, [collectedList]);
 
     const storeCollectedList = useCallback(async (value) => {
         try {
@@ -66,22 +62,11 @@ export default function BugGuide({ navigation }) {
         }
     }, []);
 
-    const storeCollectedCount = useCallback(async (length) => {
-        try {
-            const count = length.toString();
-            await AsyncStorage.setItem(collectedCountStorageKey, count);
-        } catch (e) {
-            console.error("Storing Error: " + e);
-        }
-    }, []);
-
     const getCollectedList = useCallback(async () => {
         try {
             // store the list as string and count separately for faster reading
             const values = await AsyncStorage.getItem(storageKey);
-            const count = await AsyncStorage.getItem(collectedCountStorageKey);
             setCollectedList(values != null ? JSON.parse(values) : []);
-            setCollectedCount(count != null ? parseInt(count) : 0);
         } catch (e) {
             console.error("Retrieving Error: " + e);
         }
@@ -121,6 +106,7 @@ export default function BugGuide({ navigation }) {
         const items = Array.from(rawData);
         const collected = Array.from(collectedList);
 
+        var progressData = [];
         var collectedData = [];
         var missingData = [];
 
@@ -132,23 +118,40 @@ export default function BugGuide({ navigation }) {
             }
         })
 
-        if (collectedData.length == 0) {
+        const collectedLength = collectedData.length;
+        const totalLength = items.length;
+
+        if (collectedLength == 0) {
             collectedData.push({
                 id: -1,
                 text: "You haven't caught any bug yet."
             })
         }
 
-        setData([
-            {
-                title: "Collected",
-                data: collectedData
-            },
-            {
-                title: "Missing",
-                data: missingData
-            }
-        ]);
+        if (totalLength > 0) {
+            progressData.push({
+                id: -2,
+                collected: collectedLength,
+                total: totalLength,
+                percent: (collectedLength * 1.0 / totalLength) * 100,
+            });
+    
+            setData([
+                {
+                    title: `Progress: ${progressData[0].percent}% (${progressData[0].collected}/${progressData[0].total})`,
+                    data: progressData
+                },
+                {
+                    title: "Collected",
+                    data: collectedData
+                },
+                {
+                    title: "Missing",
+                    data: missingData
+                }
+            ]);
+        }
+        
     }, [collectedList, rawData]);
 
     return (
@@ -160,6 +163,8 @@ export default function BugGuide({ navigation }) {
                 renderItem={({ item }) => {
                     if (item.id == -1) {
                         return <Text style={styles.emptyTextStyle}>{item.text}</Text>
+                    } else if (item.id == -2) {
+                        return <ProgressBar progress={item.percent}/>
                     } else {
                         return <CustomButton
                             name={item.name['name-en']}
