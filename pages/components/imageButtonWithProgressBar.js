@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     root: {
         justifyContent: 'center',
         alignItems: 'center',
-        width: '90%',
+        width: '100%',
     },
     container: {
         justifyContent: 'center',

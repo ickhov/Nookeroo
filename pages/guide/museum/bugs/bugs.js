@@ -22,9 +22,12 @@ import AsyncStorage from '@react-native-community/async-storage';
 export default function BugGuide({ navigation }) {
 
     const [collectedList, setCollectedList] = useState([]);
+    const [collectedCount, setCollectedCount] = useState(0);
     const [rawData, setRawData] = useState([])
     const [data, setData] = useState([]);
     const storageKey = 'bug-collected';
+    const collectedCountStorageKey = 'bug-collected-count';
+    const totalCountStorageKey = 'bug-total-count';
 
     const detailSelected = useCallback(item => {
         navigation.navigate('BugDetail', {
@@ -46,10 +49,13 @@ export default function BugGuide({ navigation }) {
             data.push(item['file-name']);
         }
 
+        const length = data.length;
+        setCollectedCount(length);
         setCollectedList(data);
         storeCollectedList(data);
+        storeCollectedCount(length);
 
-    }, [collectedList]);
+    }, [collectedList, collectedCount]);
 
     const storeCollectedList = useCallback(async (value) => {
         try {
@@ -60,10 +66,32 @@ export default function BugGuide({ navigation }) {
         }
     }, []);
 
+    const storeCollectedCount = useCallback(async (length) => {
+        try {
+            const count = length.toString();
+            await AsyncStorage.setItem(collectedCountStorageKey, count);
+        } catch (e) {
+            console.error("Storing Error: " + e);
+        }
+    }, []);
+
     const getCollectedList = useCallback(async () => {
         try {
-            const values = await AsyncStorage.getItem(storageKey)
-            setCollectedList(values != null ? JSON.parse(values) : [])
+            // store the list as string and count separately for faster reading
+            const values = await AsyncStorage.getItem(storageKey);
+            const count = await AsyncStorage.getItem(collectedCountStorageKey);
+            setCollectedList(values != null ? JSON.parse(values) : []);
+            setCollectedCount(count != null ? parseInt(count) : 0);
+        } catch (e) {
+            console.error("Retrieving Error: " + e);
+        }
+    }, []);
+
+    const storeTotalCount = useCallback(async (array) => {
+        try {
+            // keep track of the total count to display in museum screen
+            const count = array.length.toString();
+            await AsyncStorage.setItem(totalCountStorageKey, count);
         } catch (e) {
             console.error("Retrieving Error: " + e);
         }
@@ -73,7 +101,12 @@ export default function BugGuide({ navigation }) {
         {/* Fetch bug data from Nookeroo API */ }
         fetch('https://ickhov.github.io/nookeroo/bugs.json')
             .then((response) => response.json())
-            .then((json) => setRawData(Object.values(json)))
+            .then((json) => {
+                // set the data to use to populate the data after filtering
+                const array = Object.values(json);
+                setRawData(array);
+                storeTotalCount(array);
+            })
             .catch((error) => console.error(error))
     }, [])
 
@@ -140,6 +173,7 @@ export default function BugGuide({ navigation }) {
                 renderSectionHeader={({ section: { title } }) => (
                     <Text style={styles.header}>{title}</Text>
                 )}
+                extraData={data}
             />
         </SafeAreaView>
     );
