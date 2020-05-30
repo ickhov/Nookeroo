@@ -18,13 +18,16 @@ import {
 
 import CustomButton from '../../../components/customButton';
 import AsyncStorage from '@react-native-community/async-storage';
+import ProgressBar from '../../../components/progressBar';
+import CONSTANTS from '../../../constants';
 
 export default function FossilGuide({ navigation }) {
 
     const [collectedList, setCollectedList] = useState([]);
     const [rawData, setRawData] = useState([])
     const [data, setData] = useState([]);
-    const storageKey = 'fossil-collected';
+    const [progressData, setProgressData] = useState({});
+    const constants = CONSTANTS.fossil;
 
     const detailSelected = useCallback(item => {
         navigation.navigate('FossilDetail', { 
@@ -54,7 +57,7 @@ export default function FossilGuide({ navigation }) {
     const storeCollectedList = useCallback(async (value) => {
         try {
             const values = JSON.stringify(value);
-            await AsyncStorage.setItem(storageKey, values);
+            await AsyncStorage.setItem(constants.collectedKey, values);
         } catch (e) {
             console.error("Storing Error: " + e);
         }
@@ -62,8 +65,29 @@ export default function FossilGuide({ navigation }) {
 
     const getCollectedList = useCallback(async () => {
         try {
-            const values = await AsyncStorage.getItem(storageKey)
-            setCollectedList(values != null ? JSON.parse(values) : [])
+            // store the list as string and count separately for faster reading
+            const values = await AsyncStorage.getItem(constants.collectedKey);
+            setCollectedList(values != null ? JSON.parse(values) : []);
+        } catch (e) {
+            console.error("Retrieving Error: " + e);
+        }
+    }, []);
+
+    const storeAll = useCallback(async (value) => {
+        try {
+            const values = JSON.stringify(value);
+            await AsyncStorage.setItem(constants.allKey, values);
+        } catch (e) {
+            console.error("Storing Error: " + e);
+        }
+    }, []);
+
+    // only use when there's no internet
+    const getAll = useCallback(async () => {
+        try {
+            // store the list as string and count separately for faster reading
+            const values = await AsyncStorage.getItem(constants.allKey);
+            setRawData(values != null ? JSON.parse(values) : []);
         } catch (e) {
             console.error("Retrieving Error: " + e);
         }
@@ -71,11 +95,16 @@ export default function FossilGuide({ navigation }) {
 
     const fetchData = useCallback(() => {
         {/* Fetch bug data from Nookeroo API */ }
-        fetch('https://ickhov.github.io/nookeroo/fossils.json')
+        fetch(constants.url)
             .then((response) => response.json())
-            .then((json) => setRawData(Object.values(json)))
-            .catch((error) => console.error(error))
-    }, [])
+            .then((json) => {
+                // set the data to use to populate the data after filtering
+                const array = Object.values(json);
+                setRawData(array);
+                storeAll(array);
+            })
+            .catch(_ => getAll());
+    }, []);
 
     useEffect(() => {
         {/* Fetch Data form server and storage (if any) */ }
@@ -99,27 +128,41 @@ export default function FossilGuide({ navigation }) {
             }
         })
 
-        if (collectedData.length == 0) {
+        const collectedLength = collectedData.length;
+        const totalLength = items.length;
+
+        if (collectedLength == 0) {
             collectedData.push({
                 id: -1,
-                text: "You haven't found any fossil yet."
+                text: constants.none
             })
         }
 
-        setData([
-            {
-                title: "Collected",
-                data: collectedData
-            },
-            {
-                title: "Missing",
-                data: missingData
-            }
-        ]);
+        if (totalLength > 0) {
+            setProgressData({
+                collected: collectedLength,
+                total: totalLength,
+                percent: ((collectedLength * 1.0 / totalLength) * 100).toFixed(2),
+            });
+    
+            setData([
+                {
+                    title: "Collected",
+                    data: collectedData
+                },
+                {
+                    title: "Missing",
+                    data: missingData
+                }
+            ]);
+        }
+        
     }, [collectedList, rawData]);
 
     return (
         <SafeAreaView style={styles.container}>
+            <Text style={styles.header}>{`Progress: ${progressData.percent}% (${progressData.collected}/${progressData.total})`}</Text>
+            <ProgressBar progress={progressData.percent}/>
             <SectionList
                 style={{ width: '100%' }}
                 sections={data}
@@ -130,7 +173,7 @@ export default function FossilGuide({ navigation }) {
                     } else {
                         return <CustomButton
                             name={item.name['name-en']}
-                            imageSource={'fossils/' + item['file-name']}
+                            imageSource={constants.directory + item['file-name']}
                             isIcon={false}
                             onPress={() => detailSelected(item)}
                             hasCollected={Array.from(collectedList).includes(item['file-name'])}
@@ -141,6 +184,7 @@ export default function FossilGuide({ navigation }) {
                 renderSectionHeader={({ section: { title } }) => (
                     <Text style={styles.header}>{title}</Text>
                 )}
+                extraData={data}
             />
         </SafeAreaView>
     );

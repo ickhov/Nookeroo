@@ -19,14 +19,15 @@ import {
 import CustomButton from '../../../components/customButton';
 import AsyncStorage from '@react-native-community/async-storage';
 import ProgressBar from '../../../components/progressBar';
+import CONSTANTS from '../../../constants';
 
 export default function BugGuide({ navigation }) {
 
     const [collectedList, setCollectedList] = useState([]);
     const [rawData, setRawData] = useState([])
     const [data, setData] = useState([]);
-    const storageKey = 'bug-collected';
-    const totalCountStorageKey = 'bug-total-count';
+    const [progressData, setProgressData] = useState({});
+    const constants = CONSTANTS.bug;
 
     const detailSelected = useCallback(item => {
         navigation.navigate('BugDetail', {
@@ -56,7 +57,7 @@ export default function BugGuide({ navigation }) {
     const storeCollectedList = useCallback(async (value) => {
         try {
             const values = JSON.stringify(value);
-            await AsyncStorage.setItem(storageKey, values);
+            await AsyncStorage.setItem(constants.collectedKey, values);
         } catch (e) {
             console.error("Storing Error: " + e);
         }
@@ -65,18 +66,28 @@ export default function BugGuide({ navigation }) {
     const getCollectedList = useCallback(async () => {
         try {
             // store the list as string and count separately for faster reading
-            const values = await AsyncStorage.getItem(storageKey);
+            const values = await AsyncStorage.getItem(constants.collectedKey);
             setCollectedList(values != null ? JSON.parse(values) : []);
         } catch (e) {
             console.error("Retrieving Error: " + e);
         }
     }, []);
 
-    const storeTotalCount = useCallback(async (array) => {
+    const storeAll = useCallback(async (value) => {
         try {
-            // keep track of the total count to display in museum screen
-            const count = array.length.toString();
-            await AsyncStorage.setItem(totalCountStorageKey, count);
+            const values = JSON.stringify(value);
+            await AsyncStorage.setItem(constants.allKey, values);
+        } catch (e) {
+            console.error("Storing Error: " + e);
+        }
+    }, []);
+
+    // only use when there's no internet
+    const getAll = useCallback(async () => {
+        try {
+            // store the list as string and count separately for faster reading
+            const values = await AsyncStorage.getItem(constants.allKey);
+            setRawData(values != null ? JSON.parse(values) : []);
         } catch (e) {
             console.error("Retrieving Error: " + e);
         }
@@ -84,16 +95,16 @@ export default function BugGuide({ navigation }) {
 
     const fetchData = useCallback(() => {
         {/* Fetch bug data from Nookeroo API */ }
-        fetch('https://ickhov.github.io/nookeroo/bugs.json')
+        fetch(constants.url)
             .then((response) => response.json())
             .then((json) => {
                 // set the data to use to populate the data after filtering
                 const array = Object.values(json);
                 setRawData(array);
-                storeTotalCount(array);
+                storeAll(array);
             })
-            .catch((error) => console.error(error))
-    }, [])
+            .catch(_ => getAll());
+    }, []);
 
     useEffect(() => {
         {/* Fetch Data form server and storage (if any) */ }
@@ -106,7 +117,6 @@ export default function BugGuide({ navigation }) {
         const items = Array.from(rawData);
         const collected = Array.from(collectedList);
 
-        var progressData = [];
         var collectedData = [];
         var missingData = [];
 
@@ -124,23 +134,18 @@ export default function BugGuide({ navigation }) {
         if (collectedLength == 0) {
             collectedData.push({
                 id: -1,
-                text: "You haven't caught any bug yet."
+                text: constants.none
             })
         }
 
         if (totalLength > 0) {
-            progressData.push({
-                id: -2,
+            setProgressData({
                 collected: collectedLength,
                 total: totalLength,
-                percent: (collectedLength * 1.0 / totalLength) * 100,
+                percent: ((collectedLength * 1.0 / totalLength) * 100).toFixed(2),
             });
     
             setData([
-                {
-                    title: `Progress: ${progressData[0].percent}% (${progressData[0].collected}/${progressData[0].total})`,
-                    data: progressData
-                },
                 {
                     title: "Collected",
                     data: collectedData
@@ -156,6 +161,8 @@ export default function BugGuide({ navigation }) {
 
     return (
         <SafeAreaView style={styles.container}>
+            <Text style={styles.header}>{`Progress: ${progressData.percent}% (${progressData.collected}/${progressData.total})`}</Text>
+            <ProgressBar progress={progressData.percent}/>
             <SectionList
                 style={{ width: '100%' }}
                 sections={data}
@@ -163,12 +170,10 @@ export default function BugGuide({ navigation }) {
                 renderItem={({ item }) => {
                     if (item.id == -1) {
                         return <Text style={styles.emptyTextStyle}>{item.text}</Text>
-                    } else if (item.id == -2) {
-                        return <ProgressBar progress={item.percent}/>
                     } else {
                         return <CustomButton
                             name={item.name['name-en']}
-                            imageSource={'bugs/' + item['file-name']}
+                            imageSource={constants.directory + item['file-name']}
                             onPress={() => detailSelected(item)}
                             hasCollected={Array.from(collectedList).includes(item['file-name'])}
                             toggleCheckBox={() => checkBoxToggle(item)}

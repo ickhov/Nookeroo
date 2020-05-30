@@ -50,7 +50,7 @@ export default function VillagerGuide({ navigation }) {
                     onPress={() => detailSelected(item)}
                     imageSource={'villagers/' + item['file-name']}
                     imageStyle={styles.image}
-                    textStyle={styles.btnTextWhite}
+                    textStyle={styles.btnText}
                     text={item.name['name-en']} 
                     />
                 }
@@ -75,17 +75,17 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     btn: {
-        backgroundColor: Colors.tertiary,
+        backgroundColor: Colors.primary,
         padding: 8,
         borderRadius: 20,
         width: '45%',
         marginTop: 10,
         marginHorizontal: 10,
     },
-    btnTextWhite: {
+    btnText: {
         fontFamily: Fonts.regular,
         fontSize: 16,
         textAlign: 'center',
-        color: Colors.black,
+        color: Colors.white,
     },
 });

@@ -11,43 +11,47 @@
  * @flow strict-local
  */
 
-import React, { useState, useEffect, useRef, Component, createRef } from 'react';
+import React, { Component } from 'react';
 
 import {
     View,
-    Text,
     StyleSheet,
-    TouchableOpacity,
-    Image,
     Animated,
 } from 'react-native';
 
 import Colors from '../../assets/colors';
-import Fonts from '../../assets/fonts';
 
-export default function ImageButtonWithProgressBar(props) {
+export default class ProgressBar extends Component {
 
-    let animation = useRef(new Animated.Value(0));
+    constructor(props) {
+        super(props);
 
-    useEffect(() => {
-        Animated.timing(animation.current, {
-            toValue: props.progress,
-            duration: 1000,
-            useNativeDriver: false,
-        }).start();
-    }, [props.progress]);
+        this.animation = new Animated.Value(0);
+    }
 
-    const width = animation.current.interpolate({
-        inputRange: [0, 100],
-        outputRange: ['0%', '100%'],
-        extrapolate: 'clamp'
-    });
+    componentDidUpdate(prevProps) {
+        if (prevProps.progress !== this.props.progress) {
+            Animated.timing(this.animation, {
+                toValue: this.props.progress,
+                duration: 1000,
+                useNativeDriver: false,
+            }).start();
+        }
+    }
 
-    return (
-        <View style={styles.progressBarContainer}>
-            <Animated.View ref={this.animation} style={[StyleSheet.absoluteFill], { backgroundColor: Colors.primary, width }} />
-        </View>
-    );
+    render() {
+        const width = this.animation.interpolate({
+            inputRange: [0, 100],
+            outputRange: ['0%', '100%'],
+            extrapolate: 'clamp'
+        });
+
+        return (
+            <View style={styles.progressBarContainer}>
+                <Animated.View style={[StyleSheet.absoluteFill], { backgroundColor: Colors.primary, width }} />
+            </View>
+        );
+    }
 
 };
 
