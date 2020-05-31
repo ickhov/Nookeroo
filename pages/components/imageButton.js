@@ -14,7 +14,7 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React, { PureComponent } from 'react';
 
 import {
     View,
@@ -24,31 +24,28 @@ import {
     Image,
 } from 'react-native';
 
-export default function ImageButton({
-    style,
-    onPress,
-    imageSource,
-    imageStyle,
-    textStyle,
-    text,
-    isIcon = true,
-}) {
+export default class ImageButton extends PureComponent {
 
-    const source = isIcon ? 'https://ickhov.github.io/nookeroo/icons/' : 'https://ickhov.github.io/nookeroo/images/';
+    constructor(props) {
+        super(props);
+    }
 
-    return (
-        <TouchableOpacity
-            style={[styles.container, style]}
-            activeOpacity={0.5}
-            onPress={onPress}>
-            <Image
-                source={imageSource ? { uri: source + imageSource + '.png' } : require('../../assets/icons/menu/villagers.png')}
-                style={[styles.imageStyle, imageStyle]}
-            />
-            <View style={styles.lineSeparator} />
-            <Text style={[styles.textStyle, textStyle]}>{text ?? "Raymond"}</Text>
-        </TouchableOpacity>
-    );
+    render() {
+
+        return (
+            <TouchableOpacity
+                style={[styles.container, this.props.style]}
+                activeOpacity={0.5}
+                onPress={this.props.onPress}>
+                <Image
+                    source={this.props.imageSource ? { uri: 'https://ickhov.github.io/nookeroo/icons/' + this.props.imageSource + '.png' } : require('../../assets/icons/menu/villagers.png')}
+                    style={[styles.imageStyle, this.props.imageStyle]}
+                />
+                <View style={styles.lineSeparator} />
+                <Text style={[styles.textStyle, this.props.textStyle]}>{this.props.text ?? "Raymond"}</Text>
+            </TouchableOpacity>
+        );
+    }
 };
 
 const styles = StyleSheet.create({

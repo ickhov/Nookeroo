@@ -13,7 +13,7 @@
  * @flow strict-local
  */
 
-import React, { useState } from 'react';
+import React, { useState, PureComponent } from 'react';
 import Colors from '../../assets/colors';
 import Fonts from '../../assets/fonts';
 import Icons from 'react-native-vector-icons/MaterialIcons';
@@ -52,7 +52,7 @@ const CustomCheckBox = (props) => {
             :
             <CheckBox
                 style={styles.checkBoxStyle}
-                value={propshasCollected}
+                value={props.hasCollected}
                 onValueChange={props.toggleCheckBox}
                 tintColors={{ true: Colors.primary, false: Colors.white }}
             />
@@ -60,52 +60,57 @@ const CustomCheckBox = (props) => {
     )
 }
 
-export default function CustomButton({
-    name,
-    onPress,
-    imageSource,
-    isIcon = true,
-    hasCollected = false,
-    toggleCheckBox,
-}) {
+export default class CustomButton extends PureComponent {
 
-    const text = convertJSONString(name);
-    const source = isIcon ? 'https://ickhov.github.io/nookeroo/icons/' : 'https://ickhov.github.io/nookeroo/images/';
 
-    return (
+    constructor(props) {
+        super(props);
 
-        <View style={styles.container}>
+        this.state = {
+            isIcon: props.isIcon ?? true,
+            hasCollected: props.hasCollected ?? false
+        }
 
-            <TouchableOpacity
-                style={styles.buttonContainer}
-                activeOpacity={0.5}
-                onPress={onPress}>
+    }
 
-                <Image
-                    source={imageSource ? { uri: source + imageSource + '.png' } : require('../../assets/icons/menu/villagers.png')}
-                    style={styles.imageStyle}
-                />
+    render() {
+        const text = convertJSONString(this.props.name);
+        const source = this.state.isIcon ? 'https://ickhov.github.io/nookeroo/icons/' : 'https://ickhov.github.io/nookeroo/images/';
 
-                <Text style={styles.textStyle}>{text}</Text>
+        return (
+            <View style={styles.container}>
 
-            </TouchableOpacity>
+                <TouchableOpacity
+                    style={styles.buttonContainer}
+                    activeOpacity={0.5}
+                    onPress={this.props.onPress}>
 
-            <CustomCheckBox hasCollected={hasCollected} onPress={toggleCheckBox} />
+                    <Image
+                        source={this.props.imageSource ? { uri: source + this.props.imageSource + '.png' } : require('../../assets/icons/menu/villagers.png')}
+                        style={styles.imageStyle}
+                    />
 
-            <TouchableOpacity
-                style={styles.arrowContainer}
-                activeOpacity={0.5}
-                onPress={onPress}>
+                    <Text style={styles.textStyle}>{text}</Text>
 
-                <Text style={styles.arrowStyle}>
-                    <Icons name={'chevron-right'} size={26} color={Colors.white} />;
+                </TouchableOpacity>
+
+                <CustomCheckBox hasCollected={this.state.hasCollected} onPress={this.props.toggleCheckBox} />
+
+                <TouchableOpacity
+                    style={styles.arrowContainer}
+                    activeOpacity={0.5}
+                    onPress={this.props.onPress}>
+
+                    <Text style={styles.arrowStyle}>
+                        <Icons name={'chevron-right'} size={26} color={Colors.white} />;
                 </Text>
 
-            </TouchableOpacity>
+                </TouchableOpacity>
 
-        </View>
+            </View>
 
-    );
+        );
+    };
 };
 
 const styles = StyleSheet.create({
@@ -142,7 +147,6 @@ const styles = StyleSheet.create({
     },
     checkBoxStyle: {
         width: '10%',
-
     },
     arrowContainer: {
         width: '10%',

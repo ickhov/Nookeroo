@@ -30,7 +30,15 @@ const CONSTANTS = {
         url: 'https://ickhov.github.io/nookeroo/fossils.json',
         none: "You haven't found any fossil yet.",
         directory: 'fossils/'
-    }
+    },
+    villager: {
+        text: 'Villagers',
+        collectedKey: 'villager-obtained',
+        allKey: 'villager',
+        url: 'https://ickhov.github.io/nookeroo/villagers.json',
+        none: "You don't have any villagers.",
+        directory: 'villagers/'
+    },
 };
 
 export default CONSTANTS;

@@ -86,7 +86,7 @@ export default function VillagerDetail({ route, navigation }) {
                     containerStyle={styles.infoTitleContainer}
                     textStyle={styles.infoTitle} />
                 <RoundBorderText
-                    text={data['catch-phrase']}
+                    text={`"${data['catch-phrase']}"`}
                     containerStyle={styles.infoTextContainer}
                     textStyle={styles.infoText} />
             </View>
