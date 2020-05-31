@@ -331,7 +331,6 @@ const styles = StyleSheet.create({
     availabilityTitle: {
         width: '30%',
         textAlign: 'center',
-        paddingLeft: 10,
     },
     availabilityText: {
         width: '70%',

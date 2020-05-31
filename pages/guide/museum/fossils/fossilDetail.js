@@ -28,37 +28,37 @@ export default function FossilDetail({ route, navigation }) {
     return (
         <View style={styles.rootContainer}>
             <View style={styles.container}>
-                    <View style={styles.imageContainer}>
-                        {/* Fossil Image */}
-                        <Image
-                            source={{ uri: 'https://ickhov.github.io/nookeroo/images/fossils/' + data['file-name'] + '.png' }}
-                            style={styles.image} />
-                        {/* Name Tab */}
-                        <RoundBorderText
-                            text={name}
-                            containerStyle={styles.nameContainer}
-                            textStyle={styles.nameText} />
-                    </View>
-
-                    {/* Price Tab */}
+                <View style={styles.imageContainer}>
+                    {/* Fossil Image */}
+                    <Image
+                        source={{ uri: 'https://ickhov.github.io/nookeroo/images/fossils/' + data['file-name'] + '.png' }}
+                        style={styles.image} />
+                    {/* Name Tab */}
                     <RoundBorderText
-                        text="Price"
-                        containerStyle={styles.infoTitleContainer}
-                        textStyle={styles.infoTitle} />
-                    <View style={styles.bellContainer}>
-                        <TextWithImages
-                            containerStyle={{ width: '45%' }}
-                            leftImageSource={require('../../../../assets/icons/miscellaneous/cranny.png')}
-                            rightImageSource={require('../../../../assets/icons/miscellaneous/bells.png')}
-                            text={data.price} />
-                    </View>
-
-                    {/* Blathers' Description Tab */}
-                    <RoundBorderText
-                        text={data['museum-phrase'] + '\n' + `\t\t\t\t\t\t\t - Blathers`}
-                        containerStyle={styles.descriptionContainer}
-                        textStyle={styles.descriptionText} />
+                        text={name}
+                        containerStyle={styles.nameContainer}
+                        textStyle={styles.nameText} />
                 </View>
+
+                {/* Price Tab */}
+                <RoundBorderText
+                    text="Price"
+                    containerStyle={styles.infoTitleContainer}
+                    textStyle={styles.infoTitle} />
+                <View style={styles.bellContainer}>
+                    <TextWithImages
+                        containerStyle={{ width: '45%' }}
+                        leftImageSource={require('../../../../assets/icons/miscellaneous/cranny.png')}
+                        rightImageSource={require('../../../../assets/icons/miscellaneous/bells.png')}
+                        text={data.price} />
+                </View>
+
+                {/* Blathers' Description Tab */}
+                <RoundBorderText
+                    text={data['museum-phrase'] + '\n' + `\t\t\t\t\t\t\t - Blathers`}
+                    containerStyle={styles.descriptionContainer}
+                    textStyle={styles.descriptionText} />
+            </View>
         </View>
     );
 
