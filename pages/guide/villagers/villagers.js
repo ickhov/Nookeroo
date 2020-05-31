@@ -8,12 +8,17 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import Colors from '../../../assets/colors';
 import Fonts from '../../../assets/fonts';
+import Icons from 'react-native-vector-icons/MaterialIcons';
 
 import {
     SafeAreaView,
     StyleSheet,
     Text,
     SectionList,
+    TextInput,
+    View,
+    FlatList,
+    Keyboard,
 } from 'react-native';
 
 import CustomButton from '../../components/customButton';
@@ -25,6 +30,8 @@ export default function VillagerGuide({ navigation }) {
     const [collectedList, setCollectedList] = useState([]);
     const [rawData, setRawData] = useState([])
     const [data, setData] = useState([]);
+    const [searchData, setSearchData] = useState([]);
+    const [searchText, setSearchText] = useState('');
     const constants = CONSTANTS.villager;
 
     const detailSelected = useCallback(item => {
@@ -148,34 +155,102 @@ export default function VillagerGuide({ navigation }) {
                 }
             ]);
         }
-        
+
     }, [collectedList, rawData]);
+
+    const filterData = useCallback((text) => {
+        {/* set search text as user is typing */ }
+        const items = Array.from(rawData);
+
+        const filterItems = items.filter((item) => {
+            return item.name['name-en'].toLowerCase().includes(text.toLowerCase());
+        })
+
+        setSearchText(text);
+        setSearchData(filterItems);
+    }, [rawData]);
 
     return (
         <SafeAreaView style={styles.root}>
-            <SectionList
-                style={{ width: '100%' }}
-                sections={data}
-                keyExtractor={item => item['file-name']}
-                initialNumToRender={10}
-                renderItem={({ item }) => {
-                    if (item.id == -1) {
-                        return <Text style={styles.emptyTextStyle}>{item.text}</Text>
-                    } else {
-                        return <CustomButton
+            <View style={styles.searchBarContainer}>
+                <Text style={styles.searchBarIcon}>
+                    <Icons name={'search'} size={26} color={Colors.black} />
+                </Text>
+                <TextInput
+                    style={styles.searchBarText}
+                    onChangeText={text => filterData(text)}
+                    value={searchText}
+                    underlineColorAndroid="transparent"
+                    placeholder="Search"
+                    placeholderTextColor={Colors.subBackground}
+                />
+                {/* Only show cancel icon when the user typed something */}
+                {
+                    searchText === '' ?
+                        <View style={styles.searchBarCancel}></View>
+                        :
+                        <View style={styles.searchBarCancel}>
+                            <Icons.Button
+                                iconStyle={{ margin: 0 }}
+                                name="cancel"
+                                backgroundColor={Colors.none}
+                                color={Colors.black}
+                                size={24}
+                                activeOpacity={0.5}
+                                underlayColor={Colors.none}
+                                onPress={() => {
+                                    setSearchText('');
+                                    Keyboard.dismiss();
+                                }}
+                            />
+                        </View>
+
+                }
+            </View>
+
+            {/* Show either a section list or 
+            flat list depending on whether the 
+            user is searching something */}
+            {
+                searchText === '' ?
+                    <SectionList
+                        style={{ width: '100%' }}
+                        sections={data}
+                        keyExtractor={item => item['file-name']}
+                        initialNumToRender={10}
+                        renderItem={({ item }) => {
+                            if (item.id == -1) {
+                                return <Text style={styles.emptyTextStyle}>{item.text}</Text>
+                            } else {
+                                return <CustomButton
+                                    name={item.name['name-en']}
+                                    imageSource={constants.directory + item['file-name']}
+                                    onPress={() => detailSelected(item)}
+                                    hasCollected={Array.from(collectedList).includes(item['file-name'])}
+                                    toggleCheckBox={() => checkBoxToggle(item)}
+                                />
+                            }
+                        }}
+                        renderSectionHeader={({ section: { title } }) => (
+                            <Text style={styles.header}>{title}</Text>
+                        )}
+                        extraData={data}
+                    />
+                    :
+                    <FlatList
+                        style={{ width: '100%', marginTop: 10, }}
+                        data={searchData}
+                        renderItem={({ item }) => <CustomButton
                             name={item.name['name-en']}
                             imageSource={constants.directory + item['file-name']}
                             onPress={() => detailSelected(item)}
                             hasCollected={Array.from(collectedList).includes(item['file-name'])}
                             toggleCheckBox={() => checkBoxToggle(item)}
-                        />
-                    }
-                }}
-                renderSectionHeader={({ section: { title } }) => (
-                    <Text style={styles.header}>{title}</Text>
-                )}
-                extraData={data}
-            />
+                        />}
+                        keyExtractor={item => item.id.toString()}
+                        extraData={searchData}
+                    />
+            }
         </SafeAreaView>
     );
 
@@ -208,5 +283,28 @@ const styles = StyleSheet.create({
         color: Colors.white,
         backgroundColor: Colors.subBackground,
         padding: 20
-    }
+    },
+    searchBarContainer: {
+        height: 40,
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
+        backgroundColor: Colors.white,
+        borderRadius: 20,
+        marginTop: 10,
+        marginHorizontal: 10,
+    },
+    searchBarIcon: {
+        width: '12%',
+        textAlign: 'center',
+    },
+    searchBarText: {
+        width: '76%',
+        fontSize: 16,
+        color: Colors.black,
+        fontFamily: Fonts.medium,
+    },
+    searchBarCancel: {
+        width: '12%',
+    },
 });
