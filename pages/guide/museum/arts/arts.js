@@ -8,12 +8,12 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import Colors from '../../../../assets/colors';
 import Fonts from '../../../../assets/fonts';
+import Icons from 'react-native-vector-icons/MaterialIcons';
 
 import {
     SafeAreaView,
     StyleSheet,
     View,
-    FlatList,
     SectionList,
     Text,
 } from 'react-native';
@@ -22,6 +22,7 @@ import CustomButton from '../../../components/customButton';
 import AsyncStorage from '@react-native-community/async-storage';
 import ProgressBar from '../../../components/progressBar';
 import CONSTANTS from '../../../constants';
+import NetInfo from "@react-native-community/netinfo";
 
 export default function ArtGuide({ navigation }) {
 
@@ -30,9 +31,10 @@ export default function ArtGuide({ navigation }) {
     const [data, setData] = useState([]);
     const [progressData, setProgressData] = useState({});
     const constants = CONSTANTS.art;
+    const [dataLength, setDataLength] = useState(1);
 
     const detailSelected = useCallback(item => {
-        navigation.navigate('ArtDetail', { 
+        navigation.navigate('ArtDetail', {
             name: item.name['name-en'],
             data: item
         })
@@ -110,8 +112,24 @@ export default function ArtGuide({ navigation }) {
 
     useEffect(() => {
         {/* Fetch Data form server and storage (if any) */ }
-        fetchData();
-        getCollectedList();
+        // Subscribe
+        var unsubscribe = NetInfo.addEventListener(state => {
+            if (state.isConnected) {
+                fetchData();
+            } else {
+                getAll();
+            }
+
+            getCollectedList();
+        });
+
+        // Unsubscribe
+        return function cleanup() {
+            if (unsubscribe) {
+                unsubscribe();
+                unsubscribe = null;
+            }
+        };
     }, []);
 
     useEffect(() => {
@@ -133,6 +151,8 @@ export default function ArtGuide({ navigation }) {
         const collectedLength = collectedData.length;
         const totalLength = items.length;
 
+        setDataLength(totalLength);
+
         if (collectedLength == 0) {
             collectedData.push({
                 id: -1,
@@ -146,7 +166,7 @@ export default function ArtGuide({ navigation }) {
                 total: totalLength,
                 percent: ((collectedLength * 1.0 / totalLength) * 100).toFixed(2),
             });
-    
+
             setData([
                 {
                     title: "Collected",
@@ -158,38 +178,65 @@ export default function ArtGuide({ navigation }) {
                 }
             ]);
         }
-        
+
     }, [collectedList, rawData]);
 
-    return (
-        <SafeAreaView style={styles.container}>
-            <Text style={styles.header}>{`Progress: ${progressData.percent}% (${progressData.collected}/${progressData.total})`}</Text>
-            <ProgressBar progress={progressData.percent}/>
-            <SectionList
-                style={{ width: '100%' }}
-                sections={data}
-                keyExtractor={item => item.id.toString()}
-                renderItem={({ item }) => {
-                    if (item.id == -1) {
-                        return <Text style={styles.emptyTextStyle}>{item.text}</Text>
-                    } else {
-                        return <CustomButton
-                            name={item.name['name-en']}
-                            imageSource={constants.directory + item['file-name']}
-                            onPress={() => detailSelected(item)}
-                            hasCollected={Array.from(collectedList).includes(item['file-name'])}
-                            toggleCheckBox={() => checkBoxToggle(item)}
-                        />
-                    }
-                }}
-                renderSectionHeader={({ section: { title } }) => (
-                    <Text style={styles.header}>{title}</Text>
-                )}
-                extraData={data}
-            />
-        </SafeAreaView>
-    );
+    if (dataLength > 0) {
+        return (
+            <SafeAreaView style={styles.container}>
+                <Text style={styles.header}>{`Progress: ${progressData.percent}% (${progressData.collected}/${progressData.total})`}</Text>
+                <ProgressBar progress={progressData.percent} />
+                <SectionList
+                    style={{ width: '100%' }}
+                    sections={data}
+                    keyExtractor={item => item.id.toString()}
+                    renderItem={({ item }) => {
+                        if (item.id == -1) {
+                            return <Text style={styles.emptyTextStyle}>{item.text}</Text>
+                        } else {
+                            return <CustomButton
+                                name={item.name['name-en']}
+                                imageSource={constants.directory + item['file-name']}
+                                onPress={() => detailSelected(item)}
+                                hasCollected={Array.from(collectedList).includes(item['file-name'])}
+                                toggleCheckBox={() => checkBoxToggle(item)}
+                            />
+                        }
+                    }}
+                    renderSectionHeader={({ section: { title } }) => (
+                        <Text style={styles.header}>{title}</Text>
+                    )}
+                    extraData={data}
+                />
+            </SafeAreaView>
+        );
+    } else {
+        return (
+            <SafeAreaView style={styles.container}>
+                <View style={{
+                    width: '100%',
+                    height: '100%',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                }}>
 
+                    <Icons.Button
+                        name="signal-wifi-off"
+                        iconStyle={{ margin: 0 }}
+                        backgroundColor={Colors.none}
+                        color={Colors.gray}>
+                        <Text style={{
+                            textAlign: 'center',
+                            fontFamily: Fonts.medium,
+                            fontSize: 20,
+                            color: Colors.gray
+                        }}>No Internet Connection</Text>
+                    </Icons.Button>
+
+                </View>
+            </SafeAreaView>
+        );
+    }
 }
 
 const styles = StyleSheet.create({

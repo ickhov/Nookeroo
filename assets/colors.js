@@ -11,7 +11,8 @@ const Colors = {
     none: 'transparent',
     blue: '#1E88E5',
     red: '#E53935',
-    purple: '#5E35B1'
+    purple: '#5E35B1',
+    gray: '#9e9e9e',
   }
   
 export default Colors;

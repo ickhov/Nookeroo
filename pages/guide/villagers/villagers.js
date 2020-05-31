@@ -24,6 +24,7 @@ import {
 import CustomButton from '../../components/customButton';
 import CONSTANTS from '../../constants';
 import AsyncStorage from '@react-native-community/async-storage';
+import NetInfo from "@react-native-community/netinfo";
 
 export default function VillagerGuide({ navigation }) {
 
@@ -33,6 +34,7 @@ export default function VillagerGuide({ navigation }) {
     const [searchData, setSearchData] = useState([]);
     const [searchText, setSearchText] = useState('');
     const constants = CONSTANTS.villager;
+    const [dataLength, setDataLength] = useState(1);
 
     const detailSelected = useCallback(item => {
         navigation.navigate('VillagerDetail', {
@@ -113,8 +115,24 @@ export default function VillagerGuide({ navigation }) {
 
     useEffect(() => {
         {/* Fetch Data form server and storage (if any) */ }
-        fetchData();
-        getCollectedList();
+        // Subscribe
+        var unsubscribe = NetInfo.addEventListener(state => {
+            if (state.isConnected) {
+                fetchData();
+            } else {
+                getAll();
+            }
+
+            getCollectedList();
+        });
+
+        // Unsubscribe
+        return function cleanup() {
+            if (unsubscribe) {
+                unsubscribe();
+                unsubscribe = null;
+            }
+        };
     }, []);
 
     useEffect(() => {
@@ -135,6 +153,8 @@ export default function VillagerGuide({ navigation }) {
 
         const collectedLength = collectedData.length;
         const totalLength = items.length;
+
+        setDataLength(totalLength);
 
         if (collectedLength == 0) {
             collectedData.push({
@@ -170,89 +190,117 @@ export default function VillagerGuide({ navigation }) {
         setSearchData(filterItems);
     }, [rawData]);
 
-    return (
-        <SafeAreaView style={styles.root}>
-            <View style={styles.searchBarContainer}>
-                <Text style={styles.searchBarIcon}>
-                    <Icons name={'search'} size={26} color={Colors.black} />
-                </Text>
-                <TextInput
-                    style={styles.searchBarText}
-                    onChangeText={text => filterData(text)}
-                    value={searchText}
-                    underlineColorAndroid="transparent"
-                    placeholder="Search"
-                    placeholderTextColor={Colors.subBackground}
-                />
-                {/* Only show cancel icon when the user typed something */}
+    if (dataLength > 0) {
+        return (
+            <SafeAreaView style={styles.root}>
+                <View style={styles.searchBarContainer}>
+                    <Text style={styles.searchBarIcon}>
+                        <Icons name={'search'} size={26} color={Colors.black} />
+                    </Text>
+                    <TextInput
+                        style={styles.searchBarText}
+                        onChangeText={text => filterData(text)}
+                        value={searchText}
+                        underlineColorAndroid="transparent"
+                        placeholder="Search"
+                        placeholderTextColor={Colors.subBackground}
+                    />
+                    {/* Only show cancel icon when the user typed something */}
+                    {
+                        searchText === '' ?
+                            <View style={styles.searchBarCancel}></View>
+                            :
+                            <View style={styles.searchBarCancel}>
+                                <Icons.Button
+                                    iconStyle={{ margin: 0 }}
+                                    name="cancel"
+                                    backgroundColor={Colors.none}
+                                    color={Colors.black}
+                                    size={24}
+                                    activeOpacity={0.5}
+                                    underlayColor={Colors.none}
+                                    onPress={() => {
+                                        setSearchText('');
+                                        Keyboard.dismiss();
+                                    }}
+                                />
+                            </View>
+
+                    }
+                </View>
+
+                {/* Show either a section list or 
+                flat list depending on whether the 
+                user is searching something */}
                 {
                     searchText === '' ?
-                        <View style={styles.searchBarCancel}></View>
+                        <SectionList
+                            style={{ width: '100%' }}
+                            sections={data}
+                            keyExtractor={item => item['file-name']}
+                            initialNumToRender={10}
+                            renderItem={({ item }) => {
+                                if (item.id == -1) {
+                                    return <Text style={styles.emptyTextStyle}>{item.text}</Text>
+                                } else {
+                                    return <CustomButton
+                                        name={item.name['name-en']}
+                                        imageSource={constants.directory + item['file-name']}
+                                        onPress={() => detailSelected(item)}
+                                        hasCollected={Array.from(collectedList).includes(item['file-name'])}
+                                        toggleCheckBox={() => checkBoxToggle(item)}
+                                    />
+                                }
+                            }}
+                            renderSectionHeader={({ section: { title } }) => (
+                                <Text style={styles.header}>{title}</Text>
+                            )}
+                            extraData={data}
+                        />
                         :
-                        <View style={styles.searchBarCancel}>
-                            <Icons.Button
-                                iconStyle={{ margin: 0 }}
-                                name="cancel"
-                                backgroundColor={Colors.none}
-                                color={Colors.black}
-                                size={24}
-                                activeOpacity={0.5}
-                                underlayColor={Colors.none}
-                                onPress={() => {
-                                    setSearchText('');
-                                    Keyboard.dismiss();
-                                }}
-                            />
-                        </View>
-
+                        <FlatList
+                            style={{ width: '100%', marginTop: 10, }}
+                            data={searchData}
+                            renderItem={({ item }) => <CustomButton
+                                name={item.name['name-en']}
+                                imageSource={constants.directory + item['file-name']}
+                                onPress={() => detailSelected(item)}
+                                hasCollected={Array.from(collectedList).includes(item['file-name'])}
+                                toggleCheckBox={() => checkBoxToggle(item)}
+                            />}
+                            keyExtractor={item => item.id.toString()}
+                            extraData={searchData}
+                        />
                 }
-            </View>
+            </SafeAreaView>
+        );
+    } else {
+        return (
+            <SafeAreaView style={styles.root}>
+                <View style={{
+                    width: '100%',
+                    height: '100%',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                }}>
 
-            {/* Show either a section list or 
-            flat list depending on whether the 
-            user is searching something */}
-            {
-                searchText === '' ?
-                    <SectionList
-                        style={{ width: '100%' }}
-                        sections={data}
-                        keyExtractor={item => item['file-name']}
-                        initialNumToRender={10}
-                        renderItem={({ item }) => {
-                            if (item.id == -1) {
-                                return <Text style={styles.emptyTextStyle}>{item.text}</Text>
-                            } else {
-                                return <CustomButton
-                                    name={item.name['name-en']}
-                                    imageSource={constants.directory + item['file-name']}
-                                    onPress={() => detailSelected(item)}
-                                    hasCollected={Array.from(collectedList).includes(item['file-name'])}
-                                    toggleCheckBox={() => checkBoxToggle(item)}
-                                />
-                            }
-                        }}
-                        renderSectionHeader={({ section: { title } }) => (
-                            <Text style={styles.header}>{title}</Text>
-                        )}
-                        extraData={data}
-                    />
-                    :
-                    <FlatList
-                        style={{ width: '100%', marginTop: 10, }}
-                        data={searchData}
-                        renderItem={({ item }) => <CustomButton
-                            name={item.name['name-en']}
-                            imageSource={constants.directory + item['file-name']}
-                            onPress={() => detailSelected(item)}
-                            hasCollected={Array.from(collectedList).includes(item['file-name'])}
-                            toggleCheckBox={() => checkBoxToggle(item)}
-                        />}
-                        keyExtractor={item => item.id.toString()}
-                        extraData={searchData}
-                    />
-            }
-        </SafeAreaView>
-    );
+                    <Icons.Button
+                        name="signal-wifi-off"
+                        iconStyle={{ margin: 0 }}
+                        backgroundColor={Colors.none}
+                        color={Colors.gray}>
+                        <Text style={{
+                            textAlign: 'center',
+                            fontFamily: Fonts.medium,
+                            fontSize: 20,
+                            color: Colors.gray
+                        }}>No Internet Connection</Text>
+                    </Icons.Button>
+
+                </View>
+            </SafeAreaView>
+        );
+    }
 
 }
 
