@@ -9,6 +9,7 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import Colors from './assets/colors';
 import Fonts from './assets/fonts';
 import Icons from 'react-native-vector-icons/MaterialIcons';
@@ -22,13 +23,9 @@ import VillagerDetail from './pages/guide/villagers/villagerDetail';
 
 // Museum Stack
 import Museum from './pages/guide/museum/museum';
-import Bugs from './pages/guide/museum/bugs/bugs';
 import BugDetail from './pages/guide/museum/bugs/bugDetail';
-import Fishes from './pages/guide/museum/fishes/fishes';
 import FishDetail from './pages/guide/museum/fishes/fishDetail';
-import Fossils from './pages/guide/museum/fossils/fossils';
 import FossilDetail from './pages/guide/museum/fossils/fossilDetail';
-import Arts from './pages/guide/museum/arts/arts';
 import ArtDetail from './pages/guide/museum/arts/artDetail';
 
 import {
@@ -64,10 +61,6 @@ const MuseumStack = () => {
         headerBackTitleStyle: { fontFamily: Fonts.regular }
       })}>
       <Stack.Screen name="Museum" component={Museum} initialParams={{ data: [], collected: [] }} />
-      <Stack.Screen name="Bugs" component={Bugs} />
-      <Stack.Screen name="Fishes" component={Fishes} />
-      <Stack.Screen name="Fossils" component={Fossils} />
-      <Stack.Screen name="Arts" component={Arts} />
 
       <Stack.Screen name="ArtDetail" component={ArtDetail} options={{ title: 'Details' }} />
       <Stack.Screen name="BugDetail" component={BugDetail} options={{ title: 'Details' }} />
@@ -116,6 +109,7 @@ export default function App() {
             backgroundColor: Colors.primary,
           },
           labelStyle: {
+            color: Colors.white,
             fontFamily: Fonts.medium,
             fontSize: 13,
           }

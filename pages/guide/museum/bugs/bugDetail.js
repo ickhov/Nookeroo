@@ -330,12 +330,12 @@ const styles = StyleSheet.create({
     },
     availabilityTitle: {
         width: '30%',
-        textAlign: 'left',
+        textAlign: 'center',
         paddingLeft: 10,
     },
     availabilityText: {
         width: '70%',
         textAlign: 'left',
-        paddingLeft: 10,
+        paddingLeft: 20,
     },
 });
