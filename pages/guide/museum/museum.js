@@ -56,7 +56,8 @@ export default function Museum({ navigation }) {
                 onPress={artSelected}
                 imageSource={data[0].imageSource}
                 textStyle={styles.btnText}
-                text={data[0].title} />
+                text={data[0].title} 
+                setTextLeft={true} />
             <ImageButtonRow
                 style={styles.btn}
                 onPress={bugSelected}
@@ -68,7 +69,8 @@ export default function Museum({ navigation }) {
                 onPress={fishSelected}
                 imageSource={data[2].imageSource}
                 textStyle={styles.btnText}
-                text={data[2].title} />
+                text={data[2].title}
+                setTextLeft={true} />
             <ImageButtonRow
                 style={styles.btn}
                 onPress={fossilSelected}
