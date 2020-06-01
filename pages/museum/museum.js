@@ -8,8 +8,8 @@
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import Colors from '../../../assets/colors';
-import Fonts from '../../../assets/fonts';
+import Colors from '../../assets/colors';
+import Fonts from '../../assets/fonts';
 import Arts from './arts/arts';
 import Bugs from './bugs/bugs';
 import Fishes from './fishes/fishes';

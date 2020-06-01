@@ -14,15 +14,15 @@ import Fonts from './assets/fonts';
 import CustomStatusBar from './pages/components/statusBar';
 
 // Villager Stack
-import Villagers from './pages/guide/villagers/villagers';
-import VillagerDetail from './pages/guide/villagers/villagerDetail';
+import Villagers from './pages/villagers/villagers';
+import VillagerDetail from './pages/villagers/villagerDetail';
 
 // Museum Stack
-import Museum from './pages/guide/museum/museum';
-import BugDetail from './pages/guide/museum/bugs/bugDetail';
-import FishDetail from './pages/guide/museum/fishes/fishDetail';
-import FossilDetail from './pages/guide/museum/fossils/fossilDetail';
-import ArtDetail from './pages/guide/museum/arts/artDetail';
+import Museum from './pages/museum/museum';
+import BugDetail from './pages/museum/bugs/bugDetail';
+import FishDetail from './pages/museum/fishes/fishDetail';
+import FossilDetail from './pages/museum/fossils/fossilDetail';
+import ArtDetail from './pages/museum/arts/artDetail';
 
 // Home Stack
 import Home from './pages/home';

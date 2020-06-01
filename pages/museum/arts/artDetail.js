@@ -1,5 +1,5 @@
 /**
- * Fossil detail page
+ * Art detail page
  *
  * @format
  * @flow strict-local
@@ -7,12 +7,13 @@
 
 import React, { useState, useEffect } from 'react';
 import { Image, StyleSheet, View, Text, SafeAreaView, ScrollView } from 'react-native';
-import Colors from '../../../../assets/colors';
-import Fonts from '../../../../assets/fonts';
-import RoundBorderText from '../../../components/roundBorderText';
-import TextWithImages from '../../../components/textWithImages';
+import Colors from '../../../assets/colors';
+import Fonts from '../../../assets/fonts';
+import RoundBorderText from '../../components/roundBorderText';
+import ContentWithHeader from '../../components/contentWithHeader';
+import TextWithImages from '../../components/textWithImages';
 
-export default function FossilDetail({ route, navigation }) {
+export default function ArtDetail({ route, navigation }) {
 
     const data = route.params.data;
     const name = lowercasetoUppercase(route.params.name);
@@ -29,9 +30,9 @@ export default function FossilDetail({ route, navigation }) {
         <View style={styles.rootContainer}>
             <View style={styles.container}>
                 <View style={styles.imageContainer}>
-                    {/* Fossil Image */}
+                    {/* Bug Image */}
                     <Image
-                        source={{ uri: 'https://ickhov.github.io/nookeroo/images/fossils/' + data['file-name'] + '.png' }}
+                        source={{ uri: 'https://ickhov.github.io/nookeroo/icons/art/' + data['file-name'] + '.png' }}
                         style={styles.image} />
                     {/* Name Tab */}
                     <RoundBorderText
@@ -48,16 +49,22 @@ export default function FossilDetail({ route, navigation }) {
                 <View style={styles.bellContainer}>
                     <TextWithImages
                         containerStyle={{ width: '45%' }}
-                        leftImageSource={require('../../../../assets/icons/miscellaneous/cranny.png')}
-                        rightImageSource={require('../../../../assets/icons/miscellaneous/bells.png')}
-                        text={data.price} />
+                        leftImageSource={require('../../../assets/icons/miscellaneous/cranny.png')}
+                        rightImageSource={require('../../../assets/icons/miscellaneous/bells.png')}
+                        text={data['sell-price']} />
+                    <TextWithImages
+                        containerStyle={{ width: '45%' }}
+                        leftImageSource={require('../../../assets/icons/miscellaneous/redd.png')}
+                        rightImageSource={require('../../../assets/icons/miscellaneous/bells.png')}
+                        text={data['buy-price']} />
                 </View>
 
-                {/* Blathers' Description Tab */}
-                <RoundBorderText
-                    text={data['museum-phrase'] + '\n' + `\t\t\t\t\t\t\t - Blathers`}
-                    containerStyle={styles.descriptionContainer}
-                    textStyle={styles.descriptionText} />
+                {/* Rarity Tab */}
+                <ContentWithHeader title={'Authenticity'}
+                    text={data['hasFake'] ? 'Can Be Fake' : 'Always Real'}
+                    containerStyle={[styles.infoTitleContainer, {
+                        marginBottom: 20,
+                    }]} />
             </View>
         </View>
     );
@@ -102,18 +109,6 @@ const styles = StyleSheet.create({
     nameText: {
         fontFamily: Fonts.bold,
         fontSize: 20,
-    },
-    descriptionContainer: {
-        backgroundColor: Colors.secondary,
-        borderRadius: 0,
-        width: '100%',
-        marginVertical: 20,
-    },
-    descriptionText: {
-        fontFamily: Fonts.bold,
-        fontSize: 16,
-        padding: 20,
-        textAlign: 'left',
     },
     infoTitleContainer: {
         backgroundColor: Colors.secondary,

@@ -7,11 +7,9 @@
 
 import React from 'react';
 import { Image, StyleSheet, View, Text } from 'react-native';
-import Colors from '../../../assets/colors';
-import Fonts from '../../../assets/fonts';
-import RoundBorderText from '../../components/roundBorderText';
-import ContentWithHeader from '../../components/contentWithHeader';
-
+import Colors from '../../assets/colors';
+import Fonts from '../../assets/fonts';
+import ContentWithHeader from '../components/contentWithHeader';
 
 export default function VillagerDetail({ route, navigation }) {
 

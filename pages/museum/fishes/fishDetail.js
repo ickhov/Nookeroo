@@ -7,11 +7,11 @@
 
 import React, { useState, useEffect } from 'react';
 import { Image, StyleSheet, View, Text, SafeAreaView, ScrollView } from 'react-native';
-import Colors from '../../../../assets/colors';
-import Fonts from '../../../../assets/fonts';
-import RoundBorderText from '../../../components/roundBorderText';
-import ContentWithHeader from '../../../components/contentWithHeader';
-import TextWithImages from '../../../components/textWithImages';
+import Colors from '../../../assets/colors';
+import Fonts from '../../../assets/fonts';
+import RoundBorderText from '../../components/roundBorderText';
+import ContentWithHeader from '../../components/contentWithHeader';
+import TextWithImages from '../../components/textWithImages';
 
 export default function FishDetail({ route, navigation }) {
 
@@ -132,13 +132,13 @@ export default function FishDetail({ route, navigation }) {
                     <View style={styles.bellContainer}>
                         <TextWithImages
                             containerStyle={{ width: '45%' }}
-                            leftImageSource={require('../../../../assets/icons/miscellaneous/cranny.png')}
-                            rightImageSource={require('../../../../assets/icons/miscellaneous/bells.png')}
+                            leftImageSource={require('../../../assets/icons/miscellaneous/cranny.png')}
+                            rightImageSource={require('../../../assets/icons/miscellaneous/bells.png')}
                             text={data.price} />
                         <TextWithImages
                             containerStyle={{ width: '45%' }}
-                            leftImageSource={require('../../../../assets/icons/miscellaneous/cj.png')}
-                            rightImageSource={require('../../../../assets/icons/miscellaneous/bells.png')}
+                            leftImageSource={require('../../../assets/icons/miscellaneous/cj.png')}
+                            rightImageSource={require('../../../assets/icons/miscellaneous/bells.png')}
                             text={data['price-cj']} />
                     </View>
 
@@ -331,12 +331,11 @@ const styles = StyleSheet.create({
     },
     availabilityTitle: {
         width: '30%',
-        textAlign: 'left',
-        paddingLeft: 10,
+        textAlign: 'center',
     },
     availabilityText: {
         width: '70%',
         textAlign: 'left',
-        paddingLeft: 10,
+        paddingLeft: 20,
     },
 });

@@ -1,13 +1,20 @@
 /**
- * Art list
+ * 
+ * Props: constants, navigation, nextScreen
+ * 
+ * Collection View for various screens
+ * Arts
+ * Bugs
+ * Fishes
+ * Fossils
  *
  * @format
  * @flow strict-local
  */
 
 import React, { useState, useEffect, useCallback } from 'react';
-import Colors from '../../../../assets/colors';
-import Fonts from '../../../../assets/fonts';
+import Colors from '../../assets/colors';
+import Fonts from '../../assets/fonts';
 import Icons from 'react-native-vector-icons/MaterialIcons';
 
 import {
@@ -18,26 +25,26 @@ import {
     Text,
 } from 'react-native';
 
-import CustomButton from '../../../components/customButton';
+import CustomButton from '../components/customButton';
 import AsyncStorage from '@react-native-community/async-storage';
-import ProgressBar from '../../../components/progressBar';
-import CONSTANTS from '../../../constants';
+import ProgressBar from '../components/progressBar';
+import CONSTANTS from '../constants';
 import NetInfo from "@react-native-community/netinfo";
-import PopUpDialog from '../../../components/popUpDialog';
+import PopUpDialog from '../components/popUpDialog';
 
-export default function ArtGuide({ navigation }) {
+export default function CollectionView(props) {
 
     const [collectedList, setCollectedList] = useState([]);
     const [rawData, setRawData] = useState([])
     const [data, setData] = useState([]);
     const [progressData, setProgressData] = useState({});
-    const constants = CONSTANTS.art;
+    const constants = props.constants;
     const [dataLength, setDataLength] = useState(1);
     const [showAlert, setShowAlert] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
 
     const detailSelected = useCallback(item => {
-        navigation.navigate('ArtDetail', {
+        props.navigation.navigate(props.nextScreen, {
             name: item.name['name-en'],
             data: item
         })
@@ -208,7 +215,7 @@ export default function ArtGuide({ navigation }) {
                 <SectionList
                     style={{ width: '100%' }}
                     sections={data}
-                    keyExtractor={item => item.id.toString()}
+                    keyExtractor={item => props.haveID ? item.id.toString() : item['file-name']}
                     renderItem={({ item }) => {
                         if (item.id == -1) {
                             return <Text style={styles.emptyTextStyle}>{item.text}</Text>
@@ -217,6 +224,7 @@ export default function ArtGuide({ navigation }) {
                                 name={item.name['name-en']}
                                 imageSource={constants.directory + item['file-name']}
                                 onPress={() => detailSelected(item)}
+                                isIcon={props.isIcon}
                                 hasCollected={Array.from(collectedList).includes(item['file-name'])}
                                 toggleCheckBox={() => checkBoxToggle(item)}
                             />
