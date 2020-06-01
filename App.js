@@ -11,31 +11,42 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import Colors from './assets/colors';
 import Fonts from './assets/fonts';
-import Icons from 'react-native-vector-icons/MaterialIcons';
 import CustomStatusBar from './pages/components/statusBar';
-//import HostingIsland from './pages/listings/hosting-island';
-//import Marketplace from './pages/marketplace/marketplace';
 
 // Villager Stack
-import Villagers from './pages/guide/villagers/villagers';
-import VillagerDetail from './pages/guide/villagers/villagerDetail';
+import Villagers from './pages/villagers/villagers';
+import VillagerDetail from './pages/villagers/villagerDetail';
 
 // Museum Stack
-import Museum from './pages/guide/museum/museum';
-import Bugs from './pages/guide/museum/bugs/bugs';
-import BugDetail from './pages/guide/museum/bugs/bugDetail';
-import Fishes from './pages/guide/museum/fishes/fishes';
-import FishDetail from './pages/guide/museum/fishes/fishDetail';
-import Fossils from './pages/guide/museum/fossils/fossils';
-import FossilDetail from './pages/guide/museum/fossils/fossilDetail';
-import Arts from './pages/guide/museum/arts/arts';
-import ArtDetail from './pages/guide/museum/arts/artDetail';
+import Museum from './pages/museum/museum';
+import BugDetail from './pages/museum/bugs/bugDetail';
+import FishDetail from './pages/museum/fishes/fishDetail';
+import FossilDetail from './pages/museum/fossils/fossilDetail';
+import ArtDetail from './pages/museum/arts/artDetail';
+
+// Home Stack
+import Home from './pages/home';
 
 import {
   StyleSheet, Image,
 } from 'react-native';
 
 const Stack = createStackNavigator();
+
+const HomeStack = () => {
+  return (
+    <Stack.Navigator
+      initialRouteName="Home"
+      screenOptions={() => ({
+        headerTitleStyle: styles.header,
+        headerStyle: { backgroundColor: Colors.primary },
+        headerTintColor: Colors.white,
+        headerBackTitleStyle: { fontFamily: Fonts.regular }
+      })}>
+      <Stack.Screen name="Home" component={Home} />
+    </Stack.Navigator>
+  );
+}
 
 const VillagerStack = () => {
   return (
@@ -64,10 +75,6 @@ const MuseumStack = () => {
         headerBackTitleStyle: { fontFamily: Fonts.regular }
       })}>
       <Stack.Screen name="Museum" component={Museum} initialParams={{ data: [], collected: [] }} />
-      <Stack.Screen name="Bugs" component={Bugs} />
-      <Stack.Screen name="Fishes" component={Fishes} />
-      <Stack.Screen name="Fossils" component={Fossils} />
-      <Stack.Screen name="Arts" component={Arts} />
 
       <Stack.Screen name="ArtDetail" component={ArtDetail} options={{ title: 'Details' }} />
       <Stack.Screen name="BugDetail" component={BugDetail} options={{ title: 'Details' }} />
@@ -85,9 +92,7 @@ export default function App() {
       <CustomStatusBar />
       <Tab.Navigator
         screenOptions={({ route }) => ({
-          tabBarIcon: ({ color }) => {
-            let iconName;
-
+          tabBarIcon: () => {
             if (route.name === 'Home') {
               return <Image
                 source={require('./assets/icons/menu/home.png')}
@@ -116,12 +121,13 @@ export default function App() {
             backgroundColor: Colors.primary,
           },
           labelStyle: {
+            color: Colors.white,
             fontFamily: Fonts.medium,
             fontSize: 13,
           }
         }}
       >
-        <Tab.Screen name="Home" component={VillagerStack} />
+        <Tab.Screen name="Home" component={HomeStack} />
         <Tab.Screen name="Villagers" component={VillagerStack} />
         <Tab.Screen name="Museum" component={MuseumStack} />
         <Tab.Screen name="Items" component={VillagerStack} />

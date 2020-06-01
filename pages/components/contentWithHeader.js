@@ -17,6 +17,7 @@ import React from 'react';
 import {
     View,
     StyleSheet,
+    Text,
 } from 'react-native';
 
 import Colors from '../../assets/colors';
@@ -32,14 +33,8 @@ export default function contentWithHeader({
 }) {
     return (
         <View style={[styles.container, containerStyle]}>
-            <RoundBorderText
-                text={title}
-                containerStyle={[styles.infoTitleContainer, titleContainerStyle]}
-                textStyle={styles.infoTitle} />
-            <RoundBorderText
-                text={text}
-                containerStyle={[styles.infoTextContainer, textContainerStyle]}
-                textStyle={styles.infoText} />
+            <Text style={[styles.infoTitle, titleContainerStyle]}>{title}</Text>
+            <Text style={[styles.infoText, textContainerStyle]}>{text}</Text>
         </View>
     );
 };
@@ -48,32 +43,30 @@ const styles = StyleSheet.create({
     container: {
         justifyContent: 'center',
         alignItems: 'center',
-        borderWidth: 1,
         borderColor: Colors.white,
         width: '25%',
+        borderWidth: 2,
+        borderColor: Colors.primary,
     },
-    infoTitleContainer: {
+    infoTitle: {
         backgroundColor: Colors.secondary,
         borderRadius: 0,
         width: '100%',
-    },
-    infoTitle: {
         fontFamily: Fonts.bold,
         fontSize: 16,
-        padding: 10,
+        color: Colors.white,
+        textAlign: 'center',
+        paddingVertical: 10,
     },
-    infoTextContainer: {
+    infoText: {
         backgroundColor: Colors.tertiary,
         borderRadius: 0,
         width: '100%',
         borderColor: Colors.white,
-    },
-    infoText: {
-        width: '95%',
         fontFamily: Fonts.medium,
         fontSize: 16,
-        padding: 10,
         color: Colors.white,
         textAlign: 'center',
+        paddingVertical: 10,
     },
 });
