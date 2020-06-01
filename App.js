@@ -13,6 +13,9 @@ import Colors from './assets/colors';
 import Fonts from './assets/fonts';
 import CustomStatusBar from './pages/components/statusBar';
 
+// Home Stack
+import Home from './pages/home';
+
 // Villager Stack
 import Villagers from './pages/villagers/villagers';
 import VillagerDetail from './pages/villagers/villagerDetail';
@@ -24,8 +27,8 @@ import FishDetail from './pages/museum/fishes/fishDetail';
 import FossilDetail from './pages/museum/fossils/fossilDetail';
 import ArtDetail from './pages/museum/arts/artDetail';
 
-// Home Stack
-import Home from './pages/home';
+// Collections Stack
+import Collections from './pages/collections/collections';
 
 import {
   StyleSheet, Image,
@@ -74,7 +77,27 @@ const MuseumStack = () => {
         headerTintColor: Colors.white,
         headerBackTitleStyle: { fontFamily: Fonts.regular }
       })}>
-      <Stack.Screen name="Museum" component={Museum} initialParams={{ data: [], collected: [] }} />
+      <Stack.Screen name="Museum" component={Museum} />
+
+      <Stack.Screen name="ArtDetail" component={ArtDetail} options={{ title: 'Details' }} />
+      <Stack.Screen name="BugDetail" component={BugDetail} options={{ title: 'Details' }} />
+      <Stack.Screen name="FishDetail" component={FishDetail} options={{ title: 'Details' }} />
+      <Stack.Screen name="FossilDetail" component={FossilDetail} options={{ title: 'Details' }} />
+    </Stack.Navigator>
+  );
+}
+
+const CollectionsStack = () => {
+  return (
+    <Stack.Navigator
+      initialRouteName="Collections"
+      screenOptions={() => ({
+        headerTitleStyle: styles.header,
+        headerStyle: { backgroundColor: Colors.primary },
+        headerTintColor: Colors.white,
+        headerBackTitleStyle: { fontFamily: Fonts.regular }
+      })}>
+      <Stack.Screen name="Collections" component={Collections} />
 
       <Stack.Screen name="ArtDetail" component={ArtDetail} options={{ title: 'Details' }} />
       <Stack.Screen name="BugDetail" component={BugDetail} options={{ title: 'Details' }} />
@@ -105,9 +128,9 @@ export default function App() {
               return <Image
                 source={require('./assets/icons/menu/museum.png')}
                 style={styles.image} />
-            } else if (route.name === 'Items') {
+            } else if (route.name === 'Collections') {
               return <Image
-                source={require('./assets/icons/menu/items.png')}
+                source={require('./assets/icons/menu/collections.png')}
                 style={styles.image} />
             }
           },
@@ -130,7 +153,7 @@ export default function App() {
         <Tab.Screen name="Home" component={HomeStack} />
         <Tab.Screen name="Villagers" component={VillagerStack} />
         <Tab.Screen name="Museum" component={MuseumStack} />
-        <Tab.Screen name="Items" component={VillagerStack} />
+        <Tab.Screen name="Collections" component={CollectionsStack} />
       </Tab.Navigator>
     </NavigationContainer>
   );

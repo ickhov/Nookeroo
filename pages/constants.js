@@ -39,6 +39,14 @@ const CONSTANTS = {
         none: "You don't have any villagers.",
         directory: 'villagers/'
     },
+    song: {
+        text: 'Songs',
+        collectedKey: 'song-obtained',
+        allKey: 'song',
+        url: 'https://ickhov.github.io/nookeroo/music.json',
+        none: "You haven't collected any K.K. Slider's music yet.",
+        directory: 'music/'
+    },
     error: {
         retrieving: "There was a problem retrieving your saved data. Please restart the app to make sure it doesn't happen again.",
         storing: "There was a problem storing your data. Please restart the app to make sure it doesn't happen again."

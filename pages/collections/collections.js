@@ -1,5 +1,5 @@
 /**
- * Museum menu
+ * Collections menu
  *
  * @format
  * @flow strict-local
@@ -9,14 +9,11 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import React from 'react';
 import Colors from '../../assets/colors';
 import Fonts from '../../assets/fonts';
-import Arts from './arts/arts';
-import Bugs from './bugs/bugs';
-import Fishes from './fishes/fishes';
-import Fossils from './fossils/fossils';
+import Songs from './songs/songs';
 
 const TopTab = createMaterialTopTabNavigator();
 
-export default function Museum() {
+export default function Collections() {
     return (
         <TopTab.Navigator
             tabBarOptions={{
@@ -35,10 +32,7 @@ export default function Museum() {
                 }
             }}
         >
-            <TopTab.Screen name="Arts" component={Arts} />
-            <TopTab.Screen name="Bugs" component={Bugs} />
-            <TopTab.Screen name="Fishes" component={Fishes} />
-            <TopTab.Screen name="Fossils" component={Fossils} />
+            <TopTab.Screen name="Songs" component={Songs} />
         </TopTab.Navigator>
     );
 }
