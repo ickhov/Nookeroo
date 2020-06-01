@@ -5,21 +5,15 @@
  * @flow strict-local
  */
 
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import React from 'react';
-import { View, StyleSheet, ImageBackground } from 'react-native';
+import { StyleSheet } from 'react-native';
 import Colors from '../../../assets/colors';
 import Fonts from '../../../assets/fonts';
-
-import Bugs from './bugs/bugs';
-import BugDetail from './bugs/bugDetail';
-import Fishes from './fishes/fishes';
-import FishDetail from './fishes/fishDetail';
-import Fossils from './fossils/fossils';
-import FossilDetail from './fossils/fossilDetail';
 import Arts from './arts/arts';
-import ArtDetail from './arts/artDetail';
-
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import Bugs from './bugs/bugs';
+import Fishes from './fishes/fishes';
+import Fossils from './fossils/fossils';
 
 const TopTab = createMaterialTopTabNavigator();
 
@@ -49,11 +43,3 @@ export default function MuseumTopTab() {
         </TopTab.Navigator>
     );
 }
-
-const styles = StyleSheet.create({
-    header: {
-        fontFamily: Fonts.bold,
-        fontSize: 30,
-        color: Colors.white,
-    }
-});

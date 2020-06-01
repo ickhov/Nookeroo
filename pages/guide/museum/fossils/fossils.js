@@ -23,6 +23,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import ProgressBar from '../../../components/progressBar';
 import CONSTANTS from '../../../constants';
 import NetInfo from "@react-native-community/netinfo";
+import PopUpDialog from '../../../components/popUpDialog';
 
 export default function FossilGuide({ navigation }) {
 
@@ -32,6 +33,8 @@ export default function FossilGuide({ navigation }) {
     const [progressData, setProgressData] = useState({});
     const constants = CONSTANTS.fossil;
     const [dataLength, setDataLength] = useState(1);
+    const [showAlert, setShowAlert] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
 
     const detailSelected = useCallback(item => {
         navigation.navigate('FossilDetail', {
@@ -58,12 +61,17 @@ export default function FossilGuide({ navigation }) {
 
     }, [collectedList]);
 
+    const error = (message) => {
+        setErrorMessage(message);
+        setShowAlert(true);
+    }
+
     const storeCollectedList = useCallback(async (value) => {
         try {
             const values = JSON.stringify(value);
             await AsyncStorage.setItem(constants.collectedKey, values);
         } catch (e) {
-            console.error("Storing Error: " + e);
+            error(CONSTANTS.error.storing);
         }
     }, []);
 
@@ -73,7 +81,7 @@ export default function FossilGuide({ navigation }) {
             const values = await AsyncStorage.getItem(constants.collectedKey);
             setCollectedList(values != null ? JSON.parse(values) : []);
         } catch (e) {
-            console.error("Retrieving Error: " + e);
+            error(CONSTANTS.error.retrieving);
         }
     }, []);
 
@@ -82,7 +90,7 @@ export default function FossilGuide({ navigation }) {
             const values = JSON.stringify(value);
             await AsyncStorage.setItem(constants.allKey, values);
         } catch (e) {
-            console.error("Storing Error: " + e);
+            error(CONSTANTS.error.storing);
         }
     }, []);
 
@@ -93,9 +101,22 @@ export default function FossilGuide({ navigation }) {
             const values = await AsyncStorage.getItem(constants.allKey);
             setRawData(values != null ? JSON.parse(values) : []);
         } catch (e) {
-            console.error("Retrieving Error: " + e);
+            error(CONSTANTS.error.retrieving);
         }
     }, []);
+
+    function compare(a, b) {
+        let first = a.name['name-en'].toLowerCase();
+        let second = b.name['name-en'].toLowerCase();
+
+        if (first < second) {
+            return -1;
+        }
+        if (first > second) {
+            return 1;
+        }
+        return 0;
+    }
 
     const fetchData = useCallback(() => {
         {/* Fetch bug data from Nookeroo API */ }
@@ -104,6 +125,9 @@ export default function FossilGuide({ navigation }) {
             .then((json) => {
                 // set the data to use to populate the data after filtering
                 const array = Object.values(json);
+
+                array.sort(compare);
+                
                 setRawData(array);
                 storeAll(array);
             })
@@ -209,6 +233,18 @@ export default function FossilGuide({ navigation }) {
                     )}
                     extraData={data}
                 />
+
+                <PopUpDialog
+                    showAlert={showAlert}
+                    title='Something went wrong!'
+                    message={errorMessage}
+                    cancelText='Dismiss'
+                    onCancelPressed={() => {
+                        setShowAlert(false);
+                        setErrorMessage('');
+                    }}
+                />
+
             </SafeAreaView>
         );
     } else {

@@ -39,6 +39,10 @@ const CONSTANTS = {
         none: "You don't have any villagers.",
         directory: 'villagers/'
     },
+    error: {
+        retrieving: "There was a problem retrieving your saved data. Please restart the app to make sure it doesn't happen again.",
+        storing: "There was a problem storing your data. Please restart the app to make sure it doesn't happen again."
+    }
 };
 
 export default CONSTANTS;
