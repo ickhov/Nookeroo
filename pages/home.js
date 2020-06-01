@@ -35,17 +35,21 @@ export default function Home({ navigation }) {
     useEffect(() => {
         const unsubscribe = navigation.addListener('focus', () => {
             // arts
+            getData(CONSTANTS.art.allKey, 0, CONSTANTS.art.url);
             getCollectedData(CONSTANTS.art.collectedKey, 0);
             // bugs
+            getData(CONSTANTS.bug.allKey, 1, CONSTANTS.bug.url);
             getCollectedData(CONSTANTS.bug.collectedKey, 1);
             // fishes
+            getData(CONSTANTS.fish.allKey, 2, CONSTANTS.fish.url);
             getCollectedData(CONSTANTS.fish.collectedKey, 2);
             // fossils
+            getData(CONSTANTS.fossil.allKey, 3, CONSTANTS.fossil.url);
             getCollectedData(CONSTANTS.fossil.collectedKey, 3);
         });
-    
+
         return unsubscribe;
-    }, [navigation]);    
+    }, [navigation]);
 
     useEffect(() => {
         {/* Fetch async data for progress tracking */ }
@@ -79,24 +83,24 @@ export default function Home({ navigation }) {
                 break;
         }
     };
-    
+
     const getData = async (key, type, url) => {
         try {
             // type is a number
             fetch(url)
-            .then((response) => response.json())
-            .then((json) => {
-                // set the data to use to populate the data after filtering
-                const array = Object.values(json);
-                
-                setData(type, array.length)
-            })
-            .catch(async _ => {
-                const values = await AsyncStorage.getItem(key);
-                const array = values != null ? JSON.parse(values) : [];
+                .then((response) => response.json())
+                .then((json) => {
+                    // set the data to use to populate the data after filtering
+                    const array = Object.values(json);
 
-                setData(type, array.length)
-            });
+                    setData(type, array.length)
+                })
+                .catch(async _ => {
+                    const values = await AsyncStorage.getItem(key);
+                    const array = values != null ? JSON.parse(values) : [];
+
+                    setData(type, array.length)
+                });
 
         } catch (e) {
             //error(CONSTANTS.error.retrieving);
@@ -132,10 +136,10 @@ export default function Home({ navigation }) {
         }
     };
 
-    const artPercent = ((artCollected * 1.0 / arts) * 100).toFixed(0);
-    const bugPercent = ((bugCollected * 1.0 / bugs) * 100).toFixed(0);
-    const fishPercent = ((fishCollected * 1.0 / fishes) * 100).toFixed(0);
-    const fossilPercent = ((fossilCollected * 1.0 / fossils) * 100).toFixed(0);
+    const artPercent = arts == 0 ? 0 : ((artCollected * 1.0 / arts) * 100).toFixed(0);
+    const bugPercent = bugs == 0 ? 0 : ((bugCollected * 1.0 / bugs) * 100).toFixed(0);
+    const fishPercent = fishes == 0 ? 0 : ((fishCollected * 1.0 / fishes) * 100).toFixed(0);
+    const fossilPercent = fossils == 0 ? 0 : ((fossilCollected * 1.0 / fossils) * 100).toFixed(0);
 
     return (
         <View style={styles.root}>
@@ -145,30 +149,30 @@ export default function Home({ navigation }) {
 
                 <View style={styles.museumContainer}>
 
-                <TextWithProgressBar
-                    title={'Arts'}
-                    progress={artPercent}
-                    progressText={`${artCollected}/${arts} | ${artPercent}%`} />
+                    <TextWithProgressBar
+                        title={'Arts'}
+                        progress={artPercent}
+                        progressText={`${artCollected}/${arts} | ${artPercent}%`} />
 
-                <TextWithProgressBar
-                    title={'Bugs'}
-                    progress={bugPercent}
-                    progressText={`${bugCollected}/${bugs} | ${bugPercent}%`} />
+                    <TextWithProgressBar
+                        title={'Bugs'}
+                        progress={bugPercent}
+                        progressText={`${bugCollected}/${bugs} | ${bugPercent}%`} />
 
-                <TextWithProgressBar
-                    title={'Fishes'}
-                    progress={fishPercent}
-                    progressText={`${fishCollected}/${fishes} | ${fishPercent}%`} />
+                    <TextWithProgressBar
+                        title={'Fishes'}
+                        progress={fishPercent}
+                        progressText={`${fishCollected}/${fishes} | ${fishPercent}%`} />
 
-                <TextWithProgressBar
-                    title={'Fossils'}
-                    progress={fossilPercent}
-                    progressText={`${fossilCollected}/${fossils} | ${fossilPercent}%`}
-                    containerStyle={{
-                        marginBottom: 10,
-                    }} />
+                    <TextWithProgressBar
+                        title={'Fossils'}
+                        progress={fossilPercent}
+                        progressText={`${fossilCollected}/${fossils} | ${fossilPercent}%`}
+                        containerStyle={{
+                            marginBottom: 10,
+                        }} />
 
-            </View>
+                </View>
 
             </View>
         </View>
