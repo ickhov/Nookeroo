@@ -137,7 +137,7 @@ export default function ArtGuide({ navigation }) {
     useEffect(() => {
         {/* Fetch Data form server and storage (if any) */ }
         // Subscribe
-        var unsubscribe = NetInfo.addEventListener(state => {
+        const unsubscribe = NetInfo.addEventListener(state => {
             if (state.isConnected) {
                 fetchData();
             } else {
@@ -148,12 +148,7 @@ export default function ArtGuide({ navigation }) {
         });
 
         // Unsubscribe
-        return function cleanup() {
-            if (unsubscribe) {
-                unsubscribe();
-                unsubscribe = null;
-            }
-        };
+        return unsubscribe;
     }, []);
 
     useEffect(() => {

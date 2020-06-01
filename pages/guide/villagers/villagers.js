@@ -140,7 +140,7 @@ export default function VillagerGuide({ navigation }) {
     useEffect(() => {
         {/* Fetch Data form server and storage (if any) */ }
         // Subscribe
-        var unsubscribe = NetInfo.addEventListener(state => {
+        const unsubscribe = NetInfo.addEventListener(state => {
             if (state.isConnected) {
                 fetchData();
             } else {
@@ -151,12 +151,7 @@ export default function VillagerGuide({ navigation }) {
         });
 
         // Unsubscribe
-        return function cleanup() {
-            if (unsubscribe) {
-                unsubscribe();
-                unsubscribe = null;
-            }
-        };
+        return unsubscribe;
     }, []);
 
     useEffect(() => {
