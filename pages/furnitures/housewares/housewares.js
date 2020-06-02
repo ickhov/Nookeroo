@@ -15,7 +15,7 @@ export default function Housewares({ navigation }) {
         <CollectionView
             constants={CONSTANTS.houseware}
             navigation={navigation}
-            nextScreen='HousewareDetail' />
+            nextScreen='FurnitureDetail' />
     );
 
 }

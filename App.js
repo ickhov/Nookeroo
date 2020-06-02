@@ -33,6 +33,7 @@ import SongDetail from './pages/songs/songs';
 
 // Furniture Stack
 import Furnitures from './pages/furnitures/furnitures';
+import FurnitureDetail from './pages/furnitures/detailView';
 
 import {
   StyleSheet, Image,
@@ -118,6 +119,8 @@ const FurnitureStack = () => {
         headerBackTitleStyle: { fontFamily: Fonts.regular }
       })}>
       <Stack.Screen name="Furnitures" component={Furnitures} />
+
+      <Stack.Screen name="FurnitureDetail" component={FurnitureDetail} options={{ title: 'Details' }} />
     </Stack.Navigator>
   );
 }
@@ -145,7 +148,7 @@ export default function App() {
                 style={styles.image} />
             } else if (route.name === 'Songs') {
               return <Image
-                source={require('./assets/icons/menu/furnitures.png')}
+                source={require('./assets/icons/menu/songs.png')}
                 style={styles.image} />
             } else if (route.name === 'Furnitures') {
               return <Image

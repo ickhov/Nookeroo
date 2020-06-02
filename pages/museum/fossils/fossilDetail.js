@@ -43,7 +43,7 @@ export default function FossilDetail({ route, navigation }) {
 
                 {/* Price Tab */}
                 <RoundBorderText
-                    text="Price"
+                    text="Sell"
                     containerStyle={styles.infoTitleContainer}
                     textStyle={styles.infoTitle} />
                 <View style={styles.bellContainer}>
@@ -91,16 +91,17 @@ const styles = StyleSheet.create({
         width: '100%',
     },
     image: {
-        width: 100,
+        width: '40%',
         height: 100,
         resizeMode: 'contain',
     },
     nameContainer: {
-        flex: 1,
+        width: '60%',
         backgroundColor: Colors.none,
         borderRadius: 0,
     },
     nameText: {
+        width: '100%',
         fontFamily: Fonts.bold,
         fontSize: 20,
     },

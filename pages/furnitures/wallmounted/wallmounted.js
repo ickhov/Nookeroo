@@ -15,7 +15,7 @@ export default function Wallmounted({ navigation }) {
         <CollectionView
             constants={CONSTANTS.wallmounted}
             navigation={navigation}
-            nextScreen='WallmountedDetail' />
+            nextScreen='FurnitureDetail' />
     );
 
 }

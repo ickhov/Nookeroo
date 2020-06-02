@@ -15,7 +15,7 @@ export default function Miscellaneous({ navigation }) {
         <CollectionView
             constants={CONSTANTS.misc}
             navigation={navigation}
-            nextScreen='MiscellaneousDetail' />
+            nextScreen='FurnitureDetail' />
     );
 
 }
