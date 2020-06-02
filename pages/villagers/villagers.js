@@ -29,6 +29,7 @@ export default function VillagerGuide({ navigation }) {
     const [dataLength, setDataLength] = useState(1);
     const [showAlert, setShowAlert] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
+    const [isConnected, setIsConnected] = useState(true);
 
     const detailSelected = useCallback(item => {
         navigation.navigate('VillagerDetail', {
@@ -132,6 +133,7 @@ export default function VillagerGuide({ navigation }) {
         {/* Fetch Data form server and storage (if any) */ }
         // Subscribe
         const unsubscribe = NetInfo.addEventListener(state => {
+            setIsConnected(state.isConnected);
             if (state.isConnected) {
                 fetchData();
             } else {
@@ -305,18 +307,34 @@ export default function VillagerGuide({ navigation }) {
                     alignItems: 'center',
                 }}>
 
-                    <Icons.Button
-                        name="signal-wifi-off"
-                        iconStyle={{ margin: 0 }}
-                        backgroundColor={Colors.none}
-                        color={Colors.gray}>
-                        <Text style={{
-                            textAlign: 'center',
-                            fontFamily: Fonts.medium,
-                            fontSize: 20,
-                            color: Colors.gray
-                        }}>No Internet Connection</Text>
-                    </Icons.Button>
+                    {
+                        isConnected ?
+                            <Icons.Button
+                                name="hourglass-full"
+                                iconStyle={{ margin: 0 }}
+                                backgroundColor={Colors.none}
+                                color={Colors.gray}>
+                                <Text style={{
+                                    textAlign: 'center',
+                                    fontFamily: Fonts.medium,
+                                    fontSize: 20,
+                                    color: Colors.gray
+                                }}>Loading</Text>
+                            </Icons.Button>
+                            :
+                            <Icons.Button
+                                name="signal-wifi-off"
+                                iconStyle={{ margin: 0 }}
+                                backgroundColor={Colors.none}
+                                color={Colors.gray}>
+                                <Text style={{
+                                    textAlign: 'center',
+                                    fontFamily: Fonts.medium,
+                                    fontSize: 20,
+                                    color: Colors.gray
+                                }}>No Internet Connection</Text>
+                            </Icons.Button>
+                    }
 
                 </View>
             </SafeAreaView>
