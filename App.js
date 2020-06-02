@@ -29,7 +29,7 @@ import ArtDetail from './pages/museum/arts/artDetail';
 
 // Collections Stack
 import Songs from './pages/songs/songs';
-import SongDetail from './pages/songs/songs';
+import SongDetail from './pages/songs/songDetail';
 
 // Furniture Stack
 import Furnitures from './pages/furnitures/furnitures';
