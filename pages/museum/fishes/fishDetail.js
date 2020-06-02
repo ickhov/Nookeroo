@@ -13,6 +13,7 @@ import RoundBorderText from '../../components/roundBorderText';
 import ContentWithHeader from '../../components/contentWithHeader';
 import TextWithImages from '../../components/textWithImages';
 import CONSTANTS from '../../constants';
+import { CachedImage } from 'react-native-img-cache';
 
 export default function FishDetail({ route, navigation }) {
 
@@ -115,7 +116,7 @@ export default function FishDetail({ route, navigation }) {
                 <View style={styles.container}>
                     <View style={styles.imageContainer}>
                         {/* Bug Image */}
-                        <Image
+                        <CachedImage
                             source={{ uri: data['image_uri'] ?? data['icon_uri'] }}
                             style={styles.image} />
                         {/* Name Tab */}

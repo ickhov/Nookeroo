@@ -12,6 +12,7 @@ import Fonts from '../../../assets/fonts';
 import RoundBorderText from '../../components/roundBorderText';
 import TextWithImages from '../../components/textWithImages';
 import CONSTANTS from '../../constants';
+import { CachedImage } from 'react-native-img-cache';
 
 export default function FossilDetail({ route, navigation }) {
 
@@ -31,7 +32,7 @@ export default function FossilDetail({ route, navigation }) {
             <View style={styles.container}>
                 <View style={styles.imageContainer}>
                     {/* Fossil Image */}
-                    <Image
+                    <CachedImage
                         source={{ uri: data['image_uri'] ?? data['icon_uri'] }}
                         style={styles.image} />
                     {/* Name Tab */}

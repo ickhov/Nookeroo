@@ -18,13 +18,13 @@ import Colors from '../../assets/colors';
 import Fonts from '../../assets/fonts';
 import Icons from 'react-native-vector-icons/MaterialIcons';
 import CONSTANTS from '../constants';
+import { CachedImage } from "react-native-img-cache";
 
 import {
     View,
     Text,
     StyleSheet,
     TouchableOpacity,
-    Image,
     Platform,
 } from 'react-native';
 
@@ -84,10 +84,13 @@ export default class CustomButton extends PureComponent {
                     activeOpacity={0.5}
                     onPress={this.props.onPress}>
 
-                    <Image
-                        source={this.props.imageSource ? { uri: this.props.imageSource } : require('../../assets/icons/menu/villagers.png')}
-                        style={styles.imageStyle}
-                    />
+                    {
+                        this.props.imageSource &&
+                        <CachedImage
+                            source={{ uri: this.props.imageSource }}
+                            style={styles.imageStyle}
+                        />
+                    }
 
                     <Text style={styles.textStyle}>{text}</Text>
 

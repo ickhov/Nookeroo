@@ -13,6 +13,7 @@ import RoundBorderText from '../components/roundBorderText';
 import ContentWithHeader from '../components/contentWithHeader';
 import TextWithImages from '../components/textWithImages';
 import CONSTANTS from '../constants';
+import { CachedImage } from 'react-native-img-cache';
 
 export default function SongDetail({ route, navigation }) {
 
@@ -32,7 +33,7 @@ export default function SongDetail({ route, navigation }) {
             <View style={styles.container}>
                 <View style={styles.imageContainer}>
                     {/* Song Image */}
-                    <Image
+                    <CachedImage
                         source={{ uri: data['image_uri']}}
                         style={styles.image} />
                     {/* Name Tab */}

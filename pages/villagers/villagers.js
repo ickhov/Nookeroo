@@ -275,7 +275,7 @@ export default function VillagerGuide({ navigation }) {
                             data={searchData}
                             renderItem={({ item }) => <CustomButton
                                 name={item.name['name-USen']}
-                                imageSource={constants.directory + item['file-name']}
+                                imageSource={item['icon_uri'] ?? item['image_uri']}
                                 onPress={() => detailSelected(item)}
                                 hasCollected={Array.from(collectedList).includes(item['file-name'])}
                                 toggleCheckBox={() => checkBoxToggle(item)}

@@ -12,6 +12,7 @@ import Fonts from '../../assets/fonts';
 import RoundBorderText from '../components/roundBorderText';
 import ContentWithHeader from '../components/contentWithHeader';
 import TextWithImages from '../components/textWithImages';
+import {CachedImage} from "react-native-img-cache";
 
 export default function HousewareDetail({ route, navigation }) {
 
@@ -36,7 +37,7 @@ export default function HousewareDetail({ route, navigation }) {
                 <View style={styles.container}>
                     <View style={styles.imageContainer}>
                         {/* Image */}
-                        <Image
+                        <CachedImage
                             source={{ uri: data[0]['image_uri'] ?? data[0]['icon_uri'] }}
                             style={styles.image} />
                         {/* Name Tab */}
@@ -143,7 +144,7 @@ export default function HousewareDetail({ route, navigation }) {
                         return (
                             <View style={styles.varianceContainer} key={index}>
                             {/* Image */}
-                            <Image
+                            <CachedImage
                                 source={{ uri: item['image_uri'] ?? item['icon_uri'] }}
                                 style={[styles.image, {
                                     width: '50%'

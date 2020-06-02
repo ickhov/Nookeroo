@@ -22,8 +22,9 @@ import {
     Text,
     StyleSheet,
     TouchableOpacity,
-    Image,
 } from 'react-native';
+
+import { CachedImage } from "react-native-img-cache";
 
 export default class ImageButton extends PureComponent {
 
@@ -38,10 +39,15 @@ export default class ImageButton extends PureComponent {
                 style={[styles.container, this.props.style]}
                 activeOpacity={0.5}
                 onPress={this.props.onPress}>
-                <Image
-                    source={this.props.imageSource ? { uri: CONSTANTS.icons.link + this.props.imageSource } : require('../../assets/icons/menu/villagers.png')}
-                    style={[styles.imageStyle, this.props.imageStyle]}
-                />
+
+                {
+                    this.props.imageSource &&
+                    <CachedImage
+                        source={{ uri: CONSTANTS.icons.link + this.props.imageSource }}
+                        style={[styles.imageStyle, this.props.imageStyle]}
+                    />
+                }
+
                 <View style={styles.lineSeparator} />
                 <Text style={[styles.textStyle, this.props.textStyle]}>{this.props.text ?? "Raymond"}</Text>
             </TouchableOpacity>
