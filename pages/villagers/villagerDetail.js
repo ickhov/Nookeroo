@@ -10,6 +10,7 @@ import { Image, StyleSheet, View, Text } from 'react-native';
 import Colors from '../../assets/colors';
 import Fonts from '../../assets/fonts';
 import ContentWithHeader from '../components/contentWithHeader';
+import CONSTANTS from '../constants';
 
 export default function VillagerDetail({ route, navigation }) {
 
@@ -21,7 +22,7 @@ export default function VillagerDetail({ route, navigation }) {
 
                 {/* Villager Image */}
                 <Image
-                    source={{ uri: 'https://ickhov.github.io/nookeroo/images/villagers/' + data['file-name'] + '.png' }}
+                    source={{ uri: data['image_uri'] ?? data['icon_uri'] }}
                     style={styles.image} />
 
                 {/* Name Tab */}

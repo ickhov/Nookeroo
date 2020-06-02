@@ -28,7 +28,11 @@ import FossilDetail from './pages/museum/fossils/fossilDetail';
 import ArtDetail from './pages/museum/arts/artDetail';
 
 // Collections Stack
-import Collections from './pages/collections/collections';
+import Songs from './pages/songs/songs';
+import SongDetail from './pages/songs/songs';
+
+// Furniture Stack
+import Furnitures from './pages/furnitures/furnitures';
 
 import {
   StyleSheet, Image,
@@ -54,7 +58,7 @@ const HomeStack = () => {
 const VillagerStack = () => {
   return (
     <Stack.Navigator
-      initialRouteName="Villager"
+      initialRouteName="Villagers"
       screenOptions={() => ({
         headerTitleStyle: styles.header,
         headerStyle: { backgroundColor: Colors.primary },
@@ -87,22 +91,33 @@ const MuseumStack = () => {
   );
 }
 
-const CollectionsStack = () => {
+const SongStack = () => {
   return (
     <Stack.Navigator
-      initialRouteName="Collections"
+      initialRouteName="Songs"
       screenOptions={() => ({
         headerTitleStyle: styles.header,
         headerStyle: { backgroundColor: Colors.primary },
         headerTintColor: Colors.white,
         headerBackTitleStyle: { fontFamily: Fonts.regular }
       })}>
-      <Stack.Screen name="Collections" component={Collections} />
+      <Stack.Screen name="Songs" component={Songs} />
+      <Stack.Screen name="SongDetail" component={SongDetail} options={({ route }) => ({ title: route.params.name })} />
+    </Stack.Navigator>
+  );
+}
 
-      <Stack.Screen name="ArtDetail" component={ArtDetail} options={{ title: 'Details' }} />
-      <Stack.Screen name="BugDetail" component={BugDetail} options={{ title: 'Details' }} />
-      <Stack.Screen name="FishDetail" component={FishDetail} options={{ title: 'Details' }} />
-      <Stack.Screen name="FossilDetail" component={FossilDetail} options={{ title: 'Details' }} />
+const FurnitureStack = () => {
+  return (
+    <Stack.Navigator
+      initialRouteName="Furnitures"
+      screenOptions={() => ({
+        headerTitleStyle: styles.header,
+        headerStyle: { backgroundColor: Colors.primary },
+        headerTintColor: Colors.white,
+        headerBackTitleStyle: { fontFamily: Fonts.regular }
+      })}>
+      <Stack.Screen name="Furnitures" component={Furnitures} />
     </Stack.Navigator>
   );
 }
@@ -128,9 +143,13 @@ export default function App() {
               return <Image
                 source={require('./assets/icons/menu/museum.png')}
                 style={styles.image} />
-            } else if (route.name === 'Collections') {
+            } else if (route.name === 'Songs') {
               return <Image
-                source={require('./assets/icons/menu/collections.png')}
+                source={require('./assets/icons/menu/furnitures.png')}
+                style={styles.image} />
+            } else if (route.name === 'Furnitures') {
+              return <Image
+                source={require('./assets/icons/menu/furnitures.png')}
                 style={styles.image} />
             }
           },
@@ -153,7 +172,8 @@ export default function App() {
         <Tab.Screen name="Home" component={HomeStack} />
         <Tab.Screen name="Villagers" component={VillagerStack} />
         <Tab.Screen name="Museum" component={MuseumStack} />
-        <Tab.Screen name="Collections" component={CollectionsStack} />
+        <Tab.Screen name="Songs" component={SongStack} />
+        <Tab.Screen name="Furnitures" component={FurnitureStack} />
       </Tab.Navigator>
     </NavigationContainer>
   );

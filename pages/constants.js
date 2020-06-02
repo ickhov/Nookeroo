@@ -3,49 +3,73 @@ const CONSTANTS = {
         text: 'Arts',
         collectedKey: 'art-collected',
         allKey: 'art',
-        url: 'https://ickhov.github.io/nookeroo/art.json',
+        url: 'https://acnhapi.com/v1/art',
         none: "You haven't collected any art yet.",
-        directory: 'art/'
     },
     bug: {
         text: 'Bugs',
         collectedKey: 'bug-collected',
         allKey: 'bug',
-        url: 'https://ickhov.github.io/nookeroo/bugs.json',
+        url: 'https://acnhapi.com/v1/bugs',
         none: "You haven't caught any bug yet.",
-        directory: 'bugs/'
     },
     fish: {
         text: 'Fishes',
         collectedKey: 'fish-collected',
         allKey: 'fish',
-        url: 'https://ickhov.github.io/nookeroo/fish.json',
+        url: 'https://acnhapi.com/v1/fish',
         none: "You haven't caught any fish yet.",
-        directory: 'fish/'
     },
     fossil: {
         text: 'Fossils',
         collectedKey: 'fossil-collected',
         allKey: 'fossil',
-        url: 'https://ickhov.github.io/nookeroo/fossils.json',
+        url: 'https://acnhapi.com/v1/fossils',
         none: "You haven't found any fossil yet.",
-        directory: 'fossils/'
     },
     villager: {
         text: 'Villagers',
         collectedKey: 'villager-obtained',
         allKey: 'villager',
-        url: 'https://ickhov.github.io/nookeroo/villagers.json',
+        url: 'https://acnhapi.com/v1/villagers',
         none: "You don't have any villagers.",
-        directory: 'villagers/'
     },
     song: {
         text: 'Songs',
         collectedKey: 'song-obtained',
         allKey: 'song',
-        url: 'https://ickhov.github.io/nookeroo/music.json',
+        url: 'https://acnhapi.com/v1/songs',
         none: "You haven't collected any K.K. Slider's music yet.",
-        directory: 'music/'
+    },
+    furniture: {
+        text: 'Furnitures',
+        collectedKey: 'furniture-obtained',
+        allKey: 'furniture',
+        none: "You haven't collected any furniture yet.",
+        url1: 'https://acnhapi.com/v1/houseware',
+        url2: 'https://acnhapi.com/v1/wallmounted',
+        url3: 'https://acnhapi.com/v1/misc'
+    },
+    houseware: {
+        text: 'Housewares',
+        collectedKey: 'houseware-collected',
+        allKey: 'houseware',
+        url: 'https://acnhapi.com/v1/houseware',
+        none: "You haven't collected any houseware yet.",
+    },
+    wallmounted: {
+        text: 'Wall-mounted',
+        collectedKey: 'wallmounted-collected',
+        allKey: 'wallmounted',
+        url: 'https://acnhapi.com/v1/wallmounted',
+        none: "You haven't collected any wall-mounted furniture yet.",
+    },
+    misc: {
+        text: 'Miscellaneous',
+        collectedKey: 'misc-collected',
+        allKey: 'misc',
+        url: 'https://acnhapi.com/v1/misc',
+        none: "You haven't collected any miscellaneous furniture yet.",
     },
     error: {
         retrieving: "There was a problem retrieving your saved data. Please restart the app to make sure it doesn't happen again.",

@@ -1,5 +1,5 @@
 /**
- * Collections menu
+ * Furnitures menu
  *
  * @format
  * @flow strict-local
@@ -9,11 +9,13 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import React from 'react';
 import Colors from '../../assets/colors';
 import Fonts from '../../assets/fonts';
-import Songs from './songs/songs';
+import Housewares from './housewares/housewares';
+import WallMounted from './wallmounted/wallmounted';
+import Miscellaneous from './misc/misc';
 
 const TopTab = createMaterialTopTabNavigator();
 
-export default function Collections() {
+export default function Furnitures() {
     return (
         <TopTab.Navigator
             tabBarOptions={{
@@ -25,14 +27,16 @@ export default function Collections() {
                 labelStyle: {
                     color: Colors.white,
                     fontFamily: Fonts.medium,
-                    fontSize: 14,
+                    fontSize: 13,
                 },
                 indicatorStyle: {
                     backgroundColor: Colors.white
                 }
             }}
         >
-            <TopTab.Screen name="Songs" component={Songs} />
+            <TopTab.Screen name="Housewares" component={Housewares} />
+            <TopTab.Screen name="Wall-mounted" component={WallMounted} />
+            <TopTab.Screen name="Miscellaneous" component={Miscellaneous} />
         </TopTab.Navigator>
     );
 }

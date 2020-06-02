@@ -15,6 +15,7 @@
  */
 
 import React, { PureComponent } from 'react';
+import CONSTANTS from '../constants';
 
 import {
     View,
@@ -38,7 +39,7 @@ export default class ImageButton extends PureComponent {
                 activeOpacity={0.5}
                 onPress={this.props.onPress}>
                 <Image
-                    source={this.props.imageSource ? { uri: 'https://ickhov.github.io/nookeroo/icons/' + this.props.imageSource + '.png' } : require('../../assets/icons/menu/villagers.png')}
+                    source={this.props.imageSource ? { uri: CONSTANTS.icons.link + this.props.imageSource } : require('../../assets/icons/menu/villagers.png')}
                     style={[styles.imageStyle, this.props.imageStyle]}
                 />
                 <View style={styles.lineSeparator} />

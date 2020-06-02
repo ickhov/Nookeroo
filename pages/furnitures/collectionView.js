@@ -2,7 +2,7 @@
  * 
  * Props: constants, navigation, nextScreen
  * 
- * Collection View for various screens
+ * Collection View for Furniture-related screens
  * Arts
  * Bugs
  * Fishes
@@ -37,7 +37,7 @@ export default function CollectionView(props) {
 
     const detailSelected = useCallback(item => {
         props.navigation.navigate(props.nextScreen, {
-            name: item.name['name-USen'],
+            name: item[0].name['name-USen'],
             data: item
         })
     }, []);
@@ -46,13 +46,13 @@ export default function CollectionView(props) {
         // no data if first toggled, set to true if not in the list
         const data = Array.from(collectedList);
 
-        const index = data.indexOf(item['file-name']);
+        const index = data.indexOf(item[0]['file-name']);
         // if name is in the list, then remove it
         // else add it
         if (index > -1) {
             data.splice(index, 1);
         } else {
-            data.push(item['file-name']);
+            data.push(item[0]['file-name']);
         }
 
         setCollectedList(data);
@@ -105,8 +105,8 @@ export default function CollectionView(props) {
     }, []);
 
     function compare(a, b) {
-        let first = a.name['name-USen'].toLowerCase();
-        let second = b.name['name-USen'].toLowerCase();
+        let first = a[0].name['name-USen'].toLowerCase();
+        let second = b[0].name['name-USen'].toLowerCase();
 
         if (first < second) {
             return -1;
@@ -159,7 +159,7 @@ export default function CollectionView(props) {
         var missingData = [];
 
         items.forEach((element) => {
-            if (collected.includes(element['file-name'])) {
+            if (collected.includes(element[0]['file-name'])) {
                 collectedData.push(element);
             } else {
                 missingData.push(element);
@@ -207,16 +207,16 @@ export default function CollectionView(props) {
                 <SectionList
                     style={{ width: '100%' }}
                     sections={data}
-                    keyExtractor={item => props.haveID ? item.id.toString() : item['file-name']}
+                    keyExtractor={item => Object.values(item)[0]['file-name']}
                     renderItem={({ item }) => {
                         if (item.id == -1) {
                             return <Text style={styles.emptyTextStyle}>{item.text}</Text>
                         } else {
                             return <CustomButton
-                                name={item.name['name-USen']}
-                                imageSource={item['icon_uri'] ?? item['image_uri']}
+                                name={item[0].name['name-USen']}
+                                imageSource={item[0]['icon_uri'] ?? item[0]['image_uri']}
                                 onPress={() => detailSelected(item)}
-                                hasCollected={Array.from(collectedList).includes(item['file-name'])}
+                                hasCollected={Array.from(collectedList).includes(item[0]['file-name'])}
                                 toggleCheckBox={() => checkBoxToggle(item)}
                             />
                         }

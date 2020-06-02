@@ -11,6 +11,7 @@ import Colors from '../../../assets/colors';
 import Fonts from '../../../assets/fonts';
 import RoundBorderText from '../../components/roundBorderText';
 import TextWithImages from '../../components/textWithImages';
+import CONSTANTS from '../../constants';
 
 export default function FossilDetail({ route, navigation }) {
 
@@ -31,7 +32,7 @@ export default function FossilDetail({ route, navigation }) {
                 <View style={styles.imageContainer}>
                     {/* Fossil Image */}
                     <Image
-                        source={{ uri: 'https://ickhov.github.io/nookeroo/images/fossils/' + data['file-name'] + '.png' }}
+                        source={{ uri: data['image_uri'] ?? data['icon_uri'] }}
                         style={styles.image} />
                     {/* Name Tab */}
                     <RoundBorderText

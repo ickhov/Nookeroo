@@ -5,27 +5,18 @@
  * @flow strict-local
  */
 
-import React, { useState, useEffect, useCallback } from 'react';
-import Colors from '../../assets/colors';
-import Fonts from '../../assets/fonts';
-import Icons from 'react-native-vector-icons/MaterialIcons';
-
-import {
-    SafeAreaView,
-    StyleSheet,
-    Text,
-    SectionList,
-    TextInput,
-    View,
-    FlatList,
-    Keyboard,
-} from 'react-native';
-
-import CustomButton from '../components/customButton';
-import CONSTANTS from '../constants';
 import AsyncStorage from '@react-native-community/async-storage';
 import NetInfo from "@react-native-community/netinfo";
+import React, { useCallback, useEffect, useState } from 'react';
+import { FlatList, Keyboard, SafeAreaView, SectionList, StyleSheet, Text, TextInput, View } from 'react-native';
+import Icons from 'react-native-vector-icons/MaterialIcons';
+import Colors from '../../assets/colors';
+import Fonts from '../../assets/fonts';
+import CustomButton from '../components/customButton';
 import PopUpDialog from '../components/popUpDialog';
+import CONSTANTS from '../constants';
+
+
 
 export default function VillagerGuide({ navigation }) {
 
@@ -41,7 +32,7 @@ export default function VillagerGuide({ navigation }) {
 
     const detailSelected = useCallback(item => {
         navigation.navigate('VillagerDetail', {
-            name: item.name['name-en'],
+            name: item.name['name-USen'],
             data: item
         })
     }, []);
@@ -109,8 +100,8 @@ export default function VillagerGuide({ navigation }) {
     }, []);
 
     function compare(a, b) {
-        let first = a.name['name-en'].toLowerCase();
-        let second = b.name['name-en'].toLowerCase();
+        let first = a.name['name-USen'].toLowerCase();
+        let second = b.name['name-USen'].toLowerCase();
 
         if (first < second) {
             return -1;
@@ -202,7 +193,7 @@ export default function VillagerGuide({ navigation }) {
         const items = Array.from(rawData);
 
         const filterItems = items.filter((item) => {
-            return item.name['name-en'].toLowerCase().includes(text.toLowerCase());
+            return item.name['name-USen'].toLowerCase().includes(text.toLowerCase());
         })
 
         setSearchText(text);
@@ -263,8 +254,8 @@ export default function VillagerGuide({ navigation }) {
                                     return <Text style={styles.emptyTextStyle}>{item.text}</Text>
                                 } else {
                                     return <CustomButton
-                                        name={item.name['name-en']}
-                                        imageSource={constants.directory + item['file-name']}
+                                        name={item.name['name-USen']}
+                                        imageSource={item['icon_uri'] ?? item['image_uri']}
                                         onPress={() => detailSelected(item)}
                                         hasCollected={Array.from(collectedList).includes(item['file-name'])}
                                         toggleCheckBox={() => checkBoxToggle(item)}
@@ -281,7 +272,7 @@ export default function VillagerGuide({ navigation }) {
                             style={{ width: '100%', marginTop: 10, }}
                             data={searchData}
                             renderItem={({ item }) => <CustomButton
-                                name={item.name['name-en']}
+                                name={item.name['name-USen']}
                                 imageSource={constants.directory + item['file-name']}
                                 onPress={() => detailSelected(item)}
                                 hasCollected={Array.from(collectedList).includes(item['file-name'])}

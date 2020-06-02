@@ -13,10 +13,11 @@
  * @flow strict-local
  */
 
-import React, { useState, PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 import Colors from '../../assets/colors';
 import Fonts from '../../assets/fonts';
 import Icons from 'react-native-vector-icons/MaterialIcons';
+import CONSTANTS from '../constants';
 
 import {
     View,
@@ -67,7 +68,6 @@ export default class CustomButton extends PureComponent {
         super(props);
 
         this.state = {
-            isIcon: props.isIcon ?? true,
             hasCollected: props.hasCollected ?? false
         }
 
@@ -75,7 +75,6 @@ export default class CustomButton extends PureComponent {
 
     render() {
         const text = convertJSONString(this.props.name);
-        const source = this.state.isIcon ? 'https://ickhov.github.io/nookeroo/icons/' : 'https://ickhov.github.io/nookeroo/images/';
 
         return (
             <View style={styles.container}>
@@ -86,7 +85,7 @@ export default class CustomButton extends PureComponent {
                     onPress={this.props.onPress}>
 
                     <Image
-                        source={this.props.imageSource ? { uri: source + this.props.imageSource + '.png' } : require('../../assets/icons/menu/villagers.png')}
+                        source={this.props.imageSource ? { uri: this.props.imageSource } : require('../../assets/icons/menu/villagers.png')}
                         style={styles.imageStyle}
                     />
 

@@ -9,15 +9,14 @@ import React from 'react';
 import CONSTANTS from '../../constants';
 import CollectionView from '../../components/collectionView';
 
-export default function BugGuide({ navigation }) {
+export default function Bugs({ navigation }) {
 
     return (
         <CollectionView
             constants={CONSTANTS.bug}
             navigation={navigation}
             nextScreen='BugDetail'
-            haveID={true}
-            isIcon={true} />
+            haveID={true} />
     );
 
 }
