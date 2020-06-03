@@ -2,7 +2,7 @@
  * 
  * Initial params: constants, nextScreen
  * 
- * Collection View for various clothing-related screen
+ * List View for various recipe-related screen
  *
  * @format
  * @flow strict-local
@@ -20,7 +20,7 @@ import PopUpDialog from '../components/popUpDialog';
 import ProgressBar from '../components/progressBar';
 import CONSTANTS from '../constants';
 
-export default function OtherFurnitureList({ route, navigation }) {
+export default function RecipeList({ route, navigation }) {
 
     const [collectedList, setCollectedList] = useState([]);
     const [rawData, setRawData] = useState([])
@@ -125,7 +125,7 @@ export default function OtherFurnitureList({ route, navigation }) {
                 const keys = Object.keys(json);
                 const array = Object.values(json);
 
-                array.forEach((element, index) => element.name = keys[index]);
+                array.forEach((element, index) => element.name = keys[index])
 
                 array.sort(compare);
 

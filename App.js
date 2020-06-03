@@ -39,6 +39,10 @@ import More from './pages/more';
 import ClothingList from './pages/clothing/clothingList';
 import ClothingDetail from './pages/clothing/clothingDetail';
 
+// Recipe Stack
+import RecipeList from './pages/recipes/recipeList';
+import RecipeDetail from './pages/recipes/recipeDetail';
+
 // Furniture Stack
 import MainFurnitureList from './pages/furnitures/mainFurnitureList';
 import MainFurnitureDetail from './pages/furnitures/mainFurnitureDetail';
@@ -121,6 +125,7 @@ const SongStack = () => {
 const clothingDetail = 'ClothingDetail';
 const mainFurnitureDetail = 'MainFurnitureDetail';
 const otherFurnitureDetail = 'OtherFurnitureDetail';
+const recipeDetail = 'RecipeDetail';
 
 const MoreStack = () => {
   return (
@@ -248,9 +253,68 @@ const MoreStack = () => {
           nextScreen: otherFurnitureDetail
         }} />
 
+      {/* RECIPE */}
+      <Stack.Screen 
+        name="RecipeClothing" 
+        component={RecipeList} 
+        initialParams={{ 
+          constants: CONSTANTS.recipe.clothing, 
+          nextScreen: recipeDetail
+        }}
+        options={{ title: 'Clothing' }} />
+      <Stack.Screen 
+        name="RecipeFences" 
+        component={RecipeList} 
+        initialParams={{ 
+          constants: CONSTANTS.recipe.fence, 
+          nextScreen: recipeDetail
+        }}
+        options={{ title: 'Fences' }} />
+      <Stack.Screen 
+        name="RecipeHousewares" 
+        component={RecipeList} 
+        initialParams={{ 
+          constants: CONSTANTS.recipe.houseware, 
+          nextScreen: recipeDetail
+        }}
+        options={{ title: 'Housewares' }} />
+      <Stack.Screen 
+        name="RecipeDecorations" 
+        component={RecipeList} 
+        initialParams={{ 
+          constants: CONSTANTS.recipe.decoration, 
+          nextScreen: recipeDetail
+        }}
+        options={{ title: 'Decorations' }} />
+      <Stack.Screen 
+        name="RecipeTools" 
+        component={RecipeList} 
+        initialParams={{ 
+          constants: CONSTANTS.recipe.tool, 
+          nextScreen: recipeDetail
+        }}
+        options={{ title: 'Tools' }} />
+      <Stack.Screen 
+        name="RecipeWall-mounted" 
+        component={RecipeList} 
+        initialParams={{ 
+          constants: CONSTANTS.recipe.wallmounted, 
+          nextScreen: recipeDetail
+        }}
+        options={{ title: 'Wall-mounted' }} />
+      <Stack.Screen 
+        name="RecipeMiscellaneous" 
+        component={RecipeList} 
+        initialParams={{ 
+          constants: CONSTANTS.recipe.miscellaneous, 
+          nextScreen: recipeDetail
+        }}
+        options={{ title: 'Miscellaneous' }} />
+
       <Stack.Screen name="ClothingDetail" component={ClothingDetail} options={{ title: 'Details' }} />
       <Stack.Screen name="MainFurnitureDetail" component={MainFurnitureDetail} options={{ title: 'Details' }} />
       <Stack.Screen name="OtherFurnitureDetail" component={OtherFurnitureDetail} options={{ title: 'Details' }} />
+      <Stack.Screen name="RecipeDetail" component={RecipeDetail} options={{ title: 'Details' }} />
     </Stack.Navigator>
   );
 }

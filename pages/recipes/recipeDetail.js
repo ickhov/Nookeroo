@@ -1,5 +1,5 @@
 /**
- * Clothing detail page
+ * Recipe detail page
  *
  * @format
  * @flow strict-local
@@ -14,7 +14,7 @@ import ContentWithHeader from '../components/contentWithHeader';
 import TextWithImages from '../components/textWithImages';
 import {CachedImage} from "react-native-img-cache";
 
-export default function ClothingDetail({ route, navigation }) {
+export default function RecipeDetail({ route, navigation }) {
 
     const data = route.params.data;
     const name = lowercasetoUppercase(route.params.name);
@@ -27,7 +27,10 @@ export default function ClothingDetail({ route, navigation }) {
         return splitString.join(' ');
     };
 
-    const sources = data['source'] != [] ? data['source'].join(' & ') : '-';
+    const sources = data['obtained_from'] != [] ? data['obtained_from'].join(' & ') : '-';
+
+    const materialNames = Object.keys(data['materials']);
+    const materialValues = Object.values(data['materials']);
 
     return (
         <SafeAreaView style={{ flex: 1 }}>
@@ -39,7 +42,7 @@ export default function ClothingDetail({ route, navigation }) {
                     <View style={styles.imageContainer}>
                         {/* Image */}
                         <CachedImage
-                            source={{ uri: data['imageLink']}}
+                            source={{ uri: data['image_url'] ?? data['size_image_url']}}
                             style={styles.image} />
                         {/* Name Tab */}
                         <RoundBorderText
@@ -49,76 +52,58 @@ export default function ClothingDetail({ route, navigation }) {
                     </View>
 
                     {/* Price Tab */}
+                    <RoundBorderText
+                        text="Sell"
+                        containerStyle={styles.infoTitleContainer}
+                        textStyle={styles.infoTitle} />
                     <View style={styles.bellContainer}>
-                        <View style={[styles.bellInfoContainer, {
-                            borderRightWidth: 1,
-                            borderColor: Colors.primary
-                        }]}>
-                            <RoundBorderText
-                                text="Buy"
-                                containerStyle={styles.bellTitleContainer}
-                                textStyle={styles.infoTitle} />
-                            <TextWithImages
-                                containerStyle={styles.bellInfo}
-                                rightImageSource={require('../../assets/icons/miscellaneous/bells.png')}
-                                text={data['priceBuy'] == -1 ? '-' : data['priceBuy']} />
-                        </View>
-
-                        <View style={[styles.bellInfoContainer, {
-                            borderLeftWidth: 1,
-                            borderColor: Colors.primary
-                        }]}>
-                            <RoundBorderText
-                                text="Sell"
-                                containerStyle={styles.bellTitleContainer}
-                                textStyle={styles.infoTitle} />
-                            <TextWithImages
-                                containerStyle={styles.bellInfo}
-                                leftImageSource={require('../../assets/icons/miscellaneous/cranny.png')}
-                                rightImageSource={require('../../assets/icons/miscellaneous/bells.png')}
-                                text={data['priceSell'] == -1 ? '-' : data['priceSell']} />
-                        </View>
-
+                        <TextWithImages
+                            containerStyle={{ width: '45%' }}
+                            leftImageSource={require('../../assets/icons/miscellaneous/cranny.png')}
+                            rightImageSource={require('../../assets/icons/miscellaneous/bells.png')}
+                            text={data['price']} />
                     </View>
 
                     {/* Sources Tab */}
                     <ContentWithHeader title={'Sources'}
-                        text={sources}
+                        text={sources === '' ? '-' : sources}
                         containerStyle={[styles.miscContainer, {
                             marginTop: 20,
                         }]}
                         titleContainerStyle={styles.miscTitle}
                         textContainerStyle={styles.miscText} />
 
-                    {
-                        data['variations'] && data['variations'].length > 0 &&
-                        <RoundBorderText
-                        text="Variance"
+                    {/* Materials Tab */}
+                    <RoundBorderText
+                        text="Materials"
                         containerStyle={styles.infoTitleContainer}
                         textStyle={styles.infoTitle} />
-                    }
 
-                    {data['variations'] && data['variations'].map((item, index) => {
+                    {materialNames.map((item, index) => {
                         return (
-                            <View style={styles.varianceContainer} key={index}>
+                            <View style={styles.materialContainer} key={index}>
                             {/* Image */}
                             <CachedImage
-                                source={{ uri: data['variationImageLinks'][index]}}
-                                style={[styles.image, {
-                                    width: '50%'
-                                }]} />
+                                source={{ uri: materialValues[index]['image_url']}}
+                                style={{
+                                    width: '30%',
+                                    height: 50,
+                                    resizeMode: 'contain',
+                                }} />
+                            
                             {/* Name Tab */}
                             <RoundBorderText
-                                text={item}
+                                text={materialValues[index]['amount'] + ' ' + item}
                                 containerStyle={[styles.nameContainer, {
-                                    width: '50%'
+                                    width: '70%'
                                 }]}
                                 textStyle={[styles.nameText, {
-                                    textAlign: 'left'
+                                    textAlign: 'left',
+                                    fontSize: 18
                                 }]} />
                         </View>
                         );
-                     })}
+                    })}
 
                      <View style={{
                          marginBottom: 20,
@@ -189,7 +174,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         backgroundColor: Colors.tertiary,
         width: '100%',
-        marginTop: 20,
     },
     bellInfoContainer: {
         backgroundColor: Colors.secondary,
@@ -241,7 +225,7 @@ const styles = StyleSheet.create({
         textAlign: 'left',
         paddingLeft: 20,
     },
-    varianceContainer: {
+    materialContainer: {
         alignItems: 'center',
         flexDirection: 'row',
         justifyContent: 'flex-start',

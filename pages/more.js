@@ -63,31 +63,38 @@ export default function More({ navigation }) {
             data: [
                 {
                     name: 'Clothing',
-                    image: require('../assets/icons/miscellaneous/recipe.png')
+                    image: require('../assets/icons/miscellaneous/recipe.png'),
+                    screen: 'RecipeClothing'
                 },
                 {
                     name: 'Fences',
-                    image: require('../assets/icons/miscellaneous/recipe.png')
+                    image: require('../assets/icons/miscellaneous/recipe.png'),
+                    screen: 'RecipeFences'
                 },
                 {
                     name: 'Housewares',
-                    image: require('../assets/icons/miscellaneous/recipe.png')
+                    image: require('../assets/icons/miscellaneous/recipe.png'),
+                    screen: 'RecipeHousewares'
                 },
                 {
                     name: 'Rugs/Wallpapers/Floorings',
-                    image: require('../assets/icons/miscellaneous/recipe.png')
+                    image: require('../assets/icons/miscellaneous/recipe.png'),
+                    screen: 'RecipeDecorations'
                 },
                 {
                     name: 'Tools',
-                    image: require('../assets/icons/miscellaneous/recipe.png')
+                    image: require('../assets/icons/miscellaneous/recipe.png'),
+                    screen: 'RecipeTools'
                 },
                 {
                     name: 'Wall-mounted',
-                    image: require('../assets/icons/miscellaneous/recipe.png')
+                    image: require('../assets/icons/miscellaneous/recipe.png'),
+                    screen: 'RecipeWall-mounted'
                 },
                 {
                     name: 'Miscellaneous',
-                    image: require('../assets/icons/miscellaneous/recipe.png')
+                    image: require('../assets/icons/miscellaneous/recipe.png'),
+                    screen: 'RecipeMiscellaneous'
                 }
             ]
         },
@@ -140,7 +147,7 @@ export default function More({ navigation }) {
                         return <CustomButton
                             name={item.name}
                             fileImageSource={item.image}
-                            onPress={() => detailSelected(item.name)}
+                            onPress={() => detailSelected(item.screen ?? item.name)}
                             noCheckBox={true}
                         />
                     }

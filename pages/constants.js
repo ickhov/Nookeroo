@@ -114,67 +114,95 @@ const CONSTANTS = {
     // RECIPES
     recipe: {
         clothing: {
-
+            text: 'Clothing',
+            collectedKey: 'recipe-clothing-collected',
+            allKey: 'recipe-clothing',
+            url: 'https://raw.githubusercontent.com/sungyeonu/animal-crossing-scraper/master/data/crafting/equipments.json',
+            none: "You haven't collected any clothing recipe yet.",
         },
         fence: {
-
+            text: 'Fences',
+            collectedKey: 'recipe-fence-collected',
+            allKey: 'recipe-fence',
+            url: 'https://raw.githubusercontent.com/sungyeonu/animal-crossing-scraper/master/data/crafting/others.json',
+            none: "You haven't collected any fence recipe yet.",
         },
         houseware: {
-
+            text: 'Housewares',
+            collectedKey: 'recipe-houseware-collected',
+            allKey: 'recipe-houseware',
+            url: 'https://raw.githubusercontent.com/sungyeonu/animal-crossing-scraper/master/data/crafting/housewares.json',
+            none: "You haven't collected any houseware recipe yet.",
         },
-        rug: {
-
+        decoration: {
+            text: 'Decorations',
+            collectedKey: 'recipe-decoration-collected',
+            allKey: 'recipe-decoration',
+            url: 'https://raw.githubusercontent.com/sungyeonu/animal-crossing-scraper/master/data/crafting/wallpaper_rugs_floorings.json',
+            none: "You haven't collected any wall decoration yet.",
         },
         tool: {
-
+            text: 'Tools',
+            collectedKey: 'recipe-tool-collected',
+            allKey: 'recipe-tool',
+            url: 'https://raw.githubusercontent.com/sungyeonu/animal-crossing-scraper/master/data/crafting/tools.json',
+            none: "You haven't collected any tool recipe yet.",
         },
         wallmounted: {
-
+            text: 'Qall-mounted',
+            collectedKey: 'recipe-wallmounted-collected',
+            allKey: 'recipe-wallmounted',
+            url: 'https://raw.githubusercontent.com/sungyeonu/animal-crossing-scraper/master/data/crafting/wall_mounteds.json',
+            none: "You haven't collected any wall-mounted recipe yet.",
         },
         miscellaneous: {
-
+            text: 'Miscellaneous',
+            collectedKey: 'recipe-miscellaneous-collected',
+            allKey: 'recipe-miscellaneous',
+            url: 'https://raw.githubusercontent.com/sungyeonu/animal-crossing-scraper/master/data/crafting/miscellaneous.json',
+            none: "You haven't collected any miscellaneous recipe yet.",
         }
     },
     // FURNITURE
     furniture: {
         flooring: {
             text: 'Floorings',
-            collectedKey: 'flooring-collected',
+            collectedKey: 'furniture-flooring-collected',
             allKey: 'flooring',
             url: 'https://raw.githubusercontent.com/sungyeonu/animal-crossing-scraper/master/data/furniture/floorings.json',
             none: "You haven't collected any flooring yet.",
         },
         houseware: {
             text: 'Housewares',
-            collectedKey: 'houseware-collected',
+            collectedKey: 'furniture-houseware-collected',
             allKey: 'houseware',
             url: 'https://acnhapi.com/v1/houseware',
             none: "You haven't collected any houseware yet.",
         },
         rug: {
             text: 'Rugs',
-            collectedKey: 'rug-collected',
+            collectedKey: 'furniture-rug-collected',
             allKey: 'rug',
             url: 'https://raw.githubusercontent.com/sungyeonu/animal-crossing-scraper/master/data/furniture/rugs.json',
             none: "You haven't collected any rug yet.",
         },
         wallmounted: {
             text: 'Wall-mounted',
-            collectedKey: 'wallmounted-collected',
+            collectedKey: 'furniture-wallmounted-collected',
             allKey: 'wallmounted',
             url: 'https://acnhapi.com/v1/wallmounted',
             none: "You haven't collected any wall-mounted furniture yet.",
         },
         wallpaper: {
             text: 'Wallpapers',
-            collectedKey: 'wallpaper-collected',
+            collectedKey: 'furniture-wallpaper-collected',
             allKey: 'wallpaper',
             url: 'https://raw.githubusercontent.com/sungyeonu/animal-crossing-scraper/master/data/furniture/wallpapers.json',
             none: "You haven't collected any wallpaper yet.",
         },
         misc: {
             text: 'Miscellaneous',
-            collectedKey: 'misc-collected',
+            collectedKey: 'furniture-misc-collected',
             allKey: 'misc',
             url: 'http://acnhapi.com/v1/misc',
             none: "You haven't collected any miscellaneous furniture yet.",
