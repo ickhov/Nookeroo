@@ -1,6 +1,6 @@
 /**
  * 
- * Props: constants, navigation, nextScreen
+ * Initial params: constants, nextScreen
  * 
  * Collection View for various clothing-related screen
  *
@@ -20,7 +20,7 @@ import PopUpDialog from '../components/popUpDialog';
 import ProgressBar from '../components/progressBar';
 import CONSTANTS from '../constants';
 
-export default function CollectionView(props) {
+export default function OtherFurnitureList({ route, navigation }) {
 
     const [collectedList, setCollectedList] = useState([]);
     const [rawData, setRawData] = useState([])
@@ -28,14 +28,14 @@ export default function CollectionView(props) {
     const [progressData, setProgressData] = useState({});
     const [searchData, setSearchData] = useState([]);
     const [searchText, setSearchText] = useState('');
-    const constants = props.constants;
+    const constants = route.params.constants;
     const [dataLength, setDataLength] = useState(1);
     const [showAlert, setShowAlert] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
     const [isConnected, setIsConnected] = useState(true);
 
     const detailSelected = useCallback(item => {
-        props.navigation.navigate(props.nextScreen, {
+        navigation.navigate(route.params.nextScreen, {
             name: item.name,
             data: item
         })
@@ -122,7 +122,10 @@ export default function CollectionView(props) {
             .then((response) => response.json())
             .then((json) => {
                 // set the data to use to populate the data after filtering
+                const keys = Object.keys(json);
                 const array = Object.values(json);
+
+                array.forEach((element, index) => element.name = keys[index])
 
                 array.sort(compare);
 
@@ -276,7 +279,7 @@ export default function CollectionView(props) {
                                 } else {
                                     return <CustomButton
                                         name={item.name}
-                                        imageSource={item['imageLink']}
+                                        imageSource={item['image_url'] ?? item['size_image_url']}
                                         onPress={() => detailSelected(item)}
                                         hasCollected={Array.from(collectedList).includes(item.name.toLowerCase())}
                                         toggleCheckBox={() => checkBoxToggle(item)}
@@ -298,7 +301,7 @@ export default function CollectionView(props) {
                                 } else {
                                     return <CustomButton
                                         name={item.name}
-                                        imageSource={item['imageLink']}
+                                        imageSource={item['image_url'] ?? item['size_image_url']}
                                         onPress={() => detailSelected(item)}
                                         hasCollected={Array.from(collectedList).includes(item.name.toLowerCase())}
                                         toggleCheckBox={() => checkBoxToggle(item)}

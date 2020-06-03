@@ -41,27 +41,6 @@ const CONSTANTS = {
         url: 'https://acnhapi.com/v1/songs',
         none: "You haven't collected any K.K. Slider's song yet.",
     },
-    houseware: {
-        text: 'Housewares',
-        collectedKey: 'houseware-collected',
-        allKey: 'houseware',
-        url: 'https://acnhapi.com/v1/houseware',
-        none: "You haven't collected any houseware yet.",
-    },
-    wallmounted: {
-        text: 'Wall-mounted',
-        collectedKey: 'wallmounted-collected',
-        allKey: 'wallmounted',
-        url: 'https://acnhapi.com/v1/wallmounted',
-        none: "You haven't collected any wall-mounted furniture yet.",
-    },
-    misc: {
-        text: 'Miscellaneous',
-        collectedKey: 'misc-collected',
-        allKey: 'misc',
-        url: 'https://acnhapi.com/v1/misc',
-        none: "You haven't collected any miscellaneous furniture yet.",
-    },
     error: {
         retrieving: "There was a problem retrieving your saved data. Please restart the app to make sure it doesn't happen again.",
         storing: "There was a problem storing your data. Please restart the app to make sure it doesn't happen again."
@@ -159,7 +138,11 @@ const CONSTANTS = {
     // FURNITURE
     furniture: {
         flooring: {
-
+            text: 'Floorings',
+            collectedKey: 'flooring-collected',
+            allKey: 'flooring',
+            url: 'https://raw.githubusercontent.com/sungyeonu/animal-crossing-scraper/master/data/furniture/floorings.json',
+            none: "You haven't collected any flooring yet.",
         },
         houseware: {
             text: 'Housewares',
@@ -169,7 +152,11 @@ const CONSTANTS = {
             none: "You haven't collected any houseware yet.",
         },
         rug: {
-
+            text: 'Rugs',
+            collectedKey: 'rug-collected',
+            allKey: 'rug',
+            url: 'https://raw.githubusercontent.com/sungyeonu/animal-crossing-scraper/master/data/furniture/rugs.json',
+            none: "You haven't collected any rug yet.",
         },
         wallmounted: {
             text: 'Wall-mounted',
@@ -179,13 +166,17 @@ const CONSTANTS = {
             none: "You haven't collected any wall-mounted furniture yet.",
         },
         wallpaper: {
-
+            text: 'Wallpapers',
+            collectedKey: 'wallpaper-collected',
+            allKey: 'wallpaper',
+            url: 'https://raw.githubusercontent.com/sungyeonu/animal-crossing-scraper/master/data/furniture/wallpapers.json',
+            none: "You haven't collected any wallpaper yet.",
         },
         misc: {
             text: 'Miscellaneous',
             collectedKey: 'misc-collected',
             allKey: 'misc',
-            url: 'https://acnhapi.com/v1/misc',
+            url: 'http://acnhapi.com/v1/misc',
             none: "You haven't collected any miscellaneous furniture yet.",
         },
     }

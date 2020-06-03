@@ -1,12 +1,8 @@
 /**
  * 
- * Props: constants, navigation, nextScreen
+ * Initial params: constants, nextScreen
  * 
- * Collection View for Furniture-related screens
- * Arts
- * Bugs
- * Fishes
- * Fossils
+ * Collection View for various clothing-related screen
  *
  * @format
  * @flow strict-local
@@ -15,7 +11,7 @@
 import AsyncStorage from '@react-native-community/async-storage';
 import NetInfo from "@react-native-community/netinfo";
 import React, { useCallback, useEffect, useState } from 'react';
-import { SafeAreaView, SectionList, StyleSheet, Text, View, FlatList, TextInput, Keyboard } from 'react-native';
+import { SafeAreaView, SectionList, StyleSheet, Text, View, TextInput, FlatList, Keyboard } from 'react-native';
 import Icons from 'react-native-vector-icons/MaterialIcons';
 import Colors from '../../assets/colors';
 import Fonts from '../../assets/fonts';
@@ -24,7 +20,7 @@ import PopUpDialog from '../components/popUpDialog';
 import ProgressBar from '../components/progressBar';
 import CONSTANTS from '../constants';
 
-export default function CollectionView(props) {
+export default function CollectionView({ route, navigation }) {
 
     const [collectedList, setCollectedList] = useState([]);
     const [rawData, setRawData] = useState([])
@@ -32,15 +28,15 @@ export default function CollectionView(props) {
     const [progressData, setProgressData] = useState({});
     const [searchData, setSearchData] = useState([]);
     const [searchText, setSearchText] = useState('');
-    const constants = props.constants;
+    const constants = route.params.constants;
     const [dataLength, setDataLength] = useState(1);
     const [showAlert, setShowAlert] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
     const [isConnected, setIsConnected] = useState(true);
 
     const detailSelected = useCallback(item => {
-        props.navigation.navigate(props.nextScreen, {
-            name: item[0].name['name-USen'],
+        navigation.navigate(route.params.nextScreen, {
+            name: item.name,
             data: item
         })
     }, []);
@@ -49,13 +45,13 @@ export default function CollectionView(props) {
         // no data if first toggled, set to true if not in the list
         const data = Array.from(collectedList);
 
-        const index = data.indexOf(item[0].name['name-USen'].toLowerCase());
+        const index = data.indexOf(item.name.toLowerCase());
         // if name is in the list, then remove it
         // else add it
         if (index > -1) {
             data.splice(index, 1);
         } else {
-            data.push(item[0].name['name-USen'].toLowerCase());
+            data.push(item.name.toLowerCase());
         }
 
         setCollectedList(data);
@@ -108,8 +104,8 @@ export default function CollectionView(props) {
     }, []);
 
     function compare(a, b) {
-        let first = a[0].name['name-USen'].toLowerCase();
-        let second = b[0].name['name-USen'].toLowerCase();
+        let first = a.name.toLowerCase();
+        let second = b.name.toLowerCase();
 
         if (first < second) {
             return -1;
@@ -163,7 +159,7 @@ export default function CollectionView(props) {
         var missingData = [];
 
         items.forEach((element) => {
-            if (collected.includes(element[0].name['name-USen'].toLowerCase())) {
+            if (collected.includes(element.name.toLowerCase())) {
                 collectedData.push(element);
             } else {
                 missingData.push(element);
@@ -208,7 +204,7 @@ export default function CollectionView(props) {
         const items = Array.from(rawData);
 
         const filterItems = items.filter((item) => {
-            return item[0].name['name-USen'].toLowerCase().includes(text.toLowerCase());
+            return item.name.toLowerCase().includes(text.toLowerCase());
         })
 
         if (filterItems.length == 0) {
@@ -263,7 +259,7 @@ export default function CollectionView(props) {
 
                 <Text style={styles.header}>{`Progress: ${progressData.percent}% (${progressData.collected}/${progressData.total})`}</Text>
                 <ProgressBar progress={progressData.percent} />
-                
+
                 {/* Show either a section list or 
                 flat list depending on whether the 
                 user is searching something */}
@@ -272,16 +268,17 @@ export default function CollectionView(props) {
                         <SectionList
                             style={{ width: '100%' }}
                             sections={data}
-                            keyExtractor={item => Object.values(item)[0]['file-name']}
+                            keyExtractor={item => item.name}
+                            initialNumToRender={10}
                             renderItem={({ item }) => {
                                 if (item.id == -1) {
                                     return <Text style={styles.emptyTextStyle}>{item.text}</Text>
                                 } else {
                                     return <CustomButton
-                                        name={item[0].name['name-USen']}
-                                        imageSource={item[0]['icon_uri'] ?? item[0]['image_uri']}
+                                        name={item.name}
+                                        imageSource={item['imageLink']}
                                         onPress={() => detailSelected(item)}
-                                        hasCollected={Array.from(collectedList).includes(item[0].name['name-USen'].toLowerCase())}
+                                        hasCollected={Array.from(collectedList).includes(item.name.toLowerCase())}
                                         toggleCheckBox={() => checkBoxToggle(item)}
                                     />
                                 }
@@ -300,15 +297,15 @@ export default function CollectionView(props) {
                                     return <Text style={styles.emptyTextStyle}>{item.text}</Text>
                                 } else {
                                     return <CustomButton
-                                        name={item[0].name['name-USen']}
-                                        imageSource={item[0]['icon_uri'] ?? item[0]['image_uri']}
+                                        name={item.name}
+                                        imageSource={item['imageLink']}
                                         onPress={() => detailSelected(item)}
-                                        hasCollected={Array.from(collectedList).includes(item[0].name['name-USen'].toLowerCase())}
+                                        hasCollected={Array.from(collectedList).includes(item.name.toLowerCase())}
                                         toggleCheckBox={() => checkBoxToggle(item)}
                                     />
                                 }
                             }}
-                            keyExtractor={item => Object.values(item)[0]['file-name']}
+                            keyExtractor={item => item.name}
                             extraData={searchData}
                         />
                 }
@@ -334,7 +331,6 @@ export default function CollectionView(props) {
                     justifyContent: 'center',
                     alignItems: 'center',
                 }}>
-
                     {
                         isConnected ?
                             <Icons.Button

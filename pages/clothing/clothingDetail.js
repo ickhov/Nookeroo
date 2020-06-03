@@ -1,5 +1,5 @@
 /**
- * Art detail page
+ * Clothing detail page
  *
  * @format
  * @flow strict-local
@@ -14,11 +14,10 @@ import ContentWithHeader from '../components/contentWithHeader';
 import TextWithImages from '../components/textWithImages';
 import {CachedImage} from "react-native-img-cache";
 
-export default function HousewareDetail({ route, navigation }) {
+export default function ClothingDetail({ route, navigation }) {
 
     const data = route.params.data;
     const name = lowercasetoUppercase(route.params.name);
-    const length = data.length;
 
     function lowercasetoUppercase(str) {
         var splitString = str.split(' ');
@@ -27,6 +26,8 @@ export default function HousewareDetail({ route, navigation }) {
         }
         return splitString.join(' ');
     };
+
+    const sources = data['source'] != [] ? data['source'].join(' & ') : '-';
 
     return (
         <SafeAreaView style={{ flex: 1 }}>
@@ -38,7 +39,7 @@ export default function HousewareDetail({ route, navigation }) {
                     <View style={styles.imageContainer}>
                         {/* Image */}
                         <CachedImage
-                            source={{ uri: data[0]['image_uri'] ?? data[0]['icon_uri'] }}
+                            source={{ uri: data['imageLink']}}
                             style={styles.image} />
                         {/* Name Tab */}
                         <RoundBorderText
@@ -59,9 +60,8 @@ export default function HousewareDetail({ route, navigation }) {
                                 textStyle={styles.infoTitle} />
                             <TextWithImages
                                 containerStyle={styles.bellInfo}
-                                leftImageSource={require('../../assets/icons/miscellaneous/cranny.png')}
                                 rightImageSource={require('../../assets/icons/miscellaneous/bells.png')}
-                                text={data[0]['buy-price'] ?? '-'} />
+                                text={data['priceBuy'] == -1 ? '-' : data['priceBuy']} />
                         </View>
 
                         <View style={[styles.bellInfoContainer, {
@@ -76,82 +76,40 @@ export default function HousewareDetail({ route, navigation }) {
                                 containerStyle={styles.bellInfo}
                                 leftImageSource={require('../../assets/icons/miscellaneous/cranny.png')}
                                 rightImageSource={require('../../assets/icons/miscellaneous/bells.png')}
-                                text={data[0]['sell-price'] ?? '-'} />
+                                text={data['priceSell'] == -1 ? '-' : data['priceSell']} />
                         </View>
 
                     </View>
 
-                    {/* Obtainable Tab */}
-                    <View style={styles.bellContainer}>
-                        <View style={[styles.bellInfoContainer, {
-                            borderRightWidth: 1,
-                            borderColor: Colors.primary
-                        }]}>
-
-                            <Image
-                                source={require('../../assets/icons/miscellaneous/recipe.png')}
-                                style={styles.obtainableImage} />
-
-                            {
-                                data[0]['isDIY'] ?
-                                    <Text style={styles.obtainableText}>Yes</Text>
-                                    :
-                                    <Text style={styles.obtainableText}>No</Text>
-                            }
-                        </View>
-
-                        <View style={[styles.bellInfoContainer, {
-                            borderLeftWidth: 1,
-                            borderColor: Colors.primary
-                        }]}>
-                            <Image
-                                source={require('../../assets/icons/menu/furnitures.png')}
-                                style={styles.obtainableImage} />
-
-                            {
-                                data[0]['isCatalog'] ?
-                                    <Text style={styles.obtainableText}>Yes</Text>
-                                    :
-                                    <Text style={styles.obtainableText}>No</Text>
-                            }
-                        </View>
-                    </View>
-
-                    {/* Type Tab */}
-                    <ContentWithHeader title={'Type'}
-                        text={data[0]['tag'] ?? '-'}
+                    {/* Sources Tab */}
+                    <ContentWithHeader title={'Sources'}
+                        text={sources}
                         containerStyle={[styles.miscContainer, {
                             marginTop: 20,
                         }]}
                         titleContainerStyle={styles.miscTitle}
                         textContainerStyle={styles.miscText} />
-                    {/* Customizable Tab */}
-                    <ContentWithHeader title={'Customizable'}
-                        text={data[0]['canCustomizeBody'] || data[0]['canCustomizePattern'] ? 'Yes' : 'No'}
-                        containerStyle={styles.miscContainer}
-                        titleContainerStyle={styles.miscTitle}
-                        textContainerStyle={styles.miscText} />
 
                     {
-                        length > 1 &&
+                        data['variations'].length > 0 &&
                         <RoundBorderText
                         text="Variance"
                         containerStyle={styles.infoTitleContainer}
                         textStyle={styles.infoTitle} />
                     }
 
-                    {data.slice(1).map((item, index) => {
+                    {data['variations'].map((item, index) => {
                         return (
                             <View style={styles.varianceContainer} key={index}>
                             {/* Image */}
                             <CachedImage
-                                source={{ uri: item['image_uri'] ?? item['icon_uri'] }}
+                                source={{ uri: data['variationImageLinks'][index]}}
                                 style={[styles.image, {
                                     width: '50%'
                                 }]} />
                             {/* Name Tab */}
                             <RoundBorderText
-                                text={item['variant']}
+                                text={item}
                                 containerStyle={[styles.nameContainer, {
                                     width: '50%'
                                 }]}

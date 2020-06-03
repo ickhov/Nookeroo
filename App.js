@@ -12,6 +12,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Colors from './assets/colors';
 import Fonts from './assets/fonts';
 import CustomStatusBar from './pages/components/statusBar';
+import CONSTANTS from './pages/constants';
 
 // Home Stack
 import Home from './pages/home';
@@ -35,19 +36,14 @@ import SongDetail from './pages/songs/songDetail';
 import More from './pages/more';
 
 // Clothing Stack
-import Accessories from './pages/clothing/accessories';
-import Bags from './pages/clothing/bags';
-import Bottoms from './pages/clothing/bottoms';
-import Dresses from './pages/clothing/dresses';
-import Hats from './pages/clothing/hats';
-import Shoes from './pages/clothing/shoes';
-import Socks from './pages/clothing/socks';
-import Tops from './pages/clothing/tops';
-import Umbrellas from './pages/clothing/umbrellas';
+import ClothingList from './pages/clothing/clothingList';
+import ClothingDetail from './pages/clothing/clothingDetail';
 
 // Furniture Stack
-import Furnitures from './pages/furnitures/furnitures';
-import FurnitureDetail from './pages/furnitures/detailView';
+import MainFurnitureList from './pages/furnitures/mainFurnitureList';
+import MainFurnitureDetail from './pages/furnitures/mainFurnitureDetail';
+import OtherFurnitureList from './pages/furnitures/otherFurnitureList';
+import OtherFurnitureDetail from './pages/furnitures/otherFurnitureDetail';
 
 import {
   StyleSheet, Image,
@@ -122,22 +118,9 @@ const SongStack = () => {
   );
 }
 
-const FurnitureStack = () => {
-  return (
-    <Stack.Navigator
-      initialRouteName="Furnitures"
-      screenOptions={() => ({
-        headerTitleStyle: styles.header,
-        headerStyle: { backgroundColor: Colors.primary },
-        headerTintColor: Colors.white,
-        headerBackTitleStyle: { fontFamily: Fonts.regular }
-      })}>
-      <Stack.Screen name="Furnitures" component={Furnitures} />
-
-      <Stack.Screen name="FurnitureDetail" component={FurnitureDetail} options={{ title: 'Details' }} />
-    </Stack.Navigator>
-  );
-}
+const clothingDetail = 'ClothingDetail';
+const mainFurnitureDetail = 'MainFurnitureDetail';
+const otherFurnitureDetail = 'OtherFurnitureDetail';
 
 const MoreStack = () => {
   return (
@@ -151,17 +134,123 @@ const MoreStack = () => {
       })}>
       <Stack.Screen name="More" component={More} />
 
-      <Stack.Screen name="Accessories" component={Accessories} />
-      <Stack.Screen name="Bags" component={Bags} />
-      <Stack.Screen name="Bottoms" component={Bottoms} />
-      <Stack.Screen name="Dresses" component={Dresses} />
-      <Stack.Screen name="Hats" component={Hats} />
-      <Stack.Screen name="Shoes" component={Shoes} />
-      <Stack.Screen name="Socks" component={Socks} />
-      <Stack.Screen name="Tops" component={Tops} />
-      <Stack.Screen name="Umbrellas" component={Umbrellas} />
+      {/* CLOTHING */}
+      <Stack.Screen 
+        name="Accessories" 
+        component={ClothingList} 
+        initialParams={{ 
+          constants: CONSTANTS.clothing.accessories, 
+          nextScreen: clothingDetail
+        }} />
+      <Stack.Screen 
+        name="Bags" 
+        component={ClothingList} 
+        initialParams={{ 
+          constants: CONSTANTS.clothing.bag, 
+          nextScreen: clothingDetail 
+        }} />
+      <Stack.Screen 
+        name="Bottoms" 
+        component={ClothingList} 
+        initialParams={{ 
+          constants: CONSTANTS.clothing.bottoms, 
+          nextScreen: clothingDetail 
+        }} />
+      <Stack.Screen 
+        name="Dresses" 
+        component={ClothingList} 
+        initialParams={{ 
+          constants: CONSTANTS.clothing.dress, 
+          nextScreen: clothingDetail 
+        }} />
+      <Stack.Screen 
+        name="Hats" 
+        component={ClothingList} 
+        initialParams={{ 
+          constants: CONSTANTS.clothing.hat, 
+          nextScreen: clothingDetail 
+        }} />
+      <Stack.Screen 
+        name="Shoes" 
+        component={ClothingList} 
+        initialParams={{ 
+          constants: CONSTANTS.clothing.shoes, 
+          nextScreen: clothingDetail 
+        }} />
+      <Stack.Screen 
+        name="Socks" 
+        component={ClothingList} 
+        initialParams={{ 
+          constants: CONSTANTS.clothing.socks, 
+          nextScreen: clothingDetail 
+        }} />
+      <Stack.Screen 
+        name="Tops" 
+        component={ClothingList} 
+        initialParams={{ 
+          constants: CONSTANTS.clothing.tops, 
+          nextScreen: clothingDetail 
+        }} />
+      <Stack.Screen 
+        name="Umbrellas" 
+        component={ClothingList} 
+        initialParams={{ 
+          constants: CONSTANTS.clothing.umbrella, 
+          nextScreen: clothingDetail 
+        }} />
 
-      <Stack.Screen name="FurnitureDetail" component={FurnitureDetail} options={{ title: 'Details' }} />
+      {/* FURNITURE */}
+      <Stack.Screen 
+        name="Housewares" 
+        component={MainFurnitureList} 
+        initialParams={{ 
+          constants: CONSTANTS.furniture.houseware, 
+          nextScreen: mainFurnitureDetail
+        }} />
+
+      <Stack.Screen 
+        name="Wall-mounted" 
+        component={MainFurnitureList} 
+        initialParams={{ 
+          constants: CONSTANTS.furniture.wallmounted, 
+          nextScreen: mainFurnitureDetail
+        }} />
+
+      <Stack.Screen 
+        name="Miscellaneous" 
+        component={MainFurnitureList} 
+        initialParams={{ 
+          constants: CONSTANTS.furniture.misc, 
+          nextScreen: mainFurnitureDetail
+        }} />
+
+      <Stack.Screen 
+        name="Rugs" 
+        component={OtherFurnitureList} 
+        initialParams={{ 
+          constants: CONSTANTS.furniture.rug, 
+          nextScreen: otherFurnitureDetail
+        }} />
+
+      <Stack.Screen 
+        name="Floorings" 
+        component={OtherFurnitureList} 
+        initialParams={{ 
+          constants: CONSTANTS.furniture.flooring, 
+          nextScreen: otherFurnitureDetail
+        }} />
+
+      <Stack.Screen 
+        name="Wallpapers" 
+        component={OtherFurnitureList} 
+        initialParams={{ 
+          constants: CONSTANTS.furniture.wallpaper, 
+          nextScreen: otherFurnitureDetail
+        }} />
+
+      <Stack.Screen name="ClothingDetail" component={ClothingDetail} options={{ title: 'Details' }} />
+      <Stack.Screen name="MainFurnitureDetail" component={MainFurnitureDetail} options={{ title: 'Details' }} />
+      <Stack.Screen name="OtherFurnitureDetail" component={OtherFurnitureDetail} options={{ title: 'Details' }} />
     </Stack.Navigator>
   );
 }
