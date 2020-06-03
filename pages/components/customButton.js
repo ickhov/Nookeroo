@@ -26,12 +26,13 @@ import {
     StyleSheet,
     TouchableOpacity,
     Platform,
+    Image,
 } from 'react-native';
 
 import CheckBox from '@react-native-community/checkbox';
 
 function convertJSONString(str) {
-    var splitString = str.split('_');
+    var splitString = str.split(' ');
     for (i = 0; i < splitString.length; i++) {
         splitString[i] = splitString[i].charAt(0).toUpperCase() + splitString[i].substring(1);
     }
@@ -92,11 +93,25 @@ export default class CustomButton extends PureComponent {
                         />
                     }
 
+                    {
+                        this.props.fileImageSource &&
+                        <Image
+                            source={this.props.fileImageSource}
+                            style={styles.imageStyle}
+                        />
+                    }
+
                     <Text style={styles.textStyle}>{text}</Text>
 
                 </TouchableOpacity>
 
-                <CustomCheckBox hasCollected={this.state.hasCollected} onPress={this.props.toggleCheckBox} />
+                {
+                    this.props.noCheckBox ?
+                        <View style={styles.checkBoxStyle}></View>
+                        :
+                        <CustomCheckBox hasCollected={this.state.hasCollected} onPress={this.props.toggleCheckBox} />
+                }
+
 
                 <TouchableOpacity
                     style={styles.arrowContainer}

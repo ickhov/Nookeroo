@@ -78,8 +78,8 @@ export default function ArtDetail({ route, navigation }) {
                 </View>
 
                 {/* Authenticity Tab */}
-                <ContentWithHeader title={'Always REAL'}
-                    text={data['hasFake'] ? 'No' : 'Yes'}
+                <ContentWithHeader title={'Authenticity'}
+                    text={data['hasFake'] ? 'CAN BE FAKE' : 'ALWAYS REAL'}
                     containerStyle={styles.availabilityContainer}
                     titleContainerStyle={styles.availabilityTitle}
                     textContainerStyle={styles.availabilityText} />
@@ -178,6 +178,6 @@ const styles = StyleSheet.create({
     availabilityText: {
         width: '50%',
         textAlign: 'left',
-        paddingLeft: 20,
+        paddingHorizontal: 20,
     },
 });

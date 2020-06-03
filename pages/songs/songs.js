@@ -7,7 +7,7 @@
 
 import React from 'react';
 import CONSTANTS from '../constants';
-import CollectionView from '../components/collectionView';
+import CollectionView from '../museum/collectionView';
 
 export default function Songs({ navigation }) {
 

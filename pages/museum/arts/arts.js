@@ -7,7 +7,7 @@
 
 import React from 'react';
 import CONSTANTS from '../../constants';
-import CollectionView from '../../components/collectionView';
+import CollectionView from '../collectionView';
 
 export default function Arts({ navigation }) {
 

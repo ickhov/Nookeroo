@@ -39,16 +39,7 @@ const CONSTANTS = {
         collectedKey: 'song-obtained',
         allKey: 'song',
         url: 'https://acnhapi.com/v1/songs',
-        none: "You haven't collected any K.K. Slider's music yet.",
-    },
-    furniture: {
-        text: 'Furnitures',
-        collectedKey: 'furniture-obtained',
-        allKey: 'furniture',
-        none: "You haven't collected any furniture yet.",
-        url1: 'https://acnhapi.com/v1/houseware',
-        url2: 'https://acnhapi.com/v1/wallmounted',
-        url3: 'https://acnhapi.com/v1/misc'
+        none: "You haven't collected any K.K. Slider's song yet.",
     },
     houseware: {
         text: 'Housewares',
@@ -74,6 +65,129 @@ const CONSTANTS = {
     error: {
         retrieving: "There was a problem retrieving your saved data. Please restart the app to make sure it doesn't happen again.",
         storing: "There was a problem storing your data. Please restart the app to make sure it doesn't happen again."
+    },
+    // CLOTHINGS
+    clothing: {
+        accessories: {
+            text: 'Accessories',
+            collectedKey: 'clothing-accessories-collected',
+            allKey: 'clothing-accessories',
+            url: 'https://raw.githubusercontent.com/sungyeonu/animal-crossing-scraper/master/data/clothing/accessories.json',
+            none: "You haven't collected any accessories yet.",
+        },
+        bag: {
+            text: 'Bags',
+            collectedKey: 'clothing-bag-collected',
+            allKey: 'clothing-bag',
+            url: 'https://raw.githubusercontent.com/sungyeonu/animal-crossing-scraper/master/data/clothing/bags.json',
+            none: "You haven't collected any bag yet.",
+        },
+        bottoms: {
+            text: 'Bottoms',
+            collectedKey: 'clothing-bottoms-collected',
+            allKey: 'clothing-bottoms',
+            url: 'https://raw.githubusercontent.com/sungyeonu/animal-crossing-scraper/master/data/clothing/bottoms.json',
+            none: "You haven't collected any bottoms yet.",
+        },
+        dress: {
+            text: 'Dresses',
+            collectedKey: 'clothing-dress-collected',
+            allKey: 'clothing-dress',
+            url: 'https://raw.githubusercontent.com/sungyeonu/animal-crossing-scraper/master/data/clothing/dresses.json',
+            none: "You haven't collected any dress yet.",
+        },
+        hat: {
+            text: 'Hats',
+            collectedKey: 'clothing-hat-collected',
+            allKey: 'clothing-hat',
+            url: 'https://raw.githubusercontent.com/sungyeonu/animal-crossing-scraper/master/data/clothing/hats.json',
+            none: "You haven't collected any hat yet.",
+        },
+        shoes: {
+            text: 'Shoes',
+            collectedKey: 'clothing-shoes-collected',
+            allKey: 'clothing-shoes',
+            url: 'https://raw.githubusercontent.com/sungyeonu/animal-crossing-scraper/master/data/clothing/shoes.json',
+            none: "You haven't collected any shoes yet.",
+        },
+        socks: {
+            text: 'Socks',
+            collectedKey: 'clothing-socks-collected',
+            allKey: 'clothing-socks',
+            url: 'https://raw.githubusercontent.com/sungyeonu/animal-crossing-scraper/master/data/clothing/socks.json',
+            none: "You haven't collected any socks yet.",
+        },
+        tops: {
+            text: 'Tops',
+            collectedKey: 'clothing-tops-collected',
+            allKey: 'clothing-tops',
+            url: 'https://raw.githubusercontent.com/sungyeonu/animal-crossing-scraper/master/data/clothing/tops.json',
+            none: "You haven't collected any tops yet.",
+        },
+        umbrella: {
+            text: 'Umbrellas',
+            collectedKey: 'clothing-umbrella-collected',
+            allKey: 'clothing-umbrella',
+            url: 'https://raw.githubusercontent.com/sungyeonu/animal-crossing-scraper/master/data/clothing/umbrellas.json',
+            none: "You haven't collected any umbrella yet.",
+        },
+    },
+    // RECIPES
+    recipe: {
+        clothing: {
+
+        },
+        fence: {
+
+        },
+        houseware: {
+
+        },
+        rug: {
+
+        },
+        tool: {
+
+        },
+        wallmounted: {
+
+        },
+        miscellaneous: {
+
+        }
+    },
+    // FURNITURE
+    furniture: {
+        flooring: {
+
+        },
+        houseware: {
+            text: 'Housewares',
+            collectedKey: 'houseware-collected',
+            allKey: 'houseware',
+            url: 'https://acnhapi.com/v1/houseware',
+            none: "You haven't collected any houseware yet.",
+        },
+        rug: {
+
+        },
+        wallmounted: {
+            text: 'Wall-mounted',
+            collectedKey: 'wallmounted-collected',
+            allKey: 'wallmounted',
+            url: 'https://acnhapi.com/v1/wallmounted',
+            none: "You haven't collected any wall-mounted furniture yet.",
+        },
+        wallpaper: {
+
+        },
+        misc: {
+            text: 'Miscellaneous',
+            collectedKey: 'misc-collected',
+            allKey: 'misc',
+            url: 'https://acnhapi.com/v1/misc',
+            none: "You haven't collected any miscellaneous furniture yet.",
+        },
     }
 };
 

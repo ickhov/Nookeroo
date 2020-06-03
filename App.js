@@ -31,6 +31,20 @@ import ArtDetail from './pages/museum/arts/artDetail';
 import Songs from './pages/songs/songs';
 import SongDetail from './pages/songs/songDetail';
 
+// More Stack
+import More from './pages/more';
+
+// Clothing Stack
+import Accessories from './pages/clothing/accessories';
+import Bags from './pages/clothing/bags';
+import Bottoms from './pages/clothing/bottoms';
+import Dresses from './pages/clothing/dresses';
+import Hats from './pages/clothing/hats';
+import Shoes from './pages/clothing/shoes';
+import Socks from './pages/clothing/socks';
+import Tops from './pages/clothing/tops';
+import Umbrellas from './pages/clothing/umbrellas';
+
 // Furniture Stack
 import Furnitures from './pages/furnitures/furnitures';
 import FurnitureDetail from './pages/furnitures/detailView';
@@ -103,7 +117,7 @@ const SongStack = () => {
         headerBackTitleStyle: { fontFamily: Fonts.regular }
       })}>
       <Stack.Screen name="Songs" component={Songs} />
-      <Stack.Screen name="SongDetail" component={SongDetail} options={({ route }) => ({ title: route.params.name })} />
+      <Stack.Screen name="SongDetail" component={SongDetail} options={{ title: 'Details' }} />
     </Stack.Navigator>
   );
 }
@@ -119,6 +133,33 @@ const FurnitureStack = () => {
         headerBackTitleStyle: { fontFamily: Fonts.regular }
       })}>
       <Stack.Screen name="Furnitures" component={Furnitures} />
+
+      <Stack.Screen name="FurnitureDetail" component={FurnitureDetail} options={{ title: 'Details' }} />
+    </Stack.Navigator>
+  );
+}
+
+const MoreStack = () => {
+  return (
+    <Stack.Navigator
+      initialRouteName="More"
+      screenOptions={() => ({
+        headerTitleStyle: styles.header,
+        headerStyle: { backgroundColor: Colors.primary },
+        headerTintColor: Colors.white,
+        headerBackTitleStyle: { fontFamily: Fonts.regular }
+      })}>
+      <Stack.Screen name="More" component={More} />
+
+      <Stack.Screen name="Accessories" component={Accessories} />
+      <Stack.Screen name="Bags" component={Bags} />
+      <Stack.Screen name="Bottoms" component={Bottoms} />
+      <Stack.Screen name="Dresses" component={Dresses} />
+      <Stack.Screen name="Hats" component={Hats} />
+      <Stack.Screen name="Shoes" component={Shoes} />
+      <Stack.Screen name="Socks" component={Socks} />
+      <Stack.Screen name="Tops" component={Tops} />
+      <Stack.Screen name="Umbrellas" component={Umbrellas} />
 
       <Stack.Screen name="FurnitureDetail" component={FurnitureDetail} options={{ title: 'Details' }} />
     </Stack.Navigator>
@@ -150,7 +191,7 @@ export default function App() {
               return <Image
                 source={require('./assets/icons/menu/songs.png')}
                 style={styles.image} />
-            } else if (route.name === 'Furnitures') {
+            } else if (route.name === 'More') {
               return <Image
                 source={require('./assets/icons/menu/furnitures.png')}
                 style={styles.image} />
@@ -176,7 +217,7 @@ export default function App() {
         <Tab.Screen name="Villagers" component={VillagerStack} />
         <Tab.Screen name="Museum" component={MuseumStack} />
         <Tab.Screen name="Songs" component={SongStack} />
-        <Tab.Screen name="Furnitures" component={FurnitureStack} />
+        <Tab.Screen name="More" component={MoreStack} />
       </Tab.Navigator>
     </NavigationContainer>
   );

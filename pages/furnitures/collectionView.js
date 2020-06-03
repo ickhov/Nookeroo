@@ -49,13 +49,13 @@ export default function CollectionView(props) {
         // no data if first toggled, set to true if not in the list
         const data = Array.from(collectedList);
 
-        const index = data.indexOf(item[0]['file-name']);
+        const index = data.indexOf(item[0].name['name-USen'].toLowerCase());
         // if name is in the list, then remove it
         // else add it
         if (index > -1) {
             data.splice(index, 1);
         } else {
-            data.push(item[0]['file-name']);
+            data.push(item[0].name['name-USen'].toLowerCase());
         }
 
         setCollectedList(data);
@@ -163,7 +163,7 @@ export default function CollectionView(props) {
         var missingData = [];
 
         items.forEach((element) => {
-            if (collected.includes(element[0]['file-name'])) {
+            if (collected.includes(element[0].name['name-USen'].toLowerCase())) {
                 collectedData.push(element);
             } else {
                 missingData.push(element);
@@ -281,7 +281,7 @@ export default function CollectionView(props) {
                                         name={item[0].name['name-USen']}
                                         imageSource={item[0]['icon_uri'] ?? item[0]['image_uri']}
                                         onPress={() => detailSelected(item)}
-                                        hasCollected={Array.from(collectedList).includes(item[0]['file-name'])}
+                                        hasCollected={Array.from(collectedList).includes(item[0].name['name-USen'].toLowerCase())}
                                         toggleCheckBox={() => checkBoxToggle(item)}
                                     />
                                 }
@@ -303,7 +303,7 @@ export default function CollectionView(props) {
                                         name={item[0].name['name-USen']}
                                         imageSource={item[0]['icon_uri'] ?? item[0]['image_uri']}
                                         onPress={() => detailSelected(item)}
-                                        hasCollected={Array.from(collectedList).includes(item[0]['file-name'])}
+                                        hasCollected={Array.from(collectedList).includes(item[0].name['name-USen'].toLowerCase())}
                                         toggleCheckBox={() => checkBoxToggle(item)}
                                     />
                                 }

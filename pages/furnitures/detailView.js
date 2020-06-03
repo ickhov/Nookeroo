@@ -89,7 +89,7 @@ export default function HousewareDetail({ route, navigation }) {
                         }]}>
 
                             <Image
-                                source={require('../../assets/icons/miscellaneous/diy.png')}
+                                source={require('../../assets/icons/miscellaneous/recipe.png')}
                                 style={styles.obtainableImage} />
 
                             {

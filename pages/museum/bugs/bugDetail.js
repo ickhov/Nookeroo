@@ -338,6 +338,6 @@ const styles = StyleSheet.create({
     availabilityText: {
         width: '70%',
         textAlign: 'left',
-        paddingLeft: 20,
+        paddingHorizontal: 20,
     },
 });

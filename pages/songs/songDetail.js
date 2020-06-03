@@ -78,8 +78,8 @@ export default function SongDetail({ route, navigation }) {
                 </View>
 
                 {/* Obtainable Tab */}
-                <ContentWithHeader title={'Obtainable From'}
-                    text={data['isOrderable'] ? 'Nook Shopping' : 'K.K. Slider'}
+                <ContentWithHeader title={'Sources'}
+                    text={data['isOrderable'] ? 'Nook Shopping & K.K. Slider' : 'K.K. Slider'}
                     containerStyle={styles.availabilityContainer}
                     titleContainerStyle={styles.availabilityTitle}
                     textContainerStyle={styles.availabilityText} />
@@ -178,6 +178,6 @@ const styles = StyleSheet.create({
     availabilityText: {
         width: '50%',
         textAlign: 'left',
-        paddingLeft: 20,
+        paddingHorizontal: 20,
     },
 });
