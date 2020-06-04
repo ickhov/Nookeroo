@@ -174,6 +174,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         backgroundColor: Colors.tertiary,
         width: '100%',
+        padding: 10,
     },
     bellInfoContainer: {
         backgroundColor: Colors.secondary,
