@@ -68,6 +68,11 @@ export default function CollectionView({ route, navigation }) {
         try {
             const values = JSON.stringify(value);
             await AsyncStorage.setItem(constants.collectedKey, values);
+
+            const totalLength = Array.from(rawData).length;
+            const collectedLength = value.length;
+            const progressString = collectedLength + '/' + totalLength;
+            await AsyncStorage.setItem(constants.progressKey, progressString);
         } catch (e) {
             error(CONSTANTS.error.storing);
         }

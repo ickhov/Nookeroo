@@ -5,6 +5,7 @@ const CONSTANTS = {
         allKey: 'art',
         url: 'https://acnhapi.com/v1/art',
         none: "You haven't collected any art yet.",
+        progressKey: 'art-progress'
     },
     bug: {
         text: 'Bugs',
@@ -12,6 +13,7 @@ const CONSTANTS = {
         allKey: 'bug',
         url: 'https://acnhapi.com/v1/bugs',
         none: "You haven't caught any bug yet.",
+        progressKey: 'bug-progress'
     },
     fish: {
         text: 'Fishes',
@@ -19,6 +21,7 @@ const CONSTANTS = {
         allKey: 'fish',
         url: 'https://acnhapi.com/v1/fish',
         none: "You haven't caught any fish yet.",
+        progressKey: 'fish-progress'
     },
     fossil: {
         text: 'Fossils',
@@ -26,6 +29,7 @@ const CONSTANTS = {
         allKey: 'fossil',
         url: 'https://acnhapi.com/v1/fossils',
         none: "You haven't found any fossil yet.",
+        progressKey: 'fossil-progress'
     },
     villager: {
         text: 'Villagers',
@@ -40,6 +44,7 @@ const CONSTANTS = {
         allKey: 'song',
         url: 'https://acnhapi.com/v1/songs',
         none: "You haven't collected any K.K. Slider's song yet.",
+        progressKey: 'song-progress'
     },
     error: {
         retrieving: "There was a problem retrieving your saved data. Please restart the app to make sure it doesn't happen again.",
@@ -53,6 +58,7 @@ const CONSTANTS = {
             allKey: 'clothing-accessories',
             url: 'https://raw.githubusercontent.com/sungyeonu/animal-crossing-scraper/master/data/clothing/accessories.json',
             none: "You haven't collected any accessories yet.",
+            progressKey: 'clothing-accessories-progress'
         },
         bag: {
             text: 'Bags',
@@ -60,6 +66,7 @@ const CONSTANTS = {
             allKey: 'clothing-bag',
             url: 'https://raw.githubusercontent.com/sungyeonu/animal-crossing-scraper/master/data/clothing/bags.json',
             none: "You haven't collected any bag yet.",
+            progressKey: 'clothing-bag-progress'
         },
         bottoms: {
             text: 'Bottoms',
@@ -67,6 +74,7 @@ const CONSTANTS = {
             allKey: 'clothing-bottoms',
             url: 'https://raw.githubusercontent.com/sungyeonu/animal-crossing-scraper/master/data/clothing/bottoms.json',
             none: "You haven't collected any bottoms yet.",
+            progressKey: 'clothing-bottoms-progress'
         },
         dress: {
             text: 'Dresses',
@@ -74,6 +82,7 @@ const CONSTANTS = {
             allKey: 'clothing-dress',
             url: 'https://raw.githubusercontent.com/sungyeonu/animal-crossing-scraper/master/data/clothing/dresses.json',
             none: "You haven't collected any dress yet.",
+            progressKey: 'clothing-dress-progress'
         },
         hat: {
             text: 'Hats',
@@ -81,6 +90,7 @@ const CONSTANTS = {
             allKey: 'clothing-hat',
             url: 'https://raw.githubusercontent.com/sungyeonu/animal-crossing-scraper/master/data/clothing/hats.json',
             none: "You haven't collected any hat yet.",
+            progressKey: 'clothing-hat-progress'
         },
         shoes: {
             text: 'Shoes',
@@ -88,6 +98,7 @@ const CONSTANTS = {
             allKey: 'clothing-shoes',
             url: 'https://raw.githubusercontent.com/sungyeonu/animal-crossing-scraper/master/data/clothing/shoes.json',
             none: "You haven't collected any shoes yet.",
+            progressKey: 'clothing-shoes-progress'
         },
         socks: {
             text: 'Socks',
@@ -95,6 +106,7 @@ const CONSTANTS = {
             allKey: 'clothing-socks',
             url: 'https://raw.githubusercontent.com/sungyeonu/animal-crossing-scraper/master/data/clothing/socks.json',
             none: "You haven't collected any socks yet.",
+            progressKey: 'clothing-socks-progress'
         },
         tops: {
             text: 'Tops',
@@ -102,6 +114,7 @@ const CONSTANTS = {
             allKey: 'clothing-tops',
             url: 'https://raw.githubusercontent.com/sungyeonu/animal-crossing-scraper/master/data/clothing/tops.json',
             none: "You haven't collected any tops yet.",
+            progressKey: 'clothing-tops-progress'
         },
         umbrella: {
             text: 'Umbrellas',
@@ -109,6 +122,7 @@ const CONSTANTS = {
             allKey: 'clothing-umbrella',
             url: 'https://raw.githubusercontent.com/sungyeonu/animal-crossing-scraper/master/data/clothing/umbrellas.json',
             none: "You haven't collected any umbrella yet.",
+            progressKey: 'clothing-umbrella-progress'
         },
     },
     // RECIPES
@@ -119,6 +133,7 @@ const CONSTANTS = {
             allKey: 'recipe-clothing',
             url: 'https://raw.githubusercontent.com/sungyeonu/animal-crossing-scraper/master/data/crafting/equipments.json',
             none: "You haven't collected any clothing recipe yet.",
+            progressKey: 'recipe-clothing-progress'
         },
         fence: {
             text: 'Fences',
@@ -126,6 +141,7 @@ const CONSTANTS = {
             allKey: 'recipe-fence',
             url: 'https://raw.githubusercontent.com/sungyeonu/animal-crossing-scraper/master/data/crafting/others.json',
             none: "You haven't collected any fence recipe yet.",
+            progressKey: 'recipe-fence-progress'
         },
         houseware: {
             text: 'Housewares',
@@ -133,6 +149,7 @@ const CONSTANTS = {
             allKey: 'recipe-houseware',
             url: 'https://raw.githubusercontent.com/sungyeonu/animal-crossing-scraper/master/data/crafting/housewares.json',
             none: "You haven't collected any houseware recipe yet.",
+            progressKey: 'recipe-houseware-progress'
         },
         decoration: {
             text: 'Decorations',
@@ -140,6 +157,7 @@ const CONSTANTS = {
             allKey: 'recipe-decoration',
             url: 'https://raw.githubusercontent.com/sungyeonu/animal-crossing-scraper/master/data/crafting/wallpaper_rugs_floorings.json',
             none: "You haven't collected any wall decoration yet.",
+            progressKey: 'recipe-decoration-progress'
         },
         tool: {
             text: 'Tools',
@@ -147,6 +165,7 @@ const CONSTANTS = {
             allKey: 'recipe-tool',
             url: 'https://raw.githubusercontent.com/sungyeonu/animal-crossing-scraper/master/data/crafting/tools.json',
             none: "You haven't collected any tool recipe yet.",
+            progressKey: 'recipe-tool-progress'
         },
         wallmounted: {
             text: 'Qall-mounted',
@@ -154,6 +173,7 @@ const CONSTANTS = {
             allKey: 'recipe-wallmounted',
             url: 'https://raw.githubusercontent.com/sungyeonu/animal-crossing-scraper/master/data/crafting/wall_mounteds.json',
             none: "You haven't collected any wall-mounted recipe yet.",
+            progressKey: 'recipe-wallmounted-progress'
         },
         miscellaneous: {
             text: 'Miscellaneous',
@@ -161,6 +181,7 @@ const CONSTANTS = {
             allKey: 'recipe-miscellaneous',
             url: 'https://raw.githubusercontent.com/sungyeonu/animal-crossing-scraper/master/data/crafting/miscellaneous.json',
             none: "You haven't collected any miscellaneous recipe yet.",
+            progressKey: 'recipe-miscellaneous-progress'
         }
     },
     // FURNITURE
@@ -168,44 +189,50 @@ const CONSTANTS = {
         flooring: {
             text: 'Floorings',
             collectedKey: 'furniture-flooring-collected',
-            allKey: 'flooring',
+            allKey: 'furniture-flooring',
             url: 'https://raw.githubusercontent.com/sungyeonu/animal-crossing-scraper/master/data/furniture/floorings.json',
             none: "You haven't collected any flooring yet.",
+            progressKey: 'furniture-flooring-progress'
         },
         houseware: {
             text: 'Housewares',
             collectedKey: 'furniture-houseware-collected',
-            allKey: 'houseware',
+            allKey: 'furniture-houseware',
             url: 'https://acnhapi.com/v1/houseware',
             none: "You haven't collected any houseware yet.",
+            progressKey: 'furniture-houseware-progress'
         },
         rug: {
             text: 'Rugs',
             collectedKey: 'furniture-rug-collected',
-            allKey: 'rug',
+            allKey: 'furniture-rug',
             url: 'https://raw.githubusercontent.com/sungyeonu/animal-crossing-scraper/master/data/furniture/rugs.json',
             none: "You haven't collected any rug yet.",
+            progressKey: 'furniture-rug-progress'
         },
         wallmounted: {
             text: 'Wall-mounted',
             collectedKey: 'furniture-wallmounted-collected',
-            allKey: 'wallmounted',
+            allKey: 'furniture-wallmounted',
             url: 'https://acnhapi.com/v1/wallmounted',
             none: "You haven't collected any wall-mounted furniture yet.",
+            progressKey: 'furniture-wallmounted-progress'
         },
         wallpaper: {
             text: 'Wallpapers',
             collectedKey: 'furniture-wallpaper-collected',
-            allKey: 'wallpaper',
+            allKey: 'furniture-wallpaper',
             url: 'https://raw.githubusercontent.com/sungyeonu/animal-crossing-scraper/master/data/furniture/wallpapers.json',
             none: "You haven't collected any wallpaper yet.",
+            progressKey: 'furniture-wallpaper-progress'
         },
         misc: {
             text: 'Miscellaneous',
             collectedKey: 'furniture-misc-collected',
-            allKey: 'misc',
+            allKey: 'furniture-misc',
             url: 'http://acnhapi.com/v1/misc',
             none: "You haven't collected any miscellaneous furniture yet.",
+            progressKey: 'furniture-misc-progress'
         },
     }
 };

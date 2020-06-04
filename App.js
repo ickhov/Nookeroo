@@ -14,9 +14,6 @@ import Fonts from './assets/fonts';
 import CustomStatusBar from './pages/components/statusBar';
 import CONSTANTS from './pages/constants';
 
-// Home Stack
-import Home from './pages/home';
-
 // Villager Stack
 import Villagers from './pages/villagers/villagers';
 import VillagerDetail from './pages/villagers/villagerDetail';
@@ -54,21 +51,6 @@ import {
 } from 'react-native';
 
 const Stack = createStackNavigator();
-
-const HomeStack = () => {
-  return (
-    <Stack.Navigator
-      initialRouteName="Home"
-      screenOptions={() => ({
-        headerTitleStyle: styles.header,
-        headerStyle: { backgroundColor: Colors.primary },
-        headerTintColor: Colors.white,
-        headerBackTitleStyle: { fontFamily: Fonts.regular }
-      })}>
-      <Stack.Screen name="Home" component={Home} />
-    </Stack.Navigator>
-  );
-}
 
 const VillagerStack = () => {
   return (
@@ -328,11 +310,7 @@ export default function App() {
       <Tab.Navigator
         screenOptions={({ route }) => ({
           tabBarIcon: () => {
-            if (route.name === 'Home') {
-              return <Image
-                source={require('./assets/icons/menu/home.png')}
-                style={styles.image} />
-            } else if (route.name === 'Villagers') {
+            if (route.name === 'Villagers') {
               return <Image
                 source={require('./assets/icons/menu/villagers.png')}
                 style={styles.image} />
@@ -366,7 +344,6 @@ export default function App() {
           }
         }}
       >
-        <Tab.Screen name="Home" component={HomeStack} />
         <Tab.Screen name="Villagers" component={VillagerStack} />
         <Tab.Screen name="Museum" component={MuseumStack} />
         <Tab.Screen name="Songs" component={SongStack} />
@@ -379,7 +356,7 @@ export default function App() {
 const styles = StyleSheet.create({
   header: {
     fontFamily: Fonts.bold,
-    fontSize: 30,
+    fontSize: 25,
     color: Colors.white,
   },
   image: {
