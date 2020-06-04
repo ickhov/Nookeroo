@@ -233,11 +233,11 @@ const styles = StyleSheet.create({
         borderColor: Colors.primary,
     },
     miscTitle: {
-        width: '40%',
+        width: '50%',
         textAlign: 'center',
     },
     miscText: {
-        width: '60%',
+        width: '50%',
         textAlign: 'left',
         paddingLeft: 20,
     },

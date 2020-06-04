@@ -56,7 +56,7 @@ const CONSTANTS = {
             text: 'Accessories',
             collectedKey: 'clothing-accessories-collected',
             allKey: 'clothing-accessories',
-            url: 'https://raw.githubusercontent.com/sungyeonu/animal-crossing-scraper/master/data/clothing/accessories.json',
+            url: 'https://ickhov.github.io/nookeroo/clothing/accessories.json',
             none: "You haven't collected any accessories yet.",
             progressKey: 'clothing-accessories-progress'
         },
@@ -64,7 +64,7 @@ const CONSTANTS = {
             text: 'Bags',
             collectedKey: 'clothing-bag-collected',
             allKey: 'clothing-bag',
-            url: 'https://raw.githubusercontent.com/sungyeonu/animal-crossing-scraper/master/data/clothing/bags.json',
+            url: 'https://ickhov.github.io/nookeroo/clothing/bags.json',
             none: "You haven't collected any bag yet.",
             progressKey: 'clothing-bag-progress'
         },
@@ -72,7 +72,7 @@ const CONSTANTS = {
             text: 'Bottoms',
             collectedKey: 'clothing-bottoms-collected',
             allKey: 'clothing-bottoms',
-            url: 'https://raw.githubusercontent.com/sungyeonu/animal-crossing-scraper/master/data/clothing/bottoms.json',
+            url: 'https://ickhov.github.io/nookeroo/clothing/bottoms.json',
             none: "You haven't collected any bottoms yet.",
             progressKey: 'clothing-bottoms-progress'
         },
@@ -80,7 +80,7 @@ const CONSTANTS = {
             text: 'Dresses',
             collectedKey: 'clothing-dress-collected',
             allKey: 'clothing-dress',
-            url: 'https://raw.githubusercontent.com/sungyeonu/animal-crossing-scraper/master/data/clothing/dresses.json',
+            url: 'https://ickhov.github.io/nookeroo/clothing/dresses.json',
             none: "You haven't collected any dress yet.",
             progressKey: 'clothing-dress-progress'
         },
@@ -88,7 +88,7 @@ const CONSTANTS = {
             text: 'Hats',
             collectedKey: 'clothing-hat-collected',
             allKey: 'clothing-hat',
-            url: 'https://raw.githubusercontent.com/sungyeonu/animal-crossing-scraper/master/data/clothing/hats.json',
+            url: 'https://ickhov.github.io/nookeroo/clothing/hats.json',
             none: "You haven't collected any hat yet.",
             progressKey: 'clothing-hat-progress'
         },
@@ -96,7 +96,7 @@ const CONSTANTS = {
             text: 'Shoes',
             collectedKey: 'clothing-shoes-collected',
             allKey: 'clothing-shoes',
-            url: 'https://raw.githubusercontent.com/sungyeonu/animal-crossing-scraper/master/data/clothing/shoes.json',
+            url: 'https://ickhov.github.io/nookeroo/clothing/shoes.json',
             none: "You haven't collected any shoes yet.",
             progressKey: 'clothing-shoes-progress'
         },
@@ -104,7 +104,7 @@ const CONSTANTS = {
             text: 'Socks',
             collectedKey: 'clothing-socks-collected',
             allKey: 'clothing-socks',
-            url: 'https://raw.githubusercontent.com/sungyeonu/animal-crossing-scraper/master/data/clothing/socks.json',
+            url: 'https://ickhov.github.io/nookeroo/clothing/socks.json',
             none: "You haven't collected any socks yet.",
             progressKey: 'clothing-socks-progress'
         },
@@ -112,7 +112,7 @@ const CONSTANTS = {
             text: 'Tops',
             collectedKey: 'clothing-tops-collected',
             allKey: 'clothing-tops',
-            url: 'https://raw.githubusercontent.com/sungyeonu/animal-crossing-scraper/master/data/clothing/tops.json',
+            url: 'https://ickhov.github.io/nookeroo/clothing/tops.json',
             none: "You haven't collected any tops yet.",
             progressKey: 'clothing-tops-progress'
         },
@@ -120,7 +120,7 @@ const CONSTANTS = {
             text: 'Umbrellas',
             collectedKey: 'clothing-umbrella-collected',
             allKey: 'clothing-umbrella',
-            url: 'https://raw.githubusercontent.com/sungyeonu/animal-crossing-scraper/master/data/clothing/umbrellas.json',
+            url: 'https://ickhov.github.io/nookeroo/clothing/umbrellas.json',
             none: "You haven't collected any umbrella yet.",
             progressKey: 'clothing-umbrella-progress'
         },
@@ -131,7 +131,7 @@ const CONSTANTS = {
             text: 'Clothing',
             collectedKey: 'recipe-clothing-collected',
             allKey: 'recipe-clothing',
-            url: 'https://raw.githubusercontent.com/sungyeonu/animal-crossing-scraper/master/data/crafting/equipments.json',
+            url: 'https://ickhov.github.io/nookeroo/recipe/equipments.json',
             none: "You haven't collected any clothing recipe yet.",
             progressKey: 'recipe-clothing-progress'
         },
@@ -139,7 +139,7 @@ const CONSTANTS = {
             text: 'Fences',
             collectedKey: 'recipe-fence-collected',
             allKey: 'recipe-fence',
-            url: 'https://raw.githubusercontent.com/sungyeonu/animal-crossing-scraper/master/data/crafting/others.json',
+            url: 'https://ickhov.github.io/nookeroo/recipe/others.json',
             none: "You haven't collected any fence recipe yet.",
             progressKey: 'recipe-fence-progress'
         },
@@ -147,7 +147,7 @@ const CONSTANTS = {
             text: 'Housewares',
             collectedKey: 'recipe-houseware-collected',
             allKey: 'recipe-houseware',
-            url: 'https://raw.githubusercontent.com/sungyeonu/animal-crossing-scraper/master/data/crafting/housewares.json',
+            url: 'https://ickhov.github.io/nookeroo/recipe/housewares.json',
             none: "You haven't collected any houseware recipe yet.",
             progressKey: 'recipe-houseware-progress'
         },
@@ -155,7 +155,7 @@ const CONSTANTS = {
             text: 'Decorations',
             collectedKey: 'recipe-decoration-collected',
             allKey: 'recipe-decoration',
-            url: 'https://raw.githubusercontent.com/sungyeonu/animal-crossing-scraper/master/data/crafting/wallpaper_rugs_floorings.json',
+            url: 'https://ickhov.github.io/nookeroo/recipe/wallpaper_rugs_floorings.json',
             none: "You haven't collected any wall decoration yet.",
             progressKey: 'recipe-decoration-progress'
         },
@@ -163,7 +163,7 @@ const CONSTANTS = {
             text: 'Tools',
             collectedKey: 'recipe-tool-collected',
             allKey: 'recipe-tool',
-            url: 'https://raw.githubusercontent.com/sungyeonu/animal-crossing-scraper/master/data/crafting/tools.json',
+            url: 'https://ickhov.github.io/nookeroo/recipe/tools.json',
             none: "You haven't collected any tool recipe yet.",
             progressKey: 'recipe-tool-progress'
         },
@@ -171,7 +171,7 @@ const CONSTANTS = {
             text: 'Qall-mounted',
             collectedKey: 'recipe-wallmounted-collected',
             allKey: 'recipe-wallmounted',
-            url: 'https://raw.githubusercontent.com/sungyeonu/animal-crossing-scraper/master/data/crafting/wall_mounteds.json',
+            url: 'https://ickhov.github.io/nookeroo/recipe/wall_mounteds.json',
             none: "You haven't collected any wall-mounted recipe yet.",
             progressKey: 'recipe-wallmounted-progress'
         },
@@ -179,7 +179,7 @@ const CONSTANTS = {
             text: 'Miscellaneous',
             collectedKey: 'recipe-miscellaneous-collected',
             allKey: 'recipe-miscellaneous',
-            url: 'https://raw.githubusercontent.com/sungyeonu/animal-crossing-scraper/master/data/crafting/miscellaneous.json',
+            url: 'https://ickhov.github.io/nookeroo/recipe/miscellaneous.json',
             none: "You haven't collected any miscellaneous recipe yet.",
             progressKey: 'recipe-miscellaneous-progress'
         }
@@ -190,7 +190,7 @@ const CONSTANTS = {
             text: 'Floorings',
             collectedKey: 'furniture-flooring-collected',
             allKey: 'furniture-flooring',
-            url: 'https://raw.githubusercontent.com/sungyeonu/animal-crossing-scraper/master/data/furniture/floorings.json',
+            url: 'https://ickhov.github.io/nookeroo/furniture/floorings.json',
             none: "You haven't collected any flooring yet.",
             progressKey: 'furniture-flooring-progress'
         },
@@ -206,7 +206,7 @@ const CONSTANTS = {
             text: 'Rugs',
             collectedKey: 'furniture-rug-collected',
             allKey: 'furniture-rug',
-            url: 'https://raw.githubusercontent.com/sungyeonu/animal-crossing-scraper/master/data/furniture/rugs.json',
+            url: 'https://ickhov.github.io/nookeroo/furniture/rugs.json',
             none: "You haven't collected any rug yet.",
             progressKey: 'furniture-rug-progress'
         },
@@ -222,7 +222,7 @@ const CONSTANTS = {
             text: 'Wallpapers',
             collectedKey: 'furniture-wallpaper-collected',
             allKey: 'furniture-wallpaper',
-            url: 'https://raw.githubusercontent.com/sungyeonu/animal-crossing-scraper/master/data/furniture/wallpapers.json',
+            url: 'https://ickhov.github.io/nookeroo/furniture/wallpapers.json',
             none: "You haven't collected any wallpaper yet.",
             progressKey: 'furniture-wallpaper-progress'
         },
