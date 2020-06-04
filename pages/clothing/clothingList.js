@@ -1,5 +1,8 @@
 /**
- * Villager list
+ * 
+ * Initial params: constants, nextScreen
+ * 
+ * Collection View for various clothing-related screen
  *
  * @format
  * @flow strict-local
@@ -8,32 +11,32 @@
 import AsyncStorage from '@react-native-community/async-storage';
 import NetInfo from "@react-native-community/netinfo";
 import React, { useCallback, useEffect, useState } from 'react';
-import { FlatList, Keyboard, SafeAreaView, SectionList, StyleSheet, Text, TextInput, View } from 'react-native';
+import { SafeAreaView, SectionList, StyleSheet, Text, View, TextInput, FlatList, Keyboard } from 'react-native';
 import Icons from 'react-native-vector-icons/MaterialIcons';
 import Colors from '../../assets/colors';
 import Fonts from '../../assets/fonts';
 import CustomButton from '../components/customButton';
 import PopUpDialog from '../components/popUpDialog';
+import ProgressBar from '../components/progressBar';
 import CONSTANTS from '../constants';
 
-
-
-export default function VillagerGuide({ navigation }) {
+export default function CollectionView({ route, navigation }) {
 
     const [collectedList, setCollectedList] = useState([]);
     const [rawData, setRawData] = useState([])
     const [data, setData] = useState([]);
+    const [progressData, setProgressData] = useState({});
     const [searchData, setSearchData] = useState([]);
     const [searchText, setSearchText] = useState('');
-    const constants = CONSTANTS.villager;
+    const constants = route.params.constants;
     const [dataLength, setDataLength] = useState(1);
     const [showAlert, setShowAlert] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
     const [isConnected, setIsConnected] = useState(true);
 
     const detailSelected = useCallback(item => {
-        navigation.navigate('VillagerDetail', {
-            name: item.name['name-USen'],
+        navigation.navigate(route.params.nextScreen, {
+            name: item.name,
             data: item
         })
     }, []);
@@ -42,13 +45,13 @@ export default function VillagerGuide({ navigation }) {
         // no data if first toggled, set to true if not in the list
         const data = Array.from(collectedList);
 
-        const index = data.indexOf(item.name['name-USen'].toLowerCase());
+        const index = data.indexOf(item.name.toLowerCase());
         // if name is in the list, then remove it
         // else add it
         if (index > -1) {
             data.splice(index, 1);
         } else {
-            data.push(item.name['name-USen'].toLowerCase());
+            data.push(item.name.toLowerCase());
         }
 
         setCollectedList(data);
@@ -65,6 +68,11 @@ export default function VillagerGuide({ navigation }) {
         try {
             const values = JSON.stringify(value);
             await AsyncStorage.setItem(constants.collectedKey, values);
+
+            const totalLength = Array.from(rawData).length;
+            const collectedLength = value.length;
+            const progressString = collectedLength + '/' + totalLength;
+            await AsyncStorage.setItem(constants.progressKey, progressString);
         } catch (e) {
             error(CONSTANTS.error.storing);
         }
@@ -101,8 +109,8 @@ export default function VillagerGuide({ navigation }) {
     }, []);
 
     function compare(a, b) {
-        let first = a.name['name-USen'].toLowerCase();
-        let second = b.name['name-USen'].toLowerCase();
+        let first = a.name.toLowerCase();
+        let second = b.name.toLowerCase();
 
         if (first < second) {
             return -1;
@@ -156,7 +164,7 @@ export default function VillagerGuide({ navigation }) {
         var missingData = [];
 
         items.forEach((element) => {
-            if (collected.includes(element.name['name-USen'].toLowerCase())) {
+            if (collected.includes(element.name.toLowerCase())) {
                 collectedData.push(element);
             } else {
                 missingData.push(element);
@@ -176,13 +184,19 @@ export default function VillagerGuide({ navigation }) {
         }
 
         if (totalLength > 0) {
+            setProgressData({
+                collected: collectedLength,
+                total: totalLength,
+                percent: ((collectedLength * 1.0 / totalLength) * 100).toFixed(2),
+            });
+
             setData([
                 {
-                    title: "Your Villagers",
+                    title: "Collected",
                     data: collectedData
                 },
                 {
-                    title: collectedLength > 0 ? "Other Villagers" : "All Villagers",
+                    title: "Missing",
                     data: missingData
                 }
             ]);
@@ -195,8 +209,15 @@ export default function VillagerGuide({ navigation }) {
         const items = Array.from(rawData);
 
         const filterItems = items.filter((item) => {
-            return item.name['name-USen'].toLowerCase().includes(text.toLowerCase());
+            return item.name.toLowerCase().includes(text.toLowerCase());
         })
+
+        if (filterItems.length == 0) {
+            filterItems.push({
+                id: -1,
+                text: 'No Results'
+            })
+        }
 
         setSearchText(text);
         setSearchData(filterItems);
@@ -204,7 +225,7 @@ export default function VillagerGuide({ navigation }) {
 
     if (dataLength > 0) {
         return (
-            <SafeAreaView style={styles.root}>
+            <SafeAreaView style={styles.container}>
                 <View style={styles.searchBarContainer}>
                     <Text style={styles.searchBarIcon}>
                         <Icons name={'search'} size={26} color={Colors.black} />
@@ -241,6 +262,9 @@ export default function VillagerGuide({ navigation }) {
                     }
                 </View>
 
+                <Text style={styles.header}>{`Progress: ${progressData.percent}% (${progressData.collected}/${progressData.total})`}</Text>
+                <ProgressBar progress={progressData.percent} />
+
                 {/* Show either a section list or 
                 flat list depending on whether the 
                 user is searching something */}
@@ -249,17 +273,17 @@ export default function VillagerGuide({ navigation }) {
                         <SectionList
                             style={{ width: '100%' }}
                             sections={data}
-                            keyExtractor={item => item['file-name']}
+                            keyExtractor={item => item.name}
                             initialNumToRender={10}
                             renderItem={({ item }) => {
                                 if (item.id == -1) {
                                     return <Text style={styles.emptyTextStyle}>{item.text}</Text>
                                 } else {
                                     return <CustomButton
-                                        name={item.name['name-USen']}
-                                        imageSource={item['icon_uri'] ?? item['image_uri']}
+                                        name={item.name}
+                                        imageSource={item['imageLink']}
                                         onPress={() => detailSelected(item)}
-                                        hasCollected={Array.from(collectedList).includes(item.name['name-USen'].toLowerCase())}
+                                        hasCollected={Array.from(collectedList).includes(item.name.toLowerCase())}
                                         toggleCheckBox={() => checkBoxToggle(item)}
                                     />
                                 }
@@ -273,14 +297,20 @@ export default function VillagerGuide({ navigation }) {
                         <FlatList
                             style={{ width: '100%', marginTop: 10, }}
                             data={searchData}
-                            renderItem={({ item }) => <CustomButton
-                                name={item.name['name-USen']}
-                                imageSource={item['icon_uri'] ?? item['image_uri']}
-                                onPress={() => detailSelected(item)}
-                                hasCollected={Array.from(collectedList).includes(item.name['name-USen'].toLowerCase())}
-                                toggleCheckBox={() => checkBoxToggle(item)}
-                            />}
-                            keyExtractor={item => item.id.toString()}
+                            renderItem={({ item }) => {
+                                if (item.id == -1) {
+                                    return <Text style={styles.emptyTextStyle}>{item.text}</Text>
+                                } else {
+                                    return <CustomButton
+                                        name={item.name}
+                                        imageSource={item['imageLink']}
+                                        onPress={() => detailSelected(item)}
+                                        hasCollected={Array.from(collectedList).includes(item.name.toLowerCase())}
+                                        toggleCheckBox={() => checkBoxToggle(item)}
+                                    />
+                                }
+                            }}
+                            keyExtractor={item => item.name}
                             extraData={searchData}
                         />
                 }
@@ -299,14 +329,13 @@ export default function VillagerGuide({ navigation }) {
         );
     } else {
         return (
-            <SafeAreaView style={styles.root}>
+            <SafeAreaView style={styles.container}>
                 <View style={{
                     width: '100%',
                     height: '100%',
                     justifyContent: 'center',
                     alignItems: 'center',
                 }}>
-
                     {
                         isConnected ?
                             <Icons.Button
@@ -340,20 +369,14 @@ export default function VillagerGuide({ navigation }) {
             </SafeAreaView>
         );
     }
-
 }
 
 const styles = StyleSheet.create({
-    root: {
+    container: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: Colors.background,
-    },
-    container: {
-        width: '90%',
-        justifyContent: 'center',
-        alignItems: 'center',
     },
     header: {
         fontFamily: Fonts.medium,

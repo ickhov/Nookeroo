@@ -7,17 +7,16 @@
 
 import React from 'react';
 import CONSTANTS from '../../constants';
-import CollectionView from '../../components/collectionView';
+import CollectionView from '../collectionView';
 
-export default function FossilGuide({ navigation }) {
+export default function Fossils({ navigation }) {
 
     return (
         <CollectionView
             constants={CONSTANTS.fossil}
             navigation={navigation}
             nextScreen='FossilDetail'
-            haveID={false}
-            isIcon={false} />
+            haveID={false} />
     );
 
 }

@@ -12,6 +12,8 @@ import Fonts from '../../../assets/fonts';
 import RoundBorderText from '../../components/roundBorderText';
 import ContentWithHeader from '../../components/contentWithHeader';
 import TextWithImages from '../../components/textWithImages';
+import CONSTANTS from '../../constants';
+import { CachedImage } from 'react-native-img-cache';
 
 export default function BugDetail({ route, navigation }) {
 
@@ -114,8 +116,8 @@ export default function BugDetail({ route, navigation }) {
                 <View style={styles.container}>
                     <View style={styles.imageContainer}>
                         {/* Bug Image */}
-                        <Image
-                            source={{ uri: 'https://ickhov.github.io/nookeroo/images/bugs/' + data['file-name'] + '.png' }}
+                        <CachedImage
+                            source={{ uri: data['image_uri'] ?? data['icon_uri'] }}
                             style={styles.image} />
                         {/* Name Tab */}
                         <RoundBorderText
@@ -126,7 +128,7 @@ export default function BugDetail({ route, navigation }) {
 
                     {/* Price Tab */}
                     <RoundBorderText
-                        text="Price"
+                        text="Sell"
                         containerStyle={styles.infoTitleContainer}
                         textStyle={styles.infoTitle} />
                     <View style={styles.bellContainer}>
@@ -246,16 +248,17 @@ const styles = StyleSheet.create({
         width: '100%',
     },
     image: {
-        width: 100,
+        width: '40%',
         height: 100,
         resizeMode: 'contain',
     },
     nameContainer: {
-        flex: 1,
+        width: '60%',
         backgroundColor: Colors.none,
         borderRadius: 0,
     },
     nameText: {
+        width: '100%',
         fontFamily: Fonts.bold,
         fontSize: 20,
     },
@@ -335,6 +338,6 @@ const styles = StyleSheet.create({
     availabilityText: {
         width: '70%',
         textAlign: 'left',
-        paddingLeft: 20,
+        paddingHorizontal: 20,
     },
 });

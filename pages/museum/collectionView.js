@@ -1,5 +1,12 @@
 /**
- * Villager list
+ * 
+ * Props: constants, navigation, nextScreen
+ * 
+ * Collection View for various screens
+ * Arts
+ * Bugs
+ * Fishes
+ * Fossils
  *
  * @format
  * @flow strict-local
@@ -8,31 +15,31 @@
 import AsyncStorage from '@react-native-community/async-storage';
 import NetInfo from "@react-native-community/netinfo";
 import React, { useCallback, useEffect, useState } from 'react';
-import { FlatList, Keyboard, SafeAreaView, SectionList, StyleSheet, Text, TextInput, View } from 'react-native';
+import { SafeAreaView, SectionList, StyleSheet, Text, View, TextInput, FlatList, Keyboard } from 'react-native';
 import Icons from 'react-native-vector-icons/MaterialIcons';
 import Colors from '../../assets/colors';
 import Fonts from '../../assets/fonts';
 import CustomButton from '../components/customButton';
 import PopUpDialog from '../components/popUpDialog';
+import ProgressBar from '../components/progressBar';
 import CONSTANTS from '../constants';
 
-
-
-export default function VillagerGuide({ navigation }) {
+export default function CollectionView(props) {
 
     const [collectedList, setCollectedList] = useState([]);
     const [rawData, setRawData] = useState([])
     const [data, setData] = useState([]);
+    const [progressData, setProgressData] = useState({});
     const [searchData, setSearchData] = useState([]);
     const [searchText, setSearchText] = useState('');
-    const constants = CONSTANTS.villager;
+    const constants = props.constants;
     const [dataLength, setDataLength] = useState(1);
     const [showAlert, setShowAlert] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
     const [isConnected, setIsConnected] = useState(true);
 
     const detailSelected = useCallback(item => {
-        navigation.navigate('VillagerDetail', {
+        props.navigation.navigate(props.nextScreen, {
             name: item.name['name-USen'],
             data: item
         })
@@ -65,6 +72,11 @@ export default function VillagerGuide({ navigation }) {
         try {
             const values = JSON.stringify(value);
             await AsyncStorage.setItem(constants.collectedKey, values);
+
+            const totalLength = Array.from(rawData).length;
+            const collectedLength = value.length;
+            const progressString = collectedLength + '/' + totalLength;
+            await AsyncStorage.setItem(constants.progressKey, progressString);
         } catch (e) {
             error(CONSTANTS.error.storing);
         }
@@ -176,13 +188,19 @@ export default function VillagerGuide({ navigation }) {
         }
 
         if (totalLength > 0) {
+            setProgressData({
+                collected: collectedLength,
+                total: totalLength,
+                percent: ((collectedLength * 1.0 / totalLength) * 100).toFixed(2),
+            });
+
             setData([
                 {
-                    title: "Your Villagers",
+                    title: "Collected",
                     data: collectedData
                 },
                 {
-                    title: collectedLength > 0 ? "Other Villagers" : "All Villagers",
+                    title: "Missing",
                     data: missingData
                 }
             ]);
@@ -198,13 +216,20 @@ export default function VillagerGuide({ navigation }) {
             return item.name['name-USen'].toLowerCase().includes(text.toLowerCase());
         })
 
+        if (filterItems.length == 0) {
+            filterItems.push({
+                id: -1,
+                text: 'No Results'
+            })
+        }
+
         setSearchText(text);
         setSearchData(filterItems);
     }, [rawData]);
 
     if (dataLength > 0) {
         return (
-            <SafeAreaView style={styles.root}>
+            <SafeAreaView style={styles.container}>
                 <View style={styles.searchBarContainer}>
                     <Text style={styles.searchBarIcon}>
                         <Icons name={'search'} size={26} color={Colors.black} />
@@ -241,6 +266,9 @@ export default function VillagerGuide({ navigation }) {
                     }
                 </View>
 
+                <Text style={styles.header}>{`Progress: ${progressData.percent}% (${progressData.collected}/${progressData.total})`}</Text>
+                <ProgressBar progress={progressData.percent} />
+
                 {/* Show either a section list or 
                 flat list depending on whether the 
                 user is searching something */}
@@ -273,13 +301,19 @@ export default function VillagerGuide({ navigation }) {
                         <FlatList
                             style={{ width: '100%', marginTop: 10, }}
                             data={searchData}
-                            renderItem={({ item }) => <CustomButton
-                                name={item.name['name-USen']}
-                                imageSource={item['icon_uri'] ?? item['image_uri']}
-                                onPress={() => detailSelected(item)}
-                                hasCollected={Array.from(collectedList).includes(item.name['name-USen'].toLowerCase())}
-                                toggleCheckBox={() => checkBoxToggle(item)}
-                            />}
+                            renderItem={({ item }) => {
+                                if (item.id == -1) {
+                                    return <Text style={styles.emptyTextStyle}>{item.text}</Text>
+                                } else {
+                                    return <CustomButton
+                                        name={item.name['name-USen']}
+                                        imageSource={item['icon_uri'] ?? item['image_uri']}
+                                        onPress={() => detailSelected(item)}
+                                        hasCollected={Array.from(collectedList).includes(item.name['name-USen'].toLowerCase())}
+                                        toggleCheckBox={() => checkBoxToggle(item)}
+                                    />
+                                }
+                            }}
                             keyExtractor={item => item.id.toString()}
                             extraData={searchData}
                         />
@@ -299,14 +333,13 @@ export default function VillagerGuide({ navigation }) {
         );
     } else {
         return (
-            <SafeAreaView style={styles.root}>
+            <SafeAreaView style={styles.container}>
                 <View style={{
                     width: '100%',
                     height: '100%',
                     justifyContent: 'center',
                     alignItems: 'center',
                 }}>
-
                     {
                         isConnected ?
                             <Icons.Button
@@ -340,20 +373,14 @@ export default function VillagerGuide({ navigation }) {
             </SafeAreaView>
         );
     }
-
 }
 
 const styles = StyleSheet.create({
-    root: {
+    container: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: Colors.background,
-    },
-    container: {
-        width: '90%',
-        justifyContent: 'center',
-        alignItems: 'center',
     },
     header: {
         fontFamily: Fonts.medium,

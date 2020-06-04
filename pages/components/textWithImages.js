@@ -38,15 +38,26 @@ export default function textWithImages({
     return (
         <View style={[styles.container, containerStyle]}>
             {/* Image */}
-            <Image
-                source={leftImageSource ?? require('../../assets/icons/menu/villagers.png')}
+            {
+                leftImageSource && text !== '-' &&
+                <Image
+                source={leftImageSource}
                 style={[styles.leftImage, leftImageStyle]} />
+            }
+
             {/* Name Tab */}
-            <Text style={[styles.text, textStyle]}>{text}</Text>
+            {
+                text !== '-' ?
+                <Text style={[styles.text, textStyle]}>{text}</Text>
+                :
+                <Text style={[styles.text, textStyle, {
+                    paddingLeft: 0
+                }]}>{text}</Text>
+            }
 
             {/* Right Image */}
             {
-                rightImageSource &&
+                rightImageSource && text !== '-' &&
                 <Image
                     source={rightImageSource}
                     style={[styles.rightImage, rightImageStyle]} />
@@ -72,7 +83,7 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         paddingLeft: 10,
         color: Colors.white,
-        textAlign: 'right',
+        textAlign: 'center',
     },
     rightImage: {
         width: 25,

@@ -7,15 +7,15 @@
 
 import React, { useState, useEffect } from 'react';
 import { Image, StyleSheet, View, Text, SafeAreaView, ScrollView } from 'react-native';
-import Colors from '../../../assets/colors';
-import Fonts from '../../../assets/fonts';
-import RoundBorderText from '../../components/roundBorderText';
-import ContentWithHeader from '../../components/contentWithHeader';
-import TextWithImages from '../../components/textWithImages';
-import CONSTANTS from '../../constants';
+import Colors from '../../assets/colors';
+import Fonts from '../../assets/fonts';
+import RoundBorderText from '../components/roundBorderText';
+import ContentWithHeader from '../components/contentWithHeader';
+import TextWithImages from '../components/textWithImages';
+import CONSTANTS from '../constants';
 import { CachedImage } from 'react-native-img-cache';
 
-export default function ArtDetail({ route, navigation }) {
+export default function SongDetail({ route, navigation }) {
 
     const data = route.params.data;
     const name = lowercasetoUppercase(route.params.name);
@@ -32,9 +32,9 @@ export default function ArtDetail({ route, navigation }) {
         <View style={styles.rootContainer}>
             <View style={styles.container}>
                 <View style={styles.imageContainer}>
-                    {/* Bug Image */}
+                    {/* Song Image */}
                     <CachedImage
-                        source={{ uri: data['image_uri'] ?? data['icon_uri'] }}
+                        source={{ uri: data['image_uri']}}
                         style={styles.image} />
                     {/* Name Tab */}
                     <RoundBorderText
@@ -55,9 +55,9 @@ export default function ArtDetail({ route, navigation }) {
                             textStyle={styles.infoTitle} />
                         <TextWithImages
                             containerStyle={styles.bellInfo}
-                            leftImageSource={require('../../../assets/icons/miscellaneous/redd.png')}
-                            rightImageSource={require('../../../assets/icons/miscellaneous/bells.png')}
-                            text={data['buy-price']} />
+                            leftImageSource={require('../../assets/icons/miscellaneous/nook-shopping.png')}
+                            rightImageSource={require('../../assets/icons/miscellaneous/bells.png')}
+                            text={data['buy-price'] ?? '-'} />
                     </View>
 
                     <View style={[styles.bellInfoContainer, {
@@ -70,16 +70,16 @@ export default function ArtDetail({ route, navigation }) {
                             textStyle={styles.infoTitle} />
                         <TextWithImages
                             containerStyle={styles.bellInfo}
-                            leftImageSource={require('../../../assets/icons/miscellaneous/cranny.png')}
-                            rightImageSource={require('../../../assets/icons/miscellaneous/bells.png')}
+                            leftImageSource={require('../../assets/icons/miscellaneous/cranny.png')}
+                            rightImageSource={require('../../assets/icons/miscellaneous/bells.png')}
                             text={data['sell-price']} />
                     </View>
 
                 </View>
 
-                {/* Authenticity Tab */}
-                <ContentWithHeader title={'Authenticity'}
-                    text={data['hasFake'] ? 'CAN BE FAKE' : 'ALWAYS REAL'}
+                {/* Obtainable Tab */}
+                <ContentWithHeader title={'Sources'}
+                    text={data['isOrderable'] ? 'Nook Shopping & K.K. Slider' : 'K.K. Slider'}
                     containerStyle={styles.availabilityContainer}
                     titleContainerStyle={styles.availabilityTitle}
                     textContainerStyle={styles.availabilityText} />

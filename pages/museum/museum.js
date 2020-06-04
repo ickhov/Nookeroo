@@ -7,7 +7,6 @@
 
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import React from 'react';
-import { StyleSheet } from 'react-native';
 import Colors from '../../assets/colors';
 import Fonts from '../../assets/fonts';
 import Arts from './arts/arts';
@@ -17,7 +16,7 @@ import Fossils from './fossils/fossils';
 
 const TopTab = createMaterialTopTabNavigator();
 
-export default function MuseumTopTab() {
+export default function Museum() {
     return (
         <TopTab.Navigator
             tabBarOptions={{

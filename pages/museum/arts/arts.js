@@ -7,17 +7,16 @@
 
 import React from 'react';
 import CONSTANTS from '../../constants';
-import CollectionView from '../../components/collectionView';
+import CollectionView from '../collectionView';
 
-export default function ArtGuide({ navigation }) {
+export default function Arts({ navigation }) {
 
     return (
         <CollectionView
             constants={CONSTANTS.art}
             navigation={navigation}
             nextScreen='ArtDetail'
-            haveID={true}
-            isIcon={true} />
+            haveID={true} />
     );
 
 }

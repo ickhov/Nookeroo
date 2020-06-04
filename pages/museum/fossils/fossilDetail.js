@@ -11,6 +11,8 @@ import Colors from '../../../assets/colors';
 import Fonts from '../../../assets/fonts';
 import RoundBorderText from '../../components/roundBorderText';
 import TextWithImages from '../../components/textWithImages';
+import CONSTANTS from '../../constants';
+import { CachedImage } from 'react-native-img-cache';
 
 export default function FossilDetail({ route, navigation }) {
 
@@ -30,8 +32,8 @@ export default function FossilDetail({ route, navigation }) {
             <View style={styles.container}>
                 <View style={styles.imageContainer}>
                     {/* Fossil Image */}
-                    <Image
-                        source={{ uri: 'https://ickhov.github.io/nookeroo/images/fossils/' + data['file-name'] + '.png' }}
+                    <CachedImage
+                        source={{ uri: data['image_uri'] ?? data['icon_uri'] }}
                         style={styles.image} />
                     {/* Name Tab */}
                     <RoundBorderText
@@ -42,7 +44,7 @@ export default function FossilDetail({ route, navigation }) {
 
                 {/* Price Tab */}
                 <RoundBorderText
-                    text="Price"
+                    text="Sell"
                     containerStyle={styles.infoTitleContainer}
                     textStyle={styles.infoTitle} />
                 <View style={styles.bellContainer}>
@@ -90,16 +92,17 @@ const styles = StyleSheet.create({
         width: '100%',
     },
     image: {
-        width: 100,
+        width: '40%',
         height: 100,
         resizeMode: 'contain',
     },
     nameContainer: {
-        flex: 1,
+        width: '60%',
         backgroundColor: Colors.none,
         borderRadius: 0,
     },
     nameText: {
+        width: '100%',
         fontFamily: Fonts.bold,
         fontSize: 20,
     },

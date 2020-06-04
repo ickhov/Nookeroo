@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* NookerooTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* NookerooTests.m */; };
+		01E54BA12DAB4120AE45C3A2 /* Quicksand-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9A48FBD37C7D4E87AE46201C /* Quicksand-SemiBold.ttf */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
@@ -19,10 +20,9 @@
 		2DCD954D1E0B4F2C00145EB5 /* NookerooTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* NookerooTests.m */; };
 		519E3260E4F4348F43D535CF /* libPods-Nookeroo-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EC4911F68CFD03F93481B821 /* libPods-Nookeroo-tvOS.a */; };
 		6E15F89E7FAC25EB0B21D7C9 /* libPods-Nookeroo-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A43D84EC3664AAA129CB9C59 /* libPods-Nookeroo-tvOSTests.a */; };
+		76CA168A91474E37B235AA23 /* Quicksand-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5C27D8F869C34B2E9BB9FEDD /* Quicksand-Medium.ttf */; };
 		C1201D176A62ECC5EA18F923 /* libPods-Nookeroo-NookerooTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F4E05662F2C2BF2DE1D9816 /* libPods-Nookeroo-NookerooTests.a */; };
 		DBEBEAC055AA469A8C19773D /* Quicksand-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0F2CB03C4F024E8888656E81 /* Quicksand-Bold.ttf */; };
-		76CA168A91474E37B235AA23 /* Quicksand-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5C27D8F869C34B2E9BB9FEDD /* Quicksand-Medium.ttf */; };
-		01E54BA12DAB4120AE45C3A2 /* Quicksand-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9A48FBD37C7D4E87AE46201C /* Quicksand-SemiBold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +48,7 @@
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* NookerooTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NookerooTests.m; sourceTree = "<group>"; };
 		0BE35377DA144A0EA52BA532 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
+		0F2CB03C4F024E8888656E81 /* Quicksand-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Quicksand-Bold.ttf"; path = "../assets/fonts/Quicksand-Bold.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* Nookeroo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nookeroo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Nookeroo/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Nookeroo/AppDelegate.m; sourceTree = "<group>"; };
@@ -64,6 +65,7 @@
 		3CE6B301ACFF43ED933BE105 /* Fontisto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Fontisto.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf"; sourceTree = "<group>"; };
 		41AA67D6F9234D99A08901C0 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		583C78D9B57D9442908BBF0F /* Pods-Nookeroo-NookerooTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nookeroo-NookerooTests.debug.xcconfig"; path = "Target Support Files/Pods-Nookeroo-NookerooTests/Pods-Nookeroo-NookerooTests.debug.xcconfig"; sourceTree = "<group>"; };
+		5C27D8F869C34B2E9BB9FEDD /* Quicksand-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Quicksand-Medium.ttf"; path = "../assets/fonts/Quicksand-Medium.ttf"; sourceTree = "<group>"; };
 		5E5C72303C1C477FB0A4EB78 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		5F4E05662F2C2BF2DE1D9816 /* libPods-Nookeroo-NookerooTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Nookeroo-NookerooTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6475BFED9D5AABC5B5D672C1 /* Pods-Nookeroo-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nookeroo-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-Nookeroo-tvOSTests/Pods-Nookeroo-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 		86B7E7193F9611F4393542EE /* Pods-Nookeroo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nookeroo.debug.xcconfig"; path = "Target Support Files/Pods-Nookeroo/Pods-Nookeroo.debug.xcconfig"; sourceTree = "<group>"; };
 		9381FFD8CB124220BB1EDCB9 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		9509342A6FC2410AB2737C78 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
+		9A48FBD37C7D4E87AE46201C /* Quicksand-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Quicksand-SemiBold.ttf"; path = "../assets/fonts/Quicksand-SemiBold.ttf"; sourceTree = "<group>"; };
 		A0AF412D98264729A1DB54C3 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		A43D84EC3664AAA129CB9C59 /* libPods-Nookeroo-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Nookeroo-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACE692DF0D8C4BF4962F6E6D /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
@@ -86,9 +89,6 @@
 		F562B58F6BF441FDAB9C7BF7 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		FEFFFBD34C3C26399DD57EDF /* Pods-Nookeroo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nookeroo.release.xcconfig"; path = "Target Support Files/Pods-Nookeroo/Pods-Nookeroo.release.xcconfig"; sourceTree = "<group>"; };
 		FF5C59A082282E64DCB33331 /* Pods-Nookeroo-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nookeroo-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-Nookeroo-tvOS/Pods-Nookeroo-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
-		0F2CB03C4F024E8888656E81 /* Quicksand-Bold.ttf */ = {isa = PBXFileReference; name = "Quicksand-Bold.ttf"; path = "../assets/fonts/Quicksand-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		5C27D8F869C34B2E9BB9FEDD /* Quicksand-Medium.ttf */ = {isa = PBXFileReference; name = "Quicksand-Medium.ttf"; path = "../assets/fonts/Quicksand-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		9A48FBD37C7D4E87AE46201C /* Quicksand-SemiBold.ttf */ = {isa = PBXFileReference; name = "Quicksand-SemiBold.ttf"; path = "../assets/fonts/Quicksand-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -339,9 +339,11 @@
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = 6EAD8J84D4;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
+						DevelopmentTeam = 6EAD8J84D4;
 						LastSwiftMigration = 1120;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
@@ -734,6 +736,7 @@
 			baseConfigurationReference = 583C78D9B57D9442908BBF0F /* Pods-Nookeroo-NookerooTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 6EAD8J84D4;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -758,6 +761,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = 6EAD8J84D4;
 				INFOPLIST_FILE = NookerooTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -779,6 +783,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6EAD8J84D4;
 				ENABLE_BITCODE = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -791,7 +796,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ickhov.Nookeroo;
 				PRODUCT_NAME = Nookeroo;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -806,6 +811,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6EAD8J84D4;
 				INFOPLIST_FILE = Nookeroo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -813,7 +819,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ickhov.Nookeroo;
 				PRODUCT_NAME = Nookeroo;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";

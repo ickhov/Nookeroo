@@ -12,6 +12,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Colors from './assets/colors';
 import Fonts from './assets/fonts';
 import CustomStatusBar from './pages/components/statusBar';
+import CONSTANTS from './pages/constants';
 
 // Villager Stack
 import Villagers from './pages/villagers/villagers';
@@ -24,8 +25,26 @@ import FishDetail from './pages/museum/fishes/fishDetail';
 import FossilDetail from './pages/museum/fossils/fossilDetail';
 import ArtDetail from './pages/museum/arts/artDetail';
 
-// Home Stack
-import Home from './pages/home';
+// Collections Stack
+import Songs from './pages/songs/songs';
+import SongDetail from './pages/songs/songDetail';
+
+// More Stack
+import More from './pages/more';
+
+// Clothing Stack
+import ClothingList from './pages/clothing/clothingList';
+import ClothingDetail from './pages/clothing/clothingDetail';
+
+// Recipe Stack
+import RecipeList from './pages/recipes/recipeList';
+import RecipeDetail from './pages/recipes/recipeDetail';
+
+// Furniture Stack
+import MainFurnitureList from './pages/furnitures/mainFurnitureList';
+import MainFurnitureDetail from './pages/furnitures/mainFurnitureDetail';
+import OtherFurnitureList from './pages/furnitures/otherFurnitureList';
+import OtherFurnitureDetail from './pages/furnitures/otherFurnitureDetail';
 
 import {
   StyleSheet, Image,
@@ -33,25 +52,10 @@ import {
 
 const Stack = createStackNavigator();
 
-const HomeStack = () => {
-  return (
-    <Stack.Navigator
-      initialRouteName="Home"
-      screenOptions={() => ({
-        headerTitleStyle: styles.header,
-        headerStyle: { backgroundColor: Colors.primary },
-        headerTintColor: Colors.white,
-        headerBackTitleStyle: { fontFamily: Fonts.regular }
-      })}>
-      <Stack.Screen name="Home" component={Home} />
-    </Stack.Navigator>
-  );
-}
-
 const VillagerStack = () => {
   return (
     <Stack.Navigator
-      initialRouteName="Villager"
+      initialRouteName="Villagers"
       screenOptions={() => ({
         headerTitleStyle: styles.header,
         headerStyle: { backgroundColor: Colors.primary },
@@ -74,12 +78,225 @@ const MuseumStack = () => {
         headerTintColor: Colors.white,
         headerBackTitleStyle: { fontFamily: Fonts.regular }
       })}>
-      <Stack.Screen name="Museum" component={Museum} initialParams={{ data: [], collected: [] }} />
+      <Stack.Screen name="Museum" component={Museum} />
 
       <Stack.Screen name="ArtDetail" component={ArtDetail} options={{ title: 'Details' }} />
       <Stack.Screen name="BugDetail" component={BugDetail} options={{ title: 'Details' }} />
       <Stack.Screen name="FishDetail" component={FishDetail} options={{ title: 'Details' }} />
       <Stack.Screen name="FossilDetail" component={FossilDetail} options={{ title: 'Details' }} />
+    </Stack.Navigator>
+  );
+}
+
+const SongStack = () => {
+  return (
+    <Stack.Navigator
+      initialRouteName="Songs"
+      screenOptions={() => ({
+        headerTitleStyle: styles.header,
+        headerStyle: { backgroundColor: Colors.primary },
+        headerTintColor: Colors.white,
+        headerBackTitleStyle: { fontFamily: Fonts.regular }
+      })}>
+      <Stack.Screen name="Songs" component={Songs} />
+      <Stack.Screen name="SongDetail" component={SongDetail} options={{ title: 'Details' }} />
+    </Stack.Navigator>
+  );
+}
+
+const clothingDetail = 'ClothingDetail';
+const mainFurnitureDetail = 'MainFurnitureDetail';
+const otherFurnitureDetail = 'OtherFurnitureDetail';
+const recipeDetail = 'RecipeDetail';
+
+const MoreStack = () => {
+  return (
+    <Stack.Navigator
+      initialRouteName="More"
+      screenOptions={() => ({
+        headerTitleStyle: styles.header,
+        headerStyle: { backgroundColor: Colors.primary },
+        headerTintColor: Colors.white,
+        headerBackTitleStyle: { fontFamily: Fonts.regular }
+      })}>
+      <Stack.Screen name="More" component={More} />
+
+      {/* CLOTHING */}
+      <Stack.Screen 
+        name="Accessories" 
+        component={ClothingList} 
+        initialParams={{ 
+          constants: CONSTANTS.clothing.accessories, 
+          nextScreen: clothingDetail
+        }} />
+      <Stack.Screen 
+        name="Bags" 
+        component={ClothingList} 
+        initialParams={{ 
+          constants: CONSTANTS.clothing.bag, 
+          nextScreen: clothingDetail 
+        }} />
+      <Stack.Screen 
+        name="Bottoms" 
+        component={ClothingList} 
+        initialParams={{ 
+          constants: CONSTANTS.clothing.bottoms, 
+          nextScreen: clothingDetail 
+        }} />
+      <Stack.Screen 
+        name="Dresses" 
+        component={ClothingList} 
+        initialParams={{ 
+          constants: CONSTANTS.clothing.dress, 
+          nextScreen: clothingDetail 
+        }} />
+      <Stack.Screen 
+        name="Hats" 
+        component={ClothingList} 
+        initialParams={{ 
+          constants: CONSTANTS.clothing.hat, 
+          nextScreen: clothingDetail 
+        }} />
+      <Stack.Screen 
+        name="Shoes" 
+        component={ClothingList} 
+        initialParams={{ 
+          constants: CONSTANTS.clothing.shoes, 
+          nextScreen: clothingDetail 
+        }} />
+      <Stack.Screen 
+        name="Socks" 
+        component={ClothingList} 
+        initialParams={{ 
+          constants: CONSTANTS.clothing.socks, 
+          nextScreen: clothingDetail 
+        }} />
+      <Stack.Screen 
+        name="Tops" 
+        component={ClothingList} 
+        initialParams={{ 
+          constants: CONSTANTS.clothing.tops, 
+          nextScreen: clothingDetail 
+        }} />
+      <Stack.Screen 
+        name="Umbrellas" 
+        component={ClothingList} 
+        initialParams={{ 
+          constants: CONSTANTS.clothing.umbrella, 
+          nextScreen: clothingDetail 
+        }} />
+
+      {/* FURNITURE */}
+      <Stack.Screen 
+        name="Housewares" 
+        component={MainFurnitureList} 
+        initialParams={{ 
+          constants: CONSTANTS.furniture.houseware, 
+          nextScreen: mainFurnitureDetail
+        }} />
+
+      <Stack.Screen 
+        name="Wall-mounted" 
+        component={MainFurnitureList} 
+        initialParams={{ 
+          constants: CONSTANTS.furniture.wallmounted, 
+          nextScreen: mainFurnitureDetail
+        }} />
+
+      <Stack.Screen 
+        name="Miscellaneous" 
+        component={MainFurnitureList} 
+        initialParams={{ 
+          constants: CONSTANTS.furniture.misc, 
+          nextScreen: mainFurnitureDetail
+        }} />
+
+      <Stack.Screen 
+        name="Rugs" 
+        component={OtherFurnitureList} 
+        initialParams={{ 
+          constants: CONSTANTS.furniture.rug, 
+          nextScreen: otherFurnitureDetail
+        }} />
+
+      <Stack.Screen 
+        name="Floorings" 
+        component={OtherFurnitureList} 
+        initialParams={{ 
+          constants: CONSTANTS.furniture.flooring, 
+          nextScreen: otherFurnitureDetail
+        }} />
+
+      <Stack.Screen 
+        name="Wallpapers" 
+        component={OtherFurnitureList} 
+        initialParams={{ 
+          constants: CONSTANTS.furniture.wallpaper, 
+          nextScreen: otherFurnitureDetail
+        }} />
+
+      {/* RECIPE */}
+      <Stack.Screen 
+        name="RecipeClothing" 
+        component={RecipeList} 
+        initialParams={{ 
+          constants: CONSTANTS.recipe.clothing, 
+          nextScreen: recipeDetail
+        }}
+        options={{ title: 'Clothing' }} />
+      <Stack.Screen 
+        name="RecipeFences" 
+        component={RecipeList} 
+        initialParams={{ 
+          constants: CONSTANTS.recipe.fence, 
+          nextScreen: recipeDetail
+        }}
+        options={{ title: 'Fences' }} />
+      <Stack.Screen 
+        name="RecipeHousewares" 
+        component={RecipeList} 
+        initialParams={{ 
+          constants: CONSTANTS.recipe.houseware, 
+          nextScreen: recipeDetail
+        }}
+        options={{ title: 'Housewares' }} />
+      <Stack.Screen 
+        name="RecipeDecorations" 
+        component={RecipeList} 
+        initialParams={{ 
+          constants: CONSTANTS.recipe.decoration, 
+          nextScreen: recipeDetail
+        }}
+        options={{ title: 'Decorations' }} />
+      <Stack.Screen 
+        name="RecipeTools" 
+        component={RecipeList} 
+        initialParams={{ 
+          constants: CONSTANTS.recipe.tool, 
+          nextScreen: recipeDetail
+        }}
+        options={{ title: 'Tools' }} />
+      <Stack.Screen 
+        name="RecipeWall-mounted" 
+        component={RecipeList} 
+        initialParams={{ 
+          constants: CONSTANTS.recipe.wallmounted, 
+          nextScreen: recipeDetail
+        }}
+        options={{ title: 'Wall-mounted' }} />
+      <Stack.Screen 
+        name="RecipeMiscellaneous" 
+        component={RecipeList} 
+        initialParams={{ 
+          constants: CONSTANTS.recipe.miscellaneous, 
+          nextScreen: recipeDetail
+        }}
+        options={{ title: 'Miscellaneous' }} />
+
+      <Stack.Screen name="ClothingDetail" component={ClothingDetail} options={{ title: 'Details' }} />
+      <Stack.Screen name="MainFurnitureDetail" component={MainFurnitureDetail} options={{ title: 'Details' }} />
+      <Stack.Screen name="OtherFurnitureDetail" component={OtherFurnitureDetail} options={{ title: 'Details' }} />
+      <Stack.Screen name="RecipeDetail" component={RecipeDetail} options={{ title: 'Details' }} />
     </Stack.Navigator>
   );
 }
@@ -93,11 +310,7 @@ export default function App() {
       <Tab.Navigator
         screenOptions={({ route }) => ({
           tabBarIcon: () => {
-            if (route.name === 'Home') {
-              return <Image
-                source={require('./assets/icons/menu/home.png')}
-                style={styles.image} />
-            } else if (route.name === 'Villagers') {
+            if (route.name === 'Villagers') {
               return <Image
                 source={require('./assets/icons/menu/villagers.png')}
                 style={styles.image} />
@@ -105,9 +318,13 @@ export default function App() {
               return <Image
                 source={require('./assets/icons/menu/museum.png')}
                 style={styles.image} />
-            } else if (route.name === 'Items') {
+            } else if (route.name === 'Songs') {
               return <Image
-                source={require('./assets/icons/menu/items.png')}
+                source={require('./assets/icons/menu/songs.png')}
+                style={styles.image} />
+            } else if (route.name === 'More') {
+              return <Image
+                source={require('./assets/icons/menu/furnitures.png')}
                 style={styles.image} />
             }
           },
@@ -127,10 +344,10 @@ export default function App() {
           }
         }}
       >
-        <Tab.Screen name="Home" component={HomeStack} />
         <Tab.Screen name="Villagers" component={VillagerStack} />
         <Tab.Screen name="Museum" component={MuseumStack} />
-        <Tab.Screen name="Items" component={VillagerStack} />
+        <Tab.Screen name="Songs" component={SongStack} />
+        <Tab.Screen name="More" component={MoreStack} />
       </Tab.Navigator>
     </NavigationContainer>
   );
@@ -139,7 +356,7 @@ export default function App() {
 const styles = StyleSheet.create({
   header: {
     fontFamily: Fonts.bold,
-    fontSize: 30,
+    fontSize: 25,
     color: Colors.white,
   },
   image: {
