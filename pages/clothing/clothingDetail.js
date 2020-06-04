@@ -239,7 +239,7 @@ const styles = StyleSheet.create({
     miscText: {
         width: '50%',
         textAlign: 'left',
-        paddingLeft: 20,
+        paddingHorizontal: 20,
     },
     varianceContainer: {
         alignItems: 'center',
