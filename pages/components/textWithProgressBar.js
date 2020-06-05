@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     },
     textStyle: {
         fontFamily: Fonts.medium,
-        fontSize: 16,
+        fontSize: Fonts.size.header,
         textAlign: 'center',
         color: Colors.white,
         paddingVertical: 10,
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
         color: Colors.white,
         paddingVertical: 10,
         paddingLeft: 20,
-        fontSize: 16,
+        fontSize: Fonts.size.text,
         width: '38%'
     }
 });

@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     },
     text: {
         fontFamily: Fonts.medium,
-        fontSize: 18,
+        fontSize: Fonts.size.text,
         paddingVertical: 10,
         paddingLeft: 10,
         color: Colors.white,

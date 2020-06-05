@@ -28,7 +28,7 @@ export default function Museum() {
                 labelStyle: {
                     color: Colors.white,
                     fontFamily: Fonts.medium,
-                    fontSize: 14,
+                    fontSize: Fonts.size.navigationBar,
                 },
                 indicatorStyle: {
                     backgroundColor: Colors.white

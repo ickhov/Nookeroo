@@ -169,7 +169,7 @@ const styles = StyleSheet.create({
     },
     header: {
         fontFamily: Fonts.medium,
-        fontSize: 20,
+        fontSize: Fonts.size.header,
         backgroundColor: Colors.background,
         color: Colors.white,
         textAlign: 'center',
@@ -177,7 +177,7 @@ const styles = StyleSheet.create({
     },
     emptyTextStyle: {
         fontFamily: Fonts.regular,
-        fontSize: 16,
+        fontSize: Fonts.size.text,
         textAlign: 'center',
         color: Colors.white,
         backgroundColor: Colors.subBackground,
@@ -199,7 +199,7 @@ const styles = StyleSheet.create({
     },
     searchBarText: {
         width: '76%',
-        fontSize: 16,
+        fontSize: Fonts.size.text,
         color: Colors.black,
         fontFamily: Fonts.medium,
     },

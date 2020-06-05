@@ -99,7 +99,8 @@ export default function RecipeDetail({ route, navigation }) {
                                 }]}
                                 textStyle={[styles.nameText, {
                                     textAlign: 'left',
-                                    fontSize: 18
+                                    fontFamily: Fonts.medium,
+                                    fontSize: Fonts.size.text,
                                 }]} />
                         </View>
                         );
@@ -154,7 +155,7 @@ const styles = StyleSheet.create({
     nameText: {
         width: '100%',
         fontFamily: Fonts.bold,
-        fontSize: 20,
+        fontSize: Fonts.size.title,
     },
     infoTitleContainer: {
         backgroundColor: Colors.secondary,
@@ -165,7 +166,7 @@ const styles = StyleSheet.create({
     },
     infoTitle: {
         fontFamily: Fonts.bold,
-        fontSize: 18,
+        fontSize: Fonts.size.text,
         padding: 10,
     },
     bellContainer: {
@@ -192,20 +193,6 @@ const styles = StyleSheet.create({
         width: '100%',
         backgroundColor: Colors.tertiary,
         padding: 10,
-    },
-    obtainableImage: {
-        width: '100%',
-        height: 40,
-        resizeMode: 'contain',
-    },
-    obtainableText: {
-        width: '100%',
-        fontSize: 18,
-        fontFamily: Fonts.medium,
-        textAlign: 'center',
-        paddingVertical: 10,
-        color: Colors.white,
-        backgroundColor: Colors.tertiary
     },
     miscContainer: {
         flexDirection: 'row',

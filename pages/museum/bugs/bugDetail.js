@@ -260,7 +260,7 @@ const styles = StyleSheet.create({
     nameText: {
         width: '100%',
         fontFamily: Fonts.bold,
-        fontSize: 20,
+        fontSize: Fonts.size.title,
     },
     descriptionContainer: {
         backgroundColor: Colors.secondary,
@@ -270,7 +270,7 @@ const styles = StyleSheet.create({
     },
     descriptionText: {
         fontFamily: Fonts.bold,
-        fontSize: 16,
+        fontSize: Fonts.size.text,
         padding: 20,
         textAlign: 'left',
     },
@@ -283,7 +283,7 @@ const styles = StyleSheet.create({
     },
     infoTitle: {
         fontFamily: Fonts.bold,
-        fontSize: 18,
+        fontSize: Fonts.size.text,
         padding: 10,
     },
     infoTextContainer: {
@@ -294,7 +294,7 @@ const styles = StyleSheet.create({
     infoText: {
         width: '95%',
         fontFamily: Fonts.medium,
-        fontSize: 16,
+        fontSize: Fonts.size.text,
         padding: 10,
         color: Colors.white,
         textAlign: 'left',

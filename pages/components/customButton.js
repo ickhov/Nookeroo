@@ -13,23 +13,15 @@
  * @flow strict-local
  */
 
+import CheckBox from '@react-native-community/checkbox';
 import React, { PureComponent } from 'react';
+import { Image, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { CachedImage } from "react-native-img-cache";
+import Icons from 'react-native-vector-icons/MaterialIcons';
 import Colors from '../../assets/colors';
 import Fonts from '../../assets/fonts';
-import Icons from 'react-native-vector-icons/MaterialIcons';
-import CONSTANTS from '../constants';
-import { CachedImage } from "react-native-img-cache";
 
-import {
-    View,
-    Text,
-    StyleSheet,
-    TouchableOpacity,
-    Platform,
-    Image,
-} from 'react-native';
 
-import CheckBox from '@react-native-community/checkbox';
 
 function convertJSONString(str) {
     var splitString = str.split(' ');
@@ -56,7 +48,7 @@ const CustomCheckBox = (props) => {
                 style={styles.checkBoxStyle}
                 value={props.hasCollected}
                 onValueChange={props.toggleCheckBox}
-                tintColors={{ true: Colors.primary, false: Colors.white }}
+                tintColors={{ true: Colors.tertiary, false: Colors.white }}
             />
 
     )
@@ -157,7 +149,7 @@ const styles = StyleSheet.create({
     },
     textStyle: {
         fontFamily: Fonts.regular,
-        fontSize: 16,
+        fontSize: Fonts.size.text,
         textAlign: 'left',
         color: Colors.white,
         paddingLeft: 20,

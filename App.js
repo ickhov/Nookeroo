@@ -340,7 +340,7 @@ export default function App() {
           labelStyle: {
             color: Colors.white,
             fontFamily: Fonts.medium,
-            fontSize: 13,
+            fontSize: Fonts.size.navigationBar,
           }
         }}
       >
@@ -356,7 +356,7 @@ export default function App() {
 const styles = StyleSheet.create({
   header: {
     fontFamily: Fonts.bold,
-    fontSize: 25,
+    fontSize: Fonts.size.title,
     color: Colors.white,
   },
   image: {

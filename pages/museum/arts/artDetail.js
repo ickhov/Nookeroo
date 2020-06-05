@@ -29,73 +29,79 @@ export default function ArtDetail({ route, navigation }) {
     };
 
     return (
-        <View style={styles.rootContainer}>
-            <View style={styles.container}>
-                <View style={styles.imageContainer}>
-                    {/* Bug Image */}
-                    <CachedImage
-                        source={{ uri: data['image_uri'] ?? data['icon_uri'] }}
-                        style={styles.image} />
-                    {/* Name Tab */}
-                    <RoundBorderText
-                        text={name}
-                        containerStyle={styles.nameContainer}
-                        textStyle={styles.nameText} />
-                </View>
-
-                {/* Price Tab */}
-                <View style={styles.bellContainer}>
-                    <View style={[styles.bellInfoContainer, {
-                        borderRightWidth: 1,
-                        borderColor: Colors.primary
-                    }]}>
+        <SafeAreaView style={{ flex: 1 }}>
+            <ScrollView
+                showsVerticalScrollIndicator={false}
+                style={styles.rootStyle}
+                contentContainerStyle={styles.rootContainer}>
+                <View style={styles.container}>
+                    <View style={styles.imageContainer}>
+                        {/* Bug Image */}
+                        <CachedImage
+                            source={{ uri: data['image_uri'] ?? data['icon_uri'] }}
+                            style={styles.image} />
+                        {/* Name Tab */}
                         <RoundBorderText
-                            text="Buy"
-                            containerStyle={styles.bellTitleContainer}
-                            textStyle={styles.infoTitle} />
-                        <TextWithImages
-                            containerStyle={styles.bellInfo}
-                            leftImageSource={require('../../../assets/icons/miscellaneous/redd.png')}
-                            rightImageSource={require('../../../assets/icons/miscellaneous/bells.png')}
-                            text={data['buy-price']} />
+                            text={name}
+                            containerStyle={styles.nameContainer}
+                            textStyle={styles.nameText} />
                     </View>
 
-                    <View style={[styles.bellInfoContainer, {
-                        borderLeftWidth: 1,
-                        borderColor: Colors.primary
-                    }]}>
-                        <RoundBorderText
-                            text="Sell"
-                            containerStyle={styles.bellTitleContainer}
-                            textStyle={styles.infoTitle} />
-                        <TextWithImages
-                            containerStyle={styles.bellInfo}
-                            leftImageSource={require('../../../assets/icons/miscellaneous/cranny.png')}
-                            rightImageSource={require('../../../assets/icons/miscellaneous/bells.png')}
-                            text={data['sell-price']} />
+                    {/* Price Tab */}
+                    <View style={styles.bellContainer}>
+                        <View style={[styles.bellInfoContainer, {
+                            borderRightWidth: 1,
+                            borderColor: Colors.primary
+                        }]}>
+                            <RoundBorderText
+                                text="Buy"
+                                containerStyle={styles.bellTitleContainer}
+                                textStyle={styles.infoTitle} />
+                            <TextWithImages
+                                containerStyle={styles.bellInfo}
+                                leftImageSource={require('../../../assets/icons/miscellaneous/redd.png')}
+                                rightImageSource={require('../../../assets/icons/miscellaneous/bells.png')}
+                                text={data['buy-price']} />
+                        </View>
+
+                        <View style={[styles.bellInfoContainer, {
+                            borderLeftWidth: 1,
+                            borderColor: Colors.primary
+                        }]}>
+                            <RoundBorderText
+                                text="Sell"
+                                containerStyle={styles.bellTitleContainer}
+                                textStyle={styles.infoTitle} />
+                            <TextWithImages
+                                containerStyle={styles.bellInfo}
+                                leftImageSource={require('../../../assets/icons/miscellaneous/cranny.png')}
+                                rightImageSource={require('../../../assets/icons/miscellaneous/bells.png')}
+                                text={data['sell-price']} />
+                        </View>
+
                     </View>
 
+                    {/* Authenticity Tab */}
+                    <ContentWithHeader title={'Authenticity'}
+                        text={data['hasFake'] ? 'CAN BE FAKE' : 'ALWAYS REAL'}
+                        containerStyle={styles.availabilityContainer}
+                        titleContainerStyle={styles.availabilityTitle}
+                        textContainerStyle={styles.availabilityText} />
                 </View>
-
-                {/* Authenticity Tab */}
-                <ContentWithHeader title={'Authenticity'}
-                    text={data['hasFake'] ? 'CAN BE FAKE' : 'ALWAYS REAL'}
-                    containerStyle={styles.availabilityContainer}
-                    titleContainerStyle={styles.availabilityTitle}
-                    textContainerStyle={styles.availabilityText} />
-            </View>
-        </View>
+            </ScrollView>
+        </SafeAreaView>
     );
 
 }
 
 const styles = StyleSheet.create({
-    rootContainer: {
-        flex: 1,
-        justifyContent: 'flex-start',
-        alignItems: 'center',
+    rootStyle: {
         backgroundColor: Colors.background,
         width: '100%',
+    },
+    rootContainer: {
+        justifyContent: 'flex-start',
+        alignItems: 'center',
     },
     container: {
         justifyContent: 'flex-start',
@@ -127,11 +133,11 @@ const styles = StyleSheet.create({
     nameText: {
         width: '100%',
         fontFamily: Fonts.bold,
-        fontSize: 20,
+        fontSize: Fonts.size.title,
     },
     infoTitle: {
         fontFamily: Fonts.bold,
-        fontSize: 18,
+        fontSize: Fonts.size.text,
         padding: 10,
     },
     bellContainer: {

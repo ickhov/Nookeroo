@@ -127,11 +127,11 @@ const styles = StyleSheet.create({
     nameText: {
         width: '100%',
         fontFamily: Fonts.bold,
-        fontSize: 20,
+        fontSize: Fonts.size.title,
     },
     infoTitle: {
         fontFamily: Fonts.bold,
-        fontSize: 18,
+        fontSize: Fonts.size.text,
         padding: 10,
     },
     bellContainer: {

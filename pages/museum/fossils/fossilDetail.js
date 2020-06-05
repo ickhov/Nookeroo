@@ -28,51 +28,57 @@ export default function FossilDetail({ route, navigation }) {
     };
 
     return (
-        <View style={styles.rootContainer}>
-            <View style={styles.container}>
-                <View style={styles.imageContainer}>
-                    {/* Fossil Image */}
-                    <CachedImage
-                        source={{ uri: data['image_uri'] ?? data['icon_uri'] }}
-                        style={styles.image} />
-                    {/* Name Tab */}
+        <SafeAreaView style={{ flex: 1 }}>
+            <ScrollView
+                showsVerticalScrollIndicator={false}
+                style={styles.rootStyle}
+                contentContainerStyle={styles.rootContainer}>
+                <View style={styles.container}>
+                    <View style={styles.imageContainer}>
+                        {/* Fossil Image */}
+                        <CachedImage
+                            source={{ uri: data['image_uri'] ?? data['icon_uri'] }}
+                            style={styles.image} />
+                        {/* Name Tab */}
+                        <RoundBorderText
+                            text={name}
+                            containerStyle={styles.nameContainer}
+                            textStyle={styles.nameText} />
+                    </View>
+
+                    {/* Price Tab */}
                     <RoundBorderText
-                        text={name}
-                        containerStyle={styles.nameContainer}
-                        textStyle={styles.nameText} />
-                </View>
+                        text="Sell"
+                        containerStyle={styles.infoTitleContainer}
+                        textStyle={styles.infoTitle} />
+                    <View style={styles.bellContainer}>
+                        <TextWithImages
+                            containerStyle={{ width: '45%' }}
+                            leftImageSource={require('../../../assets/icons/miscellaneous/cranny.png')}
+                            rightImageSource={require('../../../assets/icons/miscellaneous/bells.png')}
+                            text={data.price} />
+                    </View>
 
-                {/* Price Tab */}
-                <RoundBorderText
-                    text="Sell"
-                    containerStyle={styles.infoTitleContainer}
-                    textStyle={styles.infoTitle} />
-                <View style={styles.bellContainer}>
-                    <TextWithImages
-                        containerStyle={{ width: '45%' }}
-                        leftImageSource={require('../../../assets/icons/miscellaneous/cranny.png')}
-                        rightImageSource={require('../../../assets/icons/miscellaneous/bells.png')}
-                        text={data.price} />
+                    {/* Blathers' Description Tab */}
+                    <RoundBorderText
+                        text={data['museum-phrase'] + '\n' + `\t\t\t\t\t\t\t - Blathers`}
+                        containerStyle={styles.descriptionContainer}
+                        textStyle={styles.descriptionText} />
                 </View>
-
-                {/* Blathers' Description Tab */}
-                <RoundBorderText
-                    text={data['museum-phrase'] + '\n' + `\t\t\t\t\t\t\t - Blathers`}
-                    containerStyle={styles.descriptionContainer}
-                    textStyle={styles.descriptionText} />
-            </View>
-        </View>
+            </ScrollView>
+        </SafeAreaView>
     );
 
 }
 
 const styles = StyleSheet.create({
-    rootContainer: {
-        flex: 1,
-        justifyContent: 'flex-start',
-        alignItems: 'center',
+    rootStyle: {
         backgroundColor: Colors.background,
         width: '100%',
+    },
+    rootContainer: {
+        justifyContent: 'flex-start',
+        alignItems: 'center',
     },
     container: {
         justifyContent: 'flex-start',
@@ -104,7 +110,7 @@ const styles = StyleSheet.create({
     nameText: {
         width: '100%',
         fontFamily: Fonts.bold,
-        fontSize: 20,
+        fontSize: Fonts.size.title,
     },
     descriptionContainer: {
         backgroundColor: Colors.secondary,
@@ -114,7 +120,7 @@ const styles = StyleSheet.create({
     },
     descriptionText: {
         fontFamily: Fonts.bold,
-        fontSize: 16,
+        fontSize: Fonts.size.text,
         padding: 20,
         textAlign: 'left',
     },
@@ -127,7 +133,7 @@ const styles = StyleSheet.create({
     },
     infoTitle: {
         fontFamily: Fonts.bold,
-        fontSize: 18,
+        fontSize: Fonts.size.text,
         padding: 10,
     },
     bellContainer: {

@@ -14,14 +14,9 @@
  */
 
 import React from 'react';
+import { Image, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import Fonts from '../../assets/fonts';
 
-import {
-    View,
-    Text,
-    StyleSheet,
-    TouchableOpacity,
-    Image,
-} from 'react-native';
 
 export default function ImageButtonRow({
     style,
@@ -78,7 +73,7 @@ const styles = StyleSheet.create({
     },
     textStyle: {
         width: '40%',
-        fontSize: 16,
+        fontSize: Fonts.size.text,
         textAlign: 'left',
         color: '#fff',
     }

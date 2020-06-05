@@ -72,13 +72,13 @@ const styles = StyleSheet.create({
   },
   popUpTitle: {
     fontFamily: Fonts.bold,
-    fontSize: 20,
+    fontSize: Fonts.size.header,
     textAlign: 'center',
     color: Colors.black
   },
   popUpText: {
     fontFamily: Fonts.regular,
-    fontSize: 16,
+    fontSize: Fonts.size.text,
     textAlign: 'center',
     color: Colors.black
   },
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
   },
   popUpBtnText: {
     fontFamily: Fonts.regular,
-    fontSize: 16,
+    fontSize: Fonts.size.text,
     textAlign: 'center',
     color: Colors.white
   }

@@ -11,7 +11,7 @@
 import AsyncStorage from '@react-native-community/async-storage';
 import NetInfo from "@react-native-community/netinfo";
 import React, { useCallback, useEffect, useState } from 'react';
-import { SafeAreaView, SectionList, StyleSheet, Text, View, TextInput, FlatList, Keyboard } from 'react-native';
+import { FlatList, Keyboard, SafeAreaView, SectionList, StyleSheet, Text, TextInput, View } from 'react-native';
 import Icons from 'react-native-vector-icons/MaterialIcons';
 import Colors from '../../assets/colors';
 import Fonts from '../../assets/fonts';
@@ -349,7 +349,7 @@ export default function RecipeList({ route, navigation }) {
                                 <Text style={{
                                     textAlign: 'center',
                                     fontFamily: Fonts.medium,
-                                    fontSize: 20,
+                                    fontSize: Fonts.size.title,
                                     color: Colors.gray
                                 }}>Loading</Text>
                             </Icons.Button>
@@ -362,7 +362,7 @@ export default function RecipeList({ route, navigation }) {
                                 <Text style={{
                                     textAlign: 'center',
                                     fontFamily: Fonts.medium,
-                                    fontSize: 20,
+                                    fontSize: Fonts.size.title,
                                     color: Colors.gray
                                 }}>No Internet Connection</Text>
                             </Icons.Button>
@@ -383,7 +383,7 @@ const styles = StyleSheet.create({
     },
     header: {
         fontFamily: Fonts.medium,
-        fontSize: 20,
+        fontSize: Fonts.size.header,
         backgroundColor: Colors.background,
         color: Colors.white,
         textAlign: 'center',
@@ -391,7 +391,7 @@ const styles = StyleSheet.create({
     },
     emptyTextStyle: {
         fontFamily: Fonts.regular,
-        fontSize: 16,
+        fontSize: Fonts.size.text,
         textAlign: 'center',
         color: Colors.white,
         backgroundColor: Colors.subBackground,
@@ -413,7 +413,7 @@ const styles = StyleSheet.create({
     },
     searchBarText: {
         width: '76%',
-        fontSize: 16,
+        fontSize: Fonts.size.text,
         color: Colors.black,
         fontFamily: Fonts.medium,
     },

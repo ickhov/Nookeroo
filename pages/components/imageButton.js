@@ -15,16 +15,12 @@
  */
 
 import React, { PureComponent } from 'react';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { CachedImage } from "react-native-img-cache";
+import Fonts from '../../assets/fonts';
 import CONSTANTS from '../constants';
 
-import {
-    View,
-    Text,
-    StyleSheet,
-    TouchableOpacity,
-} from 'react-native';
 
-import { CachedImage } from "react-native-img-cache";
 
 export default class ImageButton extends PureComponent {
 
@@ -75,7 +71,7 @@ const styles = StyleSheet.create({
         height: 10,
     },
     textStyle: {
-        fontSize: 16,
+        fontSize: Fonts.size.text,
         textAlign: 'center',
         color: '#fff',
     }
