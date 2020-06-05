@@ -47,7 +47,7 @@ const CustomCheckBox = (props) => {
             <CheckBox
                 style={styles.checkBoxStyle}
                 value={props.hasCollected}
-                onValueChange={props.toggleCheckBox}
+                onValueChange={props.onPress}
                 tintColors={{ true: Colors.tertiary, false: Colors.white }}
             />
 
