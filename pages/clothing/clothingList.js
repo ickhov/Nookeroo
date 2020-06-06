@@ -409,12 +409,12 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     searchBarText: {
-        width: '76%',
+        width: '73%',
         fontSize: Fonts.size.text,
         color: Colors.black,
         fontFamily: Fonts.medium,
     },
     searchBarCancel: {
-        width: '12%',
+        width: '15%',
     },
 });

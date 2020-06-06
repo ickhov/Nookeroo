@@ -183,27 +183,4 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.subBackground,
         padding: 20
     },
-    searchBarContainer: {
-        height: 40,
-        flexDirection: 'row',
-        justifyContent: 'space-evenly',
-        alignItems: 'center',
-        backgroundColor: Colors.white,
-        borderRadius: 20,
-        marginTop: 10,
-        marginHorizontal: 10,
-    },
-    searchBarIcon: {
-        width: '12%',
-        textAlign: 'center',
-    },
-    searchBarText: {
-        width: '76%',
-        fontSize: Fonts.size.text,
-        color: Colors.black,
-        fontFamily: Fonts.medium,
-    },
-    searchBarCancel: {
-        width: '12%',
-    },
 });
