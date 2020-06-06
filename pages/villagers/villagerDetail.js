@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
     nameText: {
         width: '100%',
         fontFamily: Fonts.bold,
-        fontSize: Fonts.size.title,
+        fontSize: Fonts.size.header,
         backgroundColor: Colors.tertiary,
         textAlign: 'center',
         padding: 10,

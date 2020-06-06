@@ -8,7 +8,7 @@ const Fonts = {
     size: {
         title: Platform.OS === 'ios' ? 20 : 20,
         header: Platform.OS === 'ios' ? 18 : 16,
-        text: Platform.OS === 'ios' ? 17 : 15,
+        text: Platform.OS === 'ios' ? 17 : 14,
         navigationBar: Platform.OS === 'ios' ? 14 : 12,
     }
 }

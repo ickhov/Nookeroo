@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
     nameText: {
         width: '100%',
         fontFamily: Fonts.bold,
-        fontSize: Fonts.size.title,
+        fontSize: Fonts.size.header,
     },
     infoTitleContainer: {
         backgroundColor: Colors.secondary,
