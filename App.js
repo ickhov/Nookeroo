@@ -5,50 +5,48 @@
  * @flow strict-local
  */
 
-import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import React from 'react';
+import { Image, StyleSheet } from 'react-native';
 import Colors from './assets/colors';
 import Fonts from './assets/fonts';
+import ClothingDetail from './pages/clothing/clothingDetail';
+// Clothing Stack
+import ClothingList from './pages/clothing/clothingList';
 import CustomStatusBar from './pages/components/statusBar';
 import CONSTANTS from './pages/constants';
-
-// Villager Stack
-import Villagers from './pages/villagers/villagers';
-import VillagerDetail from './pages/villagers/villagerDetail';
-
-// Museum Stack
-import Museum from './pages/museum/museum';
+import MainFurnitureDetail from './pages/furniture/mainFurnitureDetail';
+// Furniture Stack
+import MainFurnitureList from './pages/furniture/mainFurnitureList';
+import OtherFurnitureDetail from './pages/furniture/otherFurnitureDetail';
+import OtherFurnitureList from './pages/furniture/otherFurnitureList';
+// More Stack
+import More from './pages/more';
+import ArtDetail from './pages/museum/arts/artDetail';
 import BugDetail from './pages/museum/bugs/bugDetail';
 import FishDetail from './pages/museum/fishes/fishDetail';
 import FossilDetail from './pages/museum/fossils/fossilDetail';
-import ArtDetail from './pages/museum/arts/artDetail';
-
-// Collections Stack
-import Songs from './pages/songs/songs';
-import SongDetail from './pages/songs/songDetail';
-
-// More Stack
-import More from './pages/more';
-
-// Clothing Stack
-import ClothingList from './pages/clothing/clothingList';
-import ClothingDetail from './pages/clothing/clothingDetail';
-
+// Museum Stack
+import Museum from './pages/museum/museum';
+import RecipeDetail from './pages/recipes/recipeDetail';
 // Recipe Stack
 import RecipeList from './pages/recipes/recipeList';
-import RecipeDetail from './pages/recipes/recipeDetail';
+import SongDetail from './pages/songs/songDetail';
+// Collections Stack
+import Songs from './pages/songs/songs';
+import VillagerDetail from './pages/villagers/villagerDetail';
+// Villager Stack
+import Villagers from './pages/villagers/villagers';
 
-// Furniture Stack
-import MainFurnitureList from './pages/furnitures/mainFurnitureList';
-import MainFurnitureDetail from './pages/furnitures/mainFurnitureDetail';
-import OtherFurnitureList from './pages/furnitures/otherFurnitureList';
-import OtherFurnitureDetail from './pages/furnitures/otherFurnitureDetail';
 
-import {
-  StyleSheet, Image,
-} from 'react-native';
+
+
+
+
+
+
 
 const Stack = createStackNavigator();
 
@@ -324,7 +322,7 @@ export default function App() {
                 style={styles.image} />
             } else if (route.name === 'More') {
               return <Image
-                source={require('./assets/icons/menu/furnitures.png')}
+                source={require('./assets/icons/menu/more.png')}
                 style={styles.image} />
             }
           },
@@ -360,7 +358,7 @@ const styles = StyleSheet.create({
     color: Colors.white,
   },
   image: {
-    width: 30,
-    height: 30,
+    width: 27,
+    height: 27,
   },
 });

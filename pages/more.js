@@ -107,7 +107,7 @@ export default function More({ navigation }) {
                 },
                 {
                     name: 'Housewares',
-                    image: require('../assets/icons/menu/furnitures.png')
+                    image: require('../assets/icons/menu/furniture.png')
                 },
                 {
                     name: 'Rugs',
@@ -115,7 +115,7 @@ export default function More({ navigation }) {
                 },
                 {
                     name: 'Wall-mounted',
-                    image: require('../assets/icons/menu/furnitures.png')
+                    image: require('../assets/icons/menu/furniture.png')
                 },
                 {
                     name: 'Wallpapers',
@@ -123,7 +123,7 @@ export default function More({ navigation }) {
                 },
                 {
                     name: 'Miscellaneous',
-                    image: require('../assets/icons/menu/furnitures.png')
+                    image: require('../assets/icons/menu/furniture.png')
                 }
             ]
         }

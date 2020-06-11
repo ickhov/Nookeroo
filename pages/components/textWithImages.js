@@ -82,6 +82,7 @@ const styles = StyleSheet.create({
         fontSize: Fonts.size.text,
         paddingVertical: 10,
         paddingLeft: 10,
+        paddingRight: 5,
         color: Colors.white,
         textAlign: 'center',
     },
