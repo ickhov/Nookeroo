@@ -38,7 +38,7 @@ export default class TextWithProgressBar extends PureComponent {
                         width: '35%'
                     }}
                     progress={this.props.progress}
-                    ProgressBarColor={Colors.tertiary} />
+                    progressBarColor={Colors.tertiary} />
                 <Text style={styles.progressTextStyle}>{this.props.progressText}</Text>
             </View>
         );

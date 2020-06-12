@@ -34,7 +34,7 @@ export default function VillagerDetail({ route, navigation }) {
                     <Text style={styles.nameText}>{route.params.name}</Text>
 
                     {/* Species Tab */}
-                    <ContentWithHeader title={"SPECIES"}
+                    <ContentWithHeader title={"Species"}
                         text={data.species}
                         containerStyle={[styles.infoContainer, {
                             marginTop: 20,
@@ -42,25 +42,25 @@ export default function VillagerDetail({ route, navigation }) {
                         titleContainerStyle={styles.infoTitle}
                         textContainerStyle={styles.infoText} />
                     {/* Personality Tab */}
-                    <ContentWithHeader title={"PERSONALITY"}
+                    <ContentWithHeader title={"Personality"}
                         text={data.personality}
                         containerStyle={styles.infoContainer}
                         titleContainerStyle={styles.infoTitle}
                         textContainerStyle={styles.infoText} />
                     {/* Birthday Tab */}
-                    <ContentWithHeader title={"BIRTHDAY"}
+                    <ContentWithHeader title={"Birthday"}
                         text={data['birthday-string']}
                         containerStyle={styles.infoContainer}
                         titleContainerStyle={styles.infoTitle}
                         textContainerStyle={styles.infoText} />
                     {/* Gender Tab */}
-                    <ContentWithHeader title={"GENDER"}
+                    <ContentWithHeader title={"Gender"}
                         text={data.gender}
                         containerStyle={styles.infoContainer}
                         titleContainerStyle={styles.infoTitle}
                         textContainerStyle={styles.infoText} />
                     {/* Catchphrase Tab */}
-                    <ContentWithHeader title={"CATCHPHRASE"}
+                    <ContentWithHeader title={"Catchphrase"}
                         text={`"${data['catch-phrase']}"`}
                         containerStyle={[styles.infoContainer, {
                             marginBottom: 20,

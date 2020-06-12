@@ -346,7 +346,7 @@ export default function VillagerGuide({ navigation }) {
 const styles = StyleSheet.create({
     root: {
         flex: 1,
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         alignItems: 'center',
         backgroundColor: Colors.background,
     },

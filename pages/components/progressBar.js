@@ -26,14 +26,20 @@ export default class ProgressBar extends Component {
     constructor(props) {
         super(props);
 
-        this.animation = new Animated.Value(0);
+        this.state = {
+            oldProgress: 0
+        }
+
+        this.animation = new Animated.Value(this.state.oldProgress);
         this.animating = this.animating.bind(this);
     }
 
     animating = () => {
+        console.log(this.state.oldProgress)
+        this.setState({ oldProgress: this.props.progress })
         Animated.timing(this.animation, {
             toValue: this.props.progress,
-            duration: 1000,
+            duration: this.props.duration ?? 1000,
             useNativeDriver: false,
         }).start();
     }
@@ -57,7 +63,7 @@ export default class ProgressBar extends Component {
 
         return (
             <View style={[styles.progressBarContainer, this.props.containerStyle]}>
-                <Animated.View style={[StyleSheet.absoluteFill], { backgroundColor: this.props.ProgressBarColor ?? Colors.primary, width }} />
+                <Animated.View style={[StyleSheet.absoluteFill], { backgroundColor: this.props.progressBarColor ?? Colors.primary, width }} />
             </View>
         );
     }
