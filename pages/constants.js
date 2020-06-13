@@ -1,4 +1,5 @@
 const CONSTANTS = {
+    completed: 'You completed this collection!',
     art: {
         text: 'Arts',
         collectedKey: 'art-collected',

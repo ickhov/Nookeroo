@@ -175,6 +175,13 @@ export default function MainFurnitureList({ route, navigation }) {
             })
         }
 
+        if (missingData.length == 0) {
+            missingData.push({
+                id: -1,
+                text: CONSTANTS.completed
+            })
+        }
+
         if (totalLength > 0) {
             setProgressData({
                 collected: collectedLength,

@@ -161,6 +161,13 @@ export default function VillagerGuide({ navigation }) {
             })
         }
 
+        if (missingData.length == 0) {
+            missingData.push({
+                id: -1,
+                text: "That's odd. How do you have every villager on your island?"
+            })
+        }
+
         if (totalLength > 0) {
             setData([
                 {
