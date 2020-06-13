@@ -37,13 +37,18 @@ export default function MainFurnitureList({ route, navigation }) {
     const [showAlert, setShowAlert] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
     const [isConnected, setIsConnected] = useState(true);
+    const [requireUpdate, setRequireUpdate] = useState(false);
 
-    const detailSelected = useCallback(item => {
+    const detailSelected = item => {
         navigation.navigate(route.params.nextScreen, {
             name: item[0].name['name-USen'],
             data: item
         })
-    }, []);
+    };
+
+    const goToLoadingScreen = _ => {
+        navigation.navigate('LoadingScreen')
+    };
 
     const checkBoxToggle = useCallback((item) => {
         // no data if first toggled, set to true if not in the list
@@ -92,21 +97,18 @@ export default function MainFurnitureList({ route, navigation }) {
         }
     }, []);
 
-    const storeAll = useCallback(async (value) => {
-        try {
-            const values = JSON.stringify(value);
-            await AsyncStorage.setItem(constants.allKey, values);
-        } catch (e) {
-            error(CONSTANTS.error.storing);
-        }
-    }, []);
-
     // only use when there's no internet
     const getAll = useCallback(async () => {
         try {
             // store the list as string and count separately for faster reading
             const values = await AsyncStorage.getItem(constants.allKey);
-            setRawData(values != null ? JSON.parse(values) : []);
+            if (values != null) {
+                setRawData(JSON.parse(values).sort(compare))
+            } else {
+                // no data so need to load them
+                setRequireUpdate(true);
+                setRawData([]);
+            }
         } catch (e) {
             error(CONSTANTS.error.retrieving);
         }
@@ -125,39 +127,25 @@ export default function MainFurnitureList({ route, navigation }) {
         return 0;
     }
 
-    const fetchData = useCallback(() => {
-        {/* Fetch bug data from Nookeroo API */ }
-        fetch(constants.url)
-            .then((response) => response.json())
-            .then((json) => {
-                // set the data to use to populate the data after filtering
-                const array = Object.values(json);
-
-                array.sort(compare);
-
-                setRawData(array);
-                storeAll(array);
-            })
-            .catch(_ => getAll());
-    }, []);
-
     useEffect(() => {
         {/* Fetch Data form server and storage (if any) */ }
         // Subscribe
         const unsubscribe = NetInfo.addEventListener(state => {
             setIsConnected(state.isConnected);
-            if (state.isConnected) {
-                fetchData();
+
+            // if there's internet and we need to update
+            // then navigate to loading screen
+            if (state.isConnected && requireUpdate) {
+                goToLoadingScreen();
             } else {
                 getAll();
+                getCollectedList();
             }
-
-            getCollectedList();
         });
 
         // Unsubscribe
         return unsubscribe;
-    }, []);
+    }, [requireUpdate]);
 
     useEffect(() => {
         {/* Populate the tables */ }

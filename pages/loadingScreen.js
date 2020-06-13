@@ -8,11 +8,9 @@
 import AsyncStorage from '@react-native-community/async-storage';
 import NetInfo from "@react-native-community/netinfo";
 import React, { useCallback, useEffect, useState } from 'react';
-import { Image, SafeAreaView, SectionList, StyleSheet, Text, TextInput, View } from 'react-native';
-import Icons from 'react-native-vector-icons/MaterialIcons';
+import { Image, SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import Colors from '../assets/colors';
 import Fonts from '../assets/fonts';
-import CustomButton from './components/customButton';
 import PopUpDialog from './components/popUpDialog';
 import ProgressBar from './components/progressBar';
 import CONSTANTS from './constants';
@@ -24,7 +22,9 @@ export default function LoadingScreen({ route, navigation }) {
     const [percent, setPercent] = useState(0.0);
     const [completedCount, setCompletedCount] = useState(0);
     const [isFetching, setIsFetching] = useState(false);
-    const [isFinished, setIsFinished] = useState(false);
+    const [showAlert, setShowAlert] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
+    const [isConnected, setIsConnected] = useState(true);
 
     const constants = [
         // VILLAGERS
@@ -62,13 +62,6 @@ export default function LoadingScreen({ route, navigation }) {
         CONSTANTS.recipe.wallmounted,
         CONSTANTS.recipe.miscellaneous,
     ];
-    const [showAlert, setShowAlert] = useState(false);
-    const [errorMessage, setErrorMessage] = useState('');
-    const [isConnected, setIsConnected] = useState(true);
-
-    const finishLoadingData = useCallback(_ => {
-        navigation.navigate(route.params.nextScreen)
-    }, []);
 
     const error = (message) => {
         setErrorMessage(message);
@@ -111,13 +104,12 @@ export default function LoadingScreen({ route, navigation }) {
         {/* Fetch Data form server and storage (if any) */ }
         // Subscribe
         const unsubscribe = NetInfo.addEventListener(state => {
+            setIsConnected(state.isConnected);
             if (state.isConnected && !isFetching) {
-                setIsConnected(true);
                 setIsFetching(true);
                 fetchData();
-            } else if (!isFetching) {
-                setIsConnected(false);
-                setIsFinished(true);
+            } else if (!state.isConnected) {
+                navigation.navigate('Main');
             }
         });
 
@@ -126,21 +118,14 @@ export default function LoadingScreen({ route, navigation }) {
     }, [isFetching]);
 
     useEffect(() => {
-        {/* Navigate to the main screen */ }
-        if (isFinished) {
-            navigation.navigate(route.params.nextScreen);
-        }
-    }, [isFinished]);
-
-    useEffect(() => {
         // set the percent every time the completed count changes
 
         const percentage = ((completedCount * 1.0 / total) * 100).toFixed(2);
         setPercent(percentage);
         
-        if (percentage == 100.00) {
-            setTimeout(function(){
-                setIsFinished(true);
+        if (completedCount == total) {
+            setTimeout(_ => {
+                navigation.navigate('Main');
             }, 2000);
             
         }

@@ -35,7 +35,6 @@ export default class ProgressBar extends Component {
     }
 
     animating = () => {
-        console.log(this.state.oldProgress)
         this.setState({ oldProgress: this.props.progress })
         Animated.timing(this.animation, {
             toValue: this.props.progress,

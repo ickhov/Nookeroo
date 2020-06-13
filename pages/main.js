@@ -111,173 +111,173 @@ const MoreStack = () => {
       <Stack.Screen name="More" component={More} />
 
       {/* CLOTHING */}
-      <Stack.Screen 
-        name="Accessories" 
-        component={ClothingList} 
-        initialParams={{ 
-          constants: CONSTANTS.clothing.accessories, 
+      <Stack.Screen
+        name="Accessories"
+        component={ClothingList}
+        initialParams={{
+          constants: CONSTANTS.clothing.accessories,
           nextScreen: clothingDetail
         }} />
-      <Stack.Screen 
-        name="Bags" 
-        component={ClothingList} 
-        initialParams={{ 
-          constants: CONSTANTS.clothing.bag, 
-          nextScreen: clothingDetail 
+      <Stack.Screen
+        name="Bags"
+        component={ClothingList}
+        initialParams={{
+          constants: CONSTANTS.clothing.bag,
+          nextScreen: clothingDetail
         }} />
-      <Stack.Screen 
-        name="Bottoms" 
-        component={ClothingList} 
-        initialParams={{ 
-          constants: CONSTANTS.clothing.bottoms, 
-          nextScreen: clothingDetail 
+      <Stack.Screen
+        name="Bottoms"
+        component={ClothingList}
+        initialParams={{
+          constants: CONSTANTS.clothing.bottoms,
+          nextScreen: clothingDetail
         }} />
-      <Stack.Screen 
-        name="Dresses" 
-        component={ClothingList} 
-        initialParams={{ 
-          constants: CONSTANTS.clothing.dress, 
-          nextScreen: clothingDetail 
+      <Stack.Screen
+        name="Dresses"
+        component={ClothingList}
+        initialParams={{
+          constants: CONSTANTS.clothing.dress,
+          nextScreen: clothingDetail
         }} />
-      <Stack.Screen 
-        name="Hats" 
-        component={ClothingList} 
-        initialParams={{ 
-          constants: CONSTANTS.clothing.hat, 
-          nextScreen: clothingDetail 
+      <Stack.Screen
+        name="Hats"
+        component={ClothingList}
+        initialParams={{
+          constants: CONSTANTS.clothing.hat,
+          nextScreen: clothingDetail
         }} />
-      <Stack.Screen 
-        name="Shoes" 
-        component={ClothingList} 
-        initialParams={{ 
-          constants: CONSTANTS.clothing.shoes, 
-          nextScreen: clothingDetail 
+      <Stack.Screen
+        name="Shoes"
+        component={ClothingList}
+        initialParams={{
+          constants: CONSTANTS.clothing.shoes,
+          nextScreen: clothingDetail
         }} />
-      <Stack.Screen 
-        name="Socks" 
-        component={ClothingList} 
-        initialParams={{ 
-          constants: CONSTANTS.clothing.socks, 
-          nextScreen: clothingDetail 
+      <Stack.Screen
+        name="Socks"
+        component={ClothingList}
+        initialParams={{
+          constants: CONSTANTS.clothing.socks,
+          nextScreen: clothingDetail
         }} />
-      <Stack.Screen 
-        name="Tops" 
-        component={ClothingList} 
-        initialParams={{ 
-          constants: CONSTANTS.clothing.tops, 
-          nextScreen: clothingDetail 
+      <Stack.Screen
+        name="Tops"
+        component={ClothingList}
+        initialParams={{
+          constants: CONSTANTS.clothing.tops,
+          nextScreen: clothingDetail
         }} />
-      <Stack.Screen 
-        name="Umbrellas" 
-        component={ClothingList} 
-        initialParams={{ 
-          constants: CONSTANTS.clothing.umbrella, 
-          nextScreen: clothingDetail 
+      <Stack.Screen
+        name="Umbrellas"
+        component={ClothingList}
+        initialParams={{
+          constants: CONSTANTS.clothing.umbrella,
+          nextScreen: clothingDetail
         }} />
 
       {/* FURNITURE */}
-      <Stack.Screen 
-        name="Housewares" 
-        component={MainFurnitureList} 
-        initialParams={{ 
-          constants: CONSTANTS.furniture.houseware, 
+      <Stack.Screen
+        name="Housewares"
+        component={MainFurnitureList}
+        initialParams={{
+          constants: CONSTANTS.furniture.houseware,
           nextScreen: mainFurnitureDetail
         }} />
 
-      <Stack.Screen 
-        name="Wall-mounted" 
-        component={MainFurnitureList} 
-        initialParams={{ 
-          constants: CONSTANTS.furniture.wallmounted, 
+      <Stack.Screen
+        name="Wall-mounted"
+        component={MainFurnitureList}
+        initialParams={{
+          constants: CONSTANTS.furniture.wallmounted,
           nextScreen: mainFurnitureDetail
         }} />
 
-      <Stack.Screen 
-        name="Miscellaneous" 
-        component={MainFurnitureList} 
-        initialParams={{ 
-          constants: CONSTANTS.furniture.misc, 
+      <Stack.Screen
+        name="Miscellaneous"
+        component={MainFurnitureList}
+        initialParams={{
+          constants: CONSTANTS.furniture.misc,
           nextScreen: mainFurnitureDetail
         }} />
 
-      <Stack.Screen 
-        name="Rugs" 
-        component={OtherFurnitureList} 
-        initialParams={{ 
-          constants: CONSTANTS.furniture.rug, 
+      <Stack.Screen
+        name="Rugs"
+        component={OtherFurnitureList}
+        initialParams={{
+          constants: CONSTANTS.furniture.rug,
           nextScreen: otherFurnitureDetail
         }} />
 
-      <Stack.Screen 
-        name="Floorings" 
-        component={OtherFurnitureList} 
-        initialParams={{ 
-          constants: CONSTANTS.furniture.flooring, 
+      <Stack.Screen
+        name="Floorings"
+        component={OtherFurnitureList}
+        initialParams={{
+          constants: CONSTANTS.furniture.flooring,
           nextScreen: otherFurnitureDetail
         }} />
 
-      <Stack.Screen 
-        name="Wallpapers" 
-        component={OtherFurnitureList} 
-        initialParams={{ 
-          constants: CONSTANTS.furniture.wallpaper, 
+      <Stack.Screen
+        name="Wallpapers"
+        component={OtherFurnitureList}
+        initialParams={{
+          constants: CONSTANTS.furniture.wallpaper,
           nextScreen: otherFurnitureDetail
         }} />
 
       {/* RECIPE */}
-      <Stack.Screen 
-        name="RecipeClothing" 
-        component={RecipeList} 
-        initialParams={{ 
-          constants: CONSTANTS.recipe.clothing, 
+      <Stack.Screen
+        name="RecipeClothing"
+        component={RecipeList}
+        initialParams={{
+          constants: CONSTANTS.recipe.clothing,
           nextScreen: recipeDetail
         }}
         options={{ title: 'Clothing' }} />
-      <Stack.Screen 
-        name="RecipeFences" 
-        component={RecipeList} 
-        initialParams={{ 
-          constants: CONSTANTS.recipe.fence, 
+      <Stack.Screen
+        name="RecipeFences"
+        component={RecipeList}
+        initialParams={{
+          constants: CONSTANTS.recipe.fence,
           nextScreen: recipeDetail
         }}
         options={{ title: 'Fences' }} />
-      <Stack.Screen 
-        name="RecipeHousewares" 
-        component={RecipeList} 
-        initialParams={{ 
-          constants: CONSTANTS.recipe.houseware, 
+      <Stack.Screen
+        name="RecipeHousewares"
+        component={RecipeList}
+        initialParams={{
+          constants: CONSTANTS.recipe.houseware,
           nextScreen: recipeDetail
         }}
         options={{ title: 'Housewares' }} />
-      <Stack.Screen 
-        name="RecipeDecorations" 
-        component={RecipeList} 
-        initialParams={{ 
-          constants: CONSTANTS.recipe.decoration, 
+      <Stack.Screen
+        name="RecipeDecorations"
+        component={RecipeList}
+        initialParams={{
+          constants: CONSTANTS.recipe.decoration,
           nextScreen: recipeDetail
         }}
         options={{ title: 'Decorations' }} />
-      <Stack.Screen 
-        name="RecipeTools" 
-        component={RecipeList} 
-        initialParams={{ 
-          constants: CONSTANTS.recipe.tool, 
+      <Stack.Screen
+        name="RecipeTools"
+        component={RecipeList}
+        initialParams={{
+          constants: CONSTANTS.recipe.tool,
           nextScreen: recipeDetail
         }}
         options={{ title: 'Tools' }} />
-      <Stack.Screen 
-        name="RecipeWall-mounted" 
-        component={RecipeList} 
-        initialParams={{ 
-          constants: CONSTANTS.recipe.wallmounted, 
+      <Stack.Screen
+        name="RecipeWall-mounted"
+        component={RecipeList}
+        initialParams={{
+          constants: CONSTANTS.recipe.wallmounted,
           nextScreen: recipeDetail
         }}
         options={{ title: 'Wall-mounted' }} />
-      <Stack.Screen 
-        name="RecipeMiscellaneous" 
-        component={RecipeList} 
-        initialParams={{ 
-          constants: CONSTANTS.recipe.miscellaneous, 
+      <Stack.Screen
+        name="RecipeMiscellaneous"
+        component={RecipeList}
+        initialParams={{
+          constants: CONSTANTS.recipe.miscellaneous,
           nextScreen: recipeDetail
         }}
         options={{ title: 'Miscellaneous' }} />
@@ -294,48 +294,48 @@ const Tab = createBottomTabNavigator();
 
 export default function Main() {
   return (
-      <Tab.Navigator
-        screenOptions={({ route }) => ({
-          tabBarIcon: () => {
-            if (route.name === 'Villagers') {
-              return <Image
-                source={require('../assets/icons/menu/villagers.png')}
-                style={styles.image} />
-            } else if (route.name === 'Museum') {
-              return <Image
-                source={require('../assets/icons/menu/museum.png')}
-                style={styles.image} />
-            } else if (route.name === 'Songs') {
-              return <Image
-                source={require('../assets/icons/menu/songs.png')}
-                style={styles.image} />
-            } else if (route.name === 'More') {
-              return <Image
-                source={require('../assets/icons/menu/more.png')}
-                style={styles.image} />
-            }
-          },
-        })}
-        tabBarOptions={{
-          activeTintColor: Colors.white,
-          inactiveTintColor: Colors.white,
-          activeBackgroundColor: Colors.secondary,
-          inactiveBackgroundColor: Colors.primary,
-          style: {
-            backgroundColor: Colors.primary,
-          },
-          labelStyle: {
-            color: Colors.white,
-            fontFamily: Fonts.medium,
-            fontSize: Fonts.size.navigationBar,
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
+        tabBarIcon: () => {
+          if (route.name === 'Villagers') {
+            return <Image
+              source={require('../assets/icons/menu/villagers.png')}
+              style={styles.image} />
+          } else if (route.name === 'Museum') {
+            return <Image
+              source={require('../assets/icons/menu/museum.png')}
+              style={styles.image} />
+          } else if (route.name === 'Songs') {
+            return <Image
+              source={require('../assets/icons/menu/songs.png')}
+              style={styles.image} />
+          } else if (route.name === 'More') {
+            return <Image
+              source={require('../assets/icons/menu/more.png')}
+              style={styles.image} />
           }
-        }}
-      >
-        <Tab.Screen name="Villagers" component={VillagerStack} />
-        <Tab.Screen name="Museum" component={MuseumStack} />
-        <Tab.Screen name="Songs" component={SongStack} />
-        <Tab.Screen name="More" component={MoreStack} />
-      </Tab.Navigator>
+        },
+      })}
+      tabBarOptions={{
+        activeTintColor: Colors.white,
+        inactiveTintColor: Colors.white,
+        activeBackgroundColor: Colors.secondary,
+        inactiveBackgroundColor: Colors.primary,
+        style: {
+          backgroundColor: Colors.primary,
+        },
+        labelStyle: {
+          color: Colors.white,
+          fontFamily: Fonts.medium,
+          fontSize: Fonts.size.navigationBar,
+        }
+      }}
+    >
+      <Tab.Screen name="Villagers" component={VillagerStack} />
+      <Tab.Screen name="Museum" component={MuseumStack} />
+      <Tab.Screen name="Songs" component={SongStack} />
+      <Tab.Screen name="More" component={MoreStack} />
+    </Tab.Navigator>
   );
 };
 
