@@ -77,7 +77,7 @@ export default function VillagerGuide({ navigation }) {
         try {
             // store the list as string and count separately for faster reading
             const values = await AsyncStorage.getItem(constants.collectedKey);
-            setCollectedList(values != null ? JSON.parse(values) : []);
+            setCollectedList(values !== null ? JSON.parse(values) : []);
         } catch (e) {
             error(CONSTANTS.error.retrieving);
         }
@@ -88,7 +88,7 @@ export default function VillagerGuide({ navigation }) {
         try {
             // store the list as string and count separately for faster reading
             const values = await AsyncStorage.getItem(constants.allKey);
-            if (values != null) {
+            if (values !== null) {
                 setRawData(JSON.parse(values).sort(compare))
             } else {
                 // no data so need to load them

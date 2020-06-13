@@ -1,5 +1,6 @@
 const CONSTANTS = {
     completed: 'You completed this collection!',
+    data_timestamp: 'data-timestamp',
     art: {
         text: 'Arts',
         collectedKey: 'art-collected',
