@@ -27,16 +27,16 @@ export default function LoadingScreen({ route, navigation }) {
     const [showLoading, setShowLoading] = useState(false);
 
     const constants = [
-        // VILLAGERS
+        // VILLAGERS: 0
         CONSTANTS.villager,
-        // MUSEUM
+        // MUSEUM: 1-4
         CONSTANTS.art,
         CONSTANTS.bug,
         CONSTANTS.fish,
         CONSTANTS.fossil,
-        // SONG
+        // SONG: 5
         CONSTANTS.song,
-        // CLOTHING
+        // CLOTHING: 6-14
         CONSTANTS.clothing.accessories,
         CONSTANTS.clothing.bag,
         CONSTANTS.clothing.bottoms,
@@ -46,14 +46,14 @@ export default function LoadingScreen({ route, navigation }) {
         CONSTANTS.clothing.socks,
         CONSTANTS.clothing.tops,
         CONSTANTS.clothing.umbrella,
-        // FURNITURE
+        // FURNITURE: 15-20
         CONSTANTS.furniture.houseware,
         CONSTANTS.furniture.wallmounted,
         CONSTANTS.furniture.misc,
         CONSTANTS.furniture.rug,
         CONSTANTS.furniture.flooring,
         CONSTANTS.furniture.wallpaper,
-        // RECIPE
+        // RECIPE: 21-27
         CONSTANTS.recipe.clothing,
         CONSTANTS.recipe.fence,
         CONSTANTS.recipe.houseware,
@@ -68,7 +68,7 @@ export default function LoadingScreen({ route, navigation }) {
         setShowAlert(true);
     }
 
-    const storeAll = useCallback(async (value, key) => {
+    const storeAll = useCallback(async (value, key, totalKey) => {
         try {
             const values = JSON.stringify(value);
             await AsyncStorage.setItem(key, values)
@@ -76,6 +76,11 @@ export default function LoadingScreen({ route, navigation }) {
                     count += 1;
                     setCompletedCount(count);
                 });
+
+            if (totalKey !== null) {
+                await AsyncStorage.setItem(totalKey, value.length.toString());
+            }
+            
         } catch (e) {
             error(CONSTANTS.error.storing);
         }
@@ -83,16 +88,34 @@ export default function LoadingScreen({ route, navigation }) {
 
     const fetchData = () => {
         {/* Fetch bug data from Nookeroo API */ }
-        for (var i = 0; i < constants.length; i++) {
+        for (var i = 0; i < 18; i++) {
             const url = constants[i].url;
             const key = constants[i].allKey;
+            const totalKey = constants[i].totalKey;
             fetch(url)
                 .then((response) => response.json())
                 .then((json) => {
                     // set the data to use to populate the data after filtering
                     const array = Object.values(json);
+                    storeAll(array, key, totalKey);
+                })
+                .catch(e => {
+                    error(CONSTANTS.error.retrieving);
+                });
+        }
 
-                    storeAll(array, key);
+        for (var i = 18; i < constants.length; i++) {
+            const url = constants[i].url;
+            const key = constants[i].allKey;
+            const totalKey = constants[i].totalKey;
+            fetch(url)
+                .then((response) => response.json())
+                .then((json) => {
+                    // set the data to use to populate the data after filtering
+                    const keys = Object.keys(json);
+                    const array = Object.values(json);
+                    array.forEach((element, index) => element.name = keys[index])
+                    storeAll(array, key, totalKey);
                 })
                 .catch(e => {
                     error(CONSTANTS.error.retrieving);

@@ -7,7 +7,8 @@ const CONSTANTS = {
         allKey: 'art',
         url: 'https://acnhapi.com/v1/art',
         none: "You haven't collected any art yet.",
-        progressKey: 'art-progress'
+        progressKey: 'art-progress',
+        totalKey: 'art-total'
     },
     bug: {
         text: 'Bugs',
@@ -15,7 +16,8 @@ const CONSTANTS = {
         allKey: 'bug',
         url: 'https://acnhapi.com/v1/bugs',
         none: "You haven't caught any bug yet.",
-        progressKey: 'bug-progress'
+        progressKey: 'bug-progress',
+        totalKey: 'bug-total'
     },
     fish: {
         text: 'Fishes',
@@ -23,7 +25,8 @@ const CONSTANTS = {
         allKey: 'fish',
         url: 'https://acnhapi.com/v1/fish',
         none: "You haven't caught any fish yet.",
-        progressKey: 'fish-progress'
+        progressKey: 'fish-progress',
+        totalKey: 'fish-total'
     },
     fossil: {
         text: 'Fossils',
@@ -31,7 +34,8 @@ const CONSTANTS = {
         allKey: 'fossil',
         url: 'https://acnhapi.com/v1/fossils',
         none: "You haven't found any fossil yet.",
-        progressKey: 'fossil-progress'
+        progressKey: 'fossil-progress',
+        totalKey: 'fossil-total'
     },
     villager: {
         text: 'Villagers',
@@ -39,6 +43,7 @@ const CONSTANTS = {
         allKey: 'villager',
         url: 'https://acnhapi.com/v1/villagers',
         none: "You don't have any villagers.",
+        totalKey: null
     },
     song: {
         text: 'Songs',
@@ -46,7 +51,8 @@ const CONSTANTS = {
         allKey: 'song',
         url: 'https://acnhapi.com/v1/songs',
         none: "You haven't collected any K.K. Slider's song yet.",
-        progressKey: 'song-progress'
+        progressKey: 'song-progress',
+        totalKey: 'song-total'
     },
     error: {
         retrieving: "There was a problem retrieving your saved data. Please restart the app to make sure it doesn't happen again.",
@@ -60,7 +66,8 @@ const CONSTANTS = {
             allKey: 'clothing-accessories',
             url: 'https://ickhov.github.io/nookeroo/clothing/accessories.json',
             none: "You haven't collected any accessories yet.",
-            progressKey: 'clothing-accessories-progress'
+            progressKey: 'clothing-accessories-progress',
+            totalKey: 'clothing-accessories-total'
         },
         bag: {
             text: 'Bags',
@@ -68,7 +75,8 @@ const CONSTANTS = {
             allKey: 'clothing-bag',
             url: 'https://ickhov.github.io/nookeroo/clothing/bags.json',
             none: "You haven't collected any bag yet.",
-            progressKey: 'clothing-bag-progress'
+            progressKey: 'clothing-bag-progress',
+            totalKey: 'clothing-bag-total'
         },
         bottoms: {
             text: 'Bottoms',
@@ -76,7 +84,8 @@ const CONSTANTS = {
             allKey: 'clothing-bottoms',
             url: 'https://ickhov.github.io/nookeroo/clothing/bottoms.json',
             none: "You haven't collected any bottoms yet.",
-            progressKey: 'clothing-bottoms-progress'
+            progressKey: 'clothing-bottoms-progress',
+            totalKey: 'clothing-bottoms-total'
         },
         dress: {
             text: 'Dresses',
@@ -84,7 +93,8 @@ const CONSTANTS = {
             allKey: 'clothing-dress',
             url: 'https://ickhov.github.io/nookeroo/clothing/dresses.json',
             none: "You haven't collected any dress yet.",
-            progressKey: 'clothing-dress-progress'
+            progressKey: 'clothing-dress-progress',
+            totalKey: 'clothing-dress-total'
         },
         hat: {
             text: 'Hats',
@@ -92,7 +102,8 @@ const CONSTANTS = {
             allKey: 'clothing-hat',
             url: 'https://ickhov.github.io/nookeroo/clothing/hats.json',
             none: "You haven't collected any hat yet.",
-            progressKey: 'clothing-hat-progress'
+            progressKey: 'clothing-hat-progress',
+            totalKey: 'clothing-hat-total'
         },
         shoes: {
             text: 'Shoes',
@@ -100,7 +111,8 @@ const CONSTANTS = {
             allKey: 'clothing-shoes',
             url: 'https://ickhov.github.io/nookeroo/clothing/shoes.json',
             none: "You haven't collected any shoes yet.",
-            progressKey: 'clothing-shoes-progress'
+            progressKey: 'clothing-shoes-progress',
+            totalKey: 'clothing-shoes-total'
         },
         socks: {
             text: 'Socks',
@@ -108,7 +120,8 @@ const CONSTANTS = {
             allKey: 'clothing-socks',
             url: 'https://ickhov.github.io/nookeroo/clothing/socks.json',
             none: "You haven't collected any socks yet.",
-            progressKey: 'clothing-socks-progress'
+            progressKey: 'clothing-socks-progress',
+            totalKey: 'clothing-socks-total'
         },
         tops: {
             text: 'Tops',
@@ -116,7 +129,8 @@ const CONSTANTS = {
             allKey: 'clothing-tops',
             url: 'https://ickhov.github.io/nookeroo/clothing/tops.json',
             none: "You haven't collected any tops yet.",
-            progressKey: 'clothing-tops-progress'
+            progressKey: 'clothing-tops-progress',
+            totalKey: 'clothing-tops-total'
         },
         umbrella: {
             text: 'Umbrellas',
@@ -124,7 +138,8 @@ const CONSTANTS = {
             allKey: 'clothing-umbrella',
             url: 'https://ickhov.github.io/nookeroo/clothing/umbrellas.json',
             none: "You haven't collected any umbrella yet.",
-            progressKey: 'clothing-umbrella-progress'
+            progressKey: 'clothing-umbrella-progress',
+            totalKey: 'clothing-umbrella-total'
         },
     },
     // RECIPES
@@ -135,7 +150,8 @@ const CONSTANTS = {
             allKey: 'recipe-clothing',
             url: 'https://ickhov.github.io/nookeroo/recipe/equipments.json',
             none: "You haven't collected any clothing recipe yet.",
-            progressKey: 'recipe-clothing-progress'
+            progressKey: 'recipe-clothing-progress',
+            totalKey: 'recipe-clothing-total'
         },
         fence: {
             text: 'Fences',
@@ -143,7 +159,8 @@ const CONSTANTS = {
             allKey: 'recipe-fence',
             url: 'https://ickhov.github.io/nookeroo/recipe/others.json',
             none: "You haven't collected any fence recipe yet.",
-            progressKey: 'recipe-fence-progress'
+            progressKey: 'recipe-fence-progress',
+            totalKey: 'recipe-fence-total'
         },
         houseware: {
             text: 'Housewares',
@@ -151,7 +168,8 @@ const CONSTANTS = {
             allKey: 'recipe-houseware',
             url: 'https://ickhov.github.io/nookeroo/recipe/housewares.json',
             none: "You haven't collected any houseware recipe yet.",
-            progressKey: 'recipe-houseware-progress'
+            progressKey: 'recipe-houseware-progress',
+            totalKey: 'recipe-houseware-total'
         },
         decoration: {
             text: 'Decorations',
@@ -159,7 +177,8 @@ const CONSTANTS = {
             allKey: 'recipe-decoration',
             url: 'https://ickhov.github.io/nookeroo/recipe/wallpaper_rugs_floorings.json',
             none: "You haven't collected any wall decoration yet.",
-            progressKey: 'recipe-decoration-progress'
+            progressKey: 'recipe-decoration-progress',
+            totalKey: 'recipe-decoration-total'
         },
         tool: {
             text: 'Tools',
@@ -167,7 +186,8 @@ const CONSTANTS = {
             allKey: 'recipe-tool',
             url: 'https://ickhov.github.io/nookeroo/recipe/tools.json',
             none: "You haven't collected any tool recipe yet.",
-            progressKey: 'recipe-tool-progress'
+            progressKey: 'recipe-tool-progress',
+            totalKey: 'recipe-tool-total'
         },
         wallmounted: {
             text: 'Qall-mounted',
@@ -175,7 +195,8 @@ const CONSTANTS = {
             allKey: 'recipe-wallmounted',
             url: 'https://ickhov.github.io/nookeroo/recipe/wall_mounteds.json',
             none: "You haven't collected any wall-mounted recipe yet.",
-            progressKey: 'recipe-wallmounted-progress'
+            progressKey: 'recipe-wallmounted-progress',
+            totalKey: 'recipe-wallmounted-total'
         },
         miscellaneous: {
             text: 'Miscellaneous',
@@ -183,7 +204,8 @@ const CONSTANTS = {
             allKey: 'recipe-miscellaneous',
             url: 'https://ickhov.github.io/nookeroo/recipe/miscellaneous.json',
             none: "You haven't collected any miscellaneous recipe yet.",
-            progressKey: 'recipe-miscellaneous-progress'
+            progressKey: 'recipe-miscellaneous-progress',
+            totalKey: 'recipe-miscellaneous-total'
         }
     },
     // FURNITURE
@@ -194,7 +216,8 @@ const CONSTANTS = {
             allKey: 'furniture-flooring',
             url: 'https://ickhov.github.io/nookeroo/furniture/floorings.json',
             none: "You haven't collected any flooring yet.",
-            progressKey: 'furniture-flooring-progress'
+            progressKey: 'furniture-flooring-progress',
+            totalKey: 'furniture-flooring-total'
         },
         houseware: {
             text: 'Housewares',
@@ -202,7 +225,8 @@ const CONSTANTS = {
             allKey: 'furniture-houseware',
             url: 'https://acnhapi.com/v1/houseware',
             none: "You haven't collected any houseware yet.",
-            progressKey: 'furniture-houseware-progress'
+            progressKey: 'furniture-houseware-progress',
+            totalKey: 'furniture-houseware-total'
         },
         rug: {
             text: 'Rugs',
@@ -210,7 +234,8 @@ const CONSTANTS = {
             allKey: 'furniture-rug',
             url: 'https://ickhov.github.io/nookeroo/furniture/rugs.json',
             none: "You haven't collected any rug yet.",
-            progressKey: 'furniture-rug-progress'
+            progressKey: 'furniture-rug-progress',
+            totalKey: 'furniture-rug-total'
         },
         wallmounted: {
             text: 'Wall-mounted',
@@ -218,7 +243,8 @@ const CONSTANTS = {
             allKey: 'furniture-wallmounted',
             url: 'https://acnhapi.com/v1/wallmounted',
             none: "You haven't collected any wall-mounted furniture yet.",
-            progressKey: 'furniture-wallmounted-progress'
+            progressKey: 'furniture-wallmounted-progress',
+            totalKey: 'furniture-wallmounted-total'
         },
         wallpaper: {
             text: 'Wallpapers',
@@ -226,7 +252,8 @@ const CONSTANTS = {
             allKey: 'furniture-wallpaper',
             url: 'https://ickhov.github.io/nookeroo/furniture/wallpapers.json',
             none: "You haven't collected any wallpaper yet.",
-            progressKey: 'furniture-wallpaper-progress'
+            progressKey: 'furniture-wallpaper-progress',
+            totalKey: 'furniture-wallpaper-total'
         },
         misc: {
             text: 'Miscellaneous',
@@ -234,7 +261,8 @@ const CONSTANTS = {
             allKey: 'furniture-misc',
             url: 'http://acnhapi.com/v1/misc',
             none: "You haven't collected any miscellaneous furniture yet.",
-            progressKey: 'furniture-misc-progress'
+            progressKey: 'furniture-misc-progress',
+            totalKey: 'furniture-misc-total'
         },
     }
 };

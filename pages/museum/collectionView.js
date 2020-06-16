@@ -78,10 +78,7 @@ export default function CollectionView(props) {
             const values = JSON.stringify(value);
             await AsyncStorage.setItem(constants.collectedKey, values);
 
-            const totalLength = Array.from(rawData).length;
-            const collectedLength = value.length;
-            const progressString = collectedLength + '/' + totalLength;
-            await AsyncStorage.setItem(constants.progressKey, progressString);
+            await AsyncStorage.setItem(constants.progressKey, value.length.toString());
         } catch (e) {
             error(CONSTANTS.error.storing);
         }
@@ -103,7 +100,7 @@ export default function CollectionView(props) {
             // store the list as string and count separately for faster reading
             const values = await AsyncStorage.getItem(constants.allKey);
             if (values !== null) {
-                setRawData(JSON.parse(values).sort(compare))
+                setRawData(JSON.parse(values).sort(compare));
             } else {
                 // no data so need to load them
                 setRequireUpdate(true);

@@ -12,8 +12,8 @@ import React from 'react';
 import { Image, StyleSheet } from 'react-native';
 import Colors from '../assets/colors';
 import Fonts from '../assets/fonts';
-import ClothingDetail from './clothing/clothingDetail';
 // Clothing Stack
+import ClothingDetail from './clothing/clothingDetail';
 import ClothingList from './clothing/clothingList';
 import CONSTANTS from './constants';
 import MainFurnitureDetail from './furniture/mainFurnitureDetail';
@@ -38,6 +38,8 @@ import Songs from './songs/songs';
 import VillagerDetail from './villagers/villagerDetail';
 // Villager Stack
 import Villagers from './villagers/villagers';
+// Home Stack
+import Home from './home/home';
 
 const Stack = createStackNavigator();
 
@@ -290,6 +292,21 @@ const MoreStack = () => {
   );
 }
 
+const HomeStack = () => {
+  return (
+    <Stack.Navigator
+      initialRouteName="Home"
+      screenOptions={() => ({
+        headerTitleStyle: styles.header,
+        headerStyle: { backgroundColor: Colors.primary },
+        headerTintColor: Colors.white,
+        headerBackTitleStyle: { fontFamily: Fonts.regular }
+      })}>
+      <Stack.Screen name="Home" component={Home} />
+    </Stack.Navigator>
+  );
+}
+
 const Tab = createBottomTabNavigator();
 
 export default function Main() {
@@ -297,7 +314,11 @@ export default function Main() {
     <Tab.Navigator
       screenOptions={({ route }) => ({
         tabBarIcon: () => {
-          if (route.name === 'Villagers') {
+          if (route.name === 'Home') {
+            return <Image
+              source={require('../assets/icons/menu/villagers.png')}
+              style={styles.image} />
+          } else if (route.name === 'Villagers') {
             return <Image
               source={require('../assets/icons/menu/villagers.png')}
               style={styles.image} />
@@ -331,6 +352,7 @@ export default function Main() {
         }
       }}
     >
+      <Tab.Screen name="Home" component={HomeStack} />
       <Tab.Screen name="Villagers" component={VillagerStack} />
       <Tab.Screen name="Museum" component={MuseumStack} />
       <Tab.Screen name="Songs" component={SongStack} />
