@@ -30,6 +30,10 @@ export default function Home({ navigation }) {
 
     const [data, setData] = useState([]);
     const [museum, setMuseum] = useState([]);
+    const [songs, setSongs] = useState([]);
+    const [clothing, setClothing] = useState([]);
+    const [recipe, setRecipe] = useState([]);
+    const [furniture, setFurniture] = useState([]);
 
     const constants = [
         // MUSEUM: 0-3
@@ -96,17 +100,58 @@ export default function Home({ navigation }) {
     }, [data]);
 
     useEffect(() => {
-        const tmpMuseum = []
+        const tmpMuseum = [];
         for (var i = 0; i < 8; i+=2) {
             tmpMuseum.push(
             <TextWithProgressBar
                 key={constants[i / 2].allKey}
                 title={constants[i / 2].text}
                 progress={data[i] ?? 0}
-                total={data[i+1] ?? 1} />)
+                total={data[i+1] ?? 1} />);
         }
-
         setMuseum(tmpMuseum);
+
+        const tmpSongs = [];
+        tmpSongs.push(
+            <TextWithProgressBar
+                key={constants[4].allKey}
+                title={constants[4].text}
+                progress={data[8] ?? 0}
+                total={data[9] ?? 1} />);
+        setSongs(tmpSongs);
+
+        const tmpClothing = [];
+        for (var i = 10; i < 28; i+=2) {
+            tmpClothing.push(
+            <TextWithProgressBar
+                key={constants[i / 2].allKey}
+                title={constants[i / 2].text}
+                progress={data[i] ?? 0}
+                total={data[i+1] ?? 1} />);
+        }
+        setClothing(tmpClothing);
+
+        const tmpRecipe = [];
+        for (var i = 28; i < 40; i+=2) {
+            tmpRecipe.push(
+            <TextWithProgressBar
+                key={constants[i / 2].allKey}
+                title={constants[i / 2].text}
+                progress={data[i] ?? 0}
+                total={data[i+1] ?? 1} />);
+        }
+        setRecipe(tmpRecipe);
+
+        const tmpFurniture = [];
+        for (var i = 40; i < 54; i+=2) {
+            tmpFurniture.push(
+            <TextWithProgressBar
+                key={constants[i / 2].allKey}
+                title={constants[i / 2].text}
+                progress={data[i] ?? 0}
+                total={data[i+1] ?? 1} />);
+        }
+        setFurniture(tmpFurniture);
     }, [data]);
 
     return (
@@ -116,13 +161,44 @@ export default function Home({ navigation }) {
                 style={styles.rootStyle}
                 contentContainerStyle={styles.rootContainer}>
                 <View style={styles.container}>
-                    {/* Name Tab */}
+                    {/* Museum Tab */}
                     <Text style={styles.titleText}>Museum Progress</Text>
-
-                    <View style={styles.museumContainer}>
-
+                    <View style={styles.tabContainer}>
                         {museum}
+                    </View>
+                </View>
 
+                <View style={styles.container}>
+                    {/* Songs Tab */}
+                    <Text style={styles.titleText}>Songs Progress</Text>
+                    <View style={styles.tabContainer}>
+                        {songs}
+                    </View>
+
+                </View>
+
+                <View style={styles.container}>
+                    {/* Songs Tab */}
+                    <Text style={styles.titleText}>Clothing Progress</Text>
+                    <View style={styles.tabContainer}>
+                        {clothing}
+                    </View>
+
+                </View>
+
+                <View style={styles.container}>
+                    {/* Museum Tab */}
+                    <Text style={styles.titleText}>Recipe Progress</Text>
+                    <View style={styles.tabContainer}>
+                        {recipe}
+                    </View>
+                </View>
+
+                <View style={styles.container}>
+                    {/* Songs Tab */}
+                    <Text style={styles.titleText}>Furniture Progress</Text>
+                    <View style={styles.tabContainer}>
+                        {furniture}
                     </View>
 
                 </View>
@@ -147,7 +223,7 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.primary,
         width: '90%',
         borderRadius: 20,
-        marginVertical: 20,
+        marginTop: 20,
     },
     titleText: {
         width: '100%',
@@ -157,11 +233,12 @@ const styles = StyleSheet.create({
         padding: 10,
         color: Colors.white,
     },
-    museumContainer: {
+    tabContainer: {
         justifyContent: 'flex-start',
         alignItems: 'center',
         backgroundColor: Colors.tertiary,
         width: '100%',
         marginBottom: 20,
+        paddingBottom: 10
     }
 });

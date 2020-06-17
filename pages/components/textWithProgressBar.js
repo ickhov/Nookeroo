@@ -37,7 +37,7 @@ export default class TextWithProgressBar extends PureComponent {
                 <Text style={styles.textStyle}>{this.props.title}</Text>
                 <ProgressBar
                     containerStyle={{
-                        width: '35%'
+                        width: '30%'
                     }}
                     progress={percent}
                     progressBarColor={Colors.tertiary} />
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         color: Colors.white,
         paddingVertical: 10,
-        width: '27%'
+        width: '35%'
     },
     progressTextStyle: {
         fontFamily: Fonts.regular,
@@ -71,6 +71,6 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         paddingLeft: 20,
         fontSize: Fonts.size.text,
-        width: '38%'
+        width: '35%'
     }
 });
