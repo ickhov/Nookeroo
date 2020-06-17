@@ -190,7 +190,7 @@ const CONSTANTS = {
             totalKey: 'recipe-tool-total'
         },
         wallmounted: {
-            text: 'Qall-mounted',
+            text: 'Wall-mounted',
             collectedKey: 'recipe-wallmounted-collected',
             allKey: 'recipe-wallmounted',
             url: 'https://ickhov.github.io/nookeroo/recipe/wall_mounteds.json',

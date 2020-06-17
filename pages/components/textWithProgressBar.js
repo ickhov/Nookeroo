@@ -30,6 +30,8 @@ export default class TextWithProgressBar extends PureComponent {
     }
 
     render() {
+        const percent = this.props.total == 0 ? 0 : ((this.props.progress * 1.0 / this.props.total) * 100).toFixed(0);
+
         return (
             <View style={[styles.container, this.props.containerStyle]}>
                 <Text style={styles.textStyle}>{this.props.title}</Text>
@@ -37,9 +39,9 @@ export default class TextWithProgressBar extends PureComponent {
                     containerStyle={{
                         width: '35%'
                     }}
-                    progress={this.props.progress}
+                    progress={percent}
                     progressBarColor={Colors.tertiary} />
-                <Text style={styles.progressTextStyle}>{this.props.progressText}</Text>
+                <Text style={styles.progressTextStyle}>{`${this.props.progress}/${this.props.total} | ${percent}%`}</Text>
             </View>
         );
     }
@@ -56,7 +58,7 @@ const styles = StyleSheet.create({
     },
     textStyle: {
         fontFamily: Fonts.medium,
-        fontSize: Fonts.size.header,
+        fontSize: Fonts.size.text,
         textAlign: 'center',
         color: Colors.white,
         paddingVertical: 10,

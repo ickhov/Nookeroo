@@ -316,7 +316,7 @@ export default function Main() {
         tabBarIcon: () => {
           if (route.name === 'Home') {
             return <Image
-              source={require('../assets/icons/menu/villagers.png')}
+              source={require('../assets/icons/menu/home.png')}
               style={styles.image} />
           } else if (route.name === 'Villagers') {
             return <Image

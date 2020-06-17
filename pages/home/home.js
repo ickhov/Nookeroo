@@ -9,7 +9,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import NetInfo from "@react-native-community/netinfo";
 import moment from 'moment';
 import React, { useCallback, useEffect, useState } from 'react';
-import { Image, SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { Image, SafeAreaView, StyleSheet, Text, View, ScrollView, FlatList } from 'react-native';
 import Colors from '../../assets/colors';
 import Fonts from '../../assets/fonts';
 import PopUpDialog from '../components/popUpDialog';
@@ -19,24 +19,27 @@ import TextWithProgressBar from '../components/textWithProgressBar';
 
 export default function Home({ navigation }) {
 
-    const [artCollected, setArtCollected] = useState(0);
-    const [bugCollected, setBugCollected] = useState(0);
-    const [fishCollected, setFishCollected] = useState(0);
-    const [fossilCollected, setFossilCollected] = useState(0);
-    const [arts, setArts] = useState(0);
-    const [bugs, setBugs] = useState(0);
-    const [fishes, setFishes] = useState(0);
-    const [fossils, setFossils] = useState(0);
+    const [artCollected, setArtCollected] = useState([0, 1]);
+    const [bugCollected, setBugCollected] = useState([0, 1]);
+    const [fishCollected, setFishCollected] = useState([0, 1]);
+    const [fossilCollected, setFossilCollected] = useState([0, 1]);
+    const [arts, setArts] = useState([0, 1]);
+    const [bugs, setBugs] = useState([0, 1]);
+    const [fishes, setFishes] = useState([0, 1]);
+    const [fossils, setFossils] = useState([0, 1]);
+
+    const [data, setData] = useState([]);
+    const [museum, setMuseum] = useState([]);
 
     const constants = [
-        // MUSEUM
+        // MUSEUM: 0-3
         CONSTANTS.art,
         CONSTANTS.bug,
         CONSTANTS.fish,
         CONSTANTS.fossil,
-        // SONG
+        // SONG: 4
         CONSTANTS.song,
-        // CLOTHING
+        // CLOTHING: 5-13
         CONSTANTS.clothing.accessories,
         CONSTANTS.clothing.bag,
         CONSTANTS.clothing.bottoms,
@@ -46,14 +49,14 @@ export default function Home({ navigation }) {
         CONSTANTS.clothing.socks,
         CONSTANTS.clothing.tops,
         CONSTANTS.clothing.umbrella,
-        // FURNITURE
+        // FURNITURE: 14-19
         CONSTANTS.furniture.houseware,
         CONSTANTS.furniture.wallmounted,
         CONSTANTS.furniture.misc,
         CONSTANTS.furniture.rug,
         CONSTANTS.furniture.flooring,
         CONSTANTS.furniture.wallpaper,
-        // RECIPE
+        // RECIPE: 20-26
         CONSTANTS.recipe.clothing,
         CONSTANTS.recipe.fence,
         CONSTANTS.recipe.houseware,
@@ -65,41 +68,14 @@ export default function Home({ navigation }) {
 
     useEffect(() => {
         const unsubscribe = navigation.addListener('focus', () => {
+            setData([]);
             fetchData();
-            // // arts
-            // getData(CONSTANTS.art.allKey, 0, CONSTANTS.art.url);
-            // getCollectedData(CONSTANTS.art.collectedKey, 0);
-            // // bugs
-            // getData(CONSTANTS.bug.allKey, 1, CONSTANTS.bug.url);
-            // getCollectedData(CONSTANTS.bug.collectedKey, 1);
-            // // fishes
-            // getData(CONSTANTS.fish.allKey, 2, CONSTANTS.fish.url);
-            // getCollectedData(CONSTANTS.fish.collectedKey, 2);
-            // // fossils
-            // getData(CONSTANTS.fossil.allKey, 3, CONSTANTS.fossil.url);
-            // getCollectedData(CONSTANTS.fossil.collectedKey, 3);
         });
 
         return unsubscribe;
     }, [navigation]);
 
-    // useEffect(() => {
-    //     {/* Fetch async data for progress tracking */ }
-    //     // arts
-    //     getData(CONSTANTS.art.allKey, 0, CONSTANTS.art.url);
-    //     getCollectedData(CONSTANTS.art.collectedKey, 0);
-    //     // bugs
-    //     getData(CONSTANTS.bug.allKey, 1, CONSTANTS.bug.url);
-    //     getCollectedData(CONSTANTS.bug.collectedKey, 1);
-    //     // fishes
-    //     getData(CONSTANTS.fish.allKey, 2, CONSTANTS.fish.url);
-    //     getCollectedData(CONSTANTS.fish.collectedKey, 2);
-    //     // fossils
-    //     getData(CONSTANTS.fossil.allKey, 3, CONSTANTS.fossil.url);
-    //     getCollectedData(CONSTANTS.fossil.collectedKey, 3);
-    // }, []);
-
-    const fetchData = async () => {
+    const fetchData = useCallback(async () => {
         try {
             {/* Fetch bug data from Nookeroo API */ }
             for (var i = 0; i < constants.length; i++) {
@@ -107,76 +83,63 @@ export default function Home({ navigation }) {
                 const totalKey = constants[i].totalKey;
                 const progress = await AsyncStorage.getItem(progressKey);
                 const total = await AsyncStorage.getItem(totalKey);
+                var value = 0;
                 if (progress !== null) {
-                    console.log('Progress: ' + progress.split('/')[0]);
-                } else {
-                    // no data so need to load them
-                    console.log('Progress: 0');
+                    value = parseInt(progress);
                 }
 
-                if (total !== null) {
-                    console.log('Total: ' + total);
-                } else {
-                    // no data so need to load them
-                    console.log('Total: 0');
-                }
+                setData(data => [...data, value, parseInt(total)]);
             }
         } catch (e) {
             error(CONSTANTS.error.retrieving);
         }
-    };
+    }, [data]);
 
-    const artPercent = arts == 0 ? 0 : ((artCollected * 1.0 / arts) * 100).toFixed(0);
-    const bugPercent = bugs == 0 ? 0 : ((bugCollected * 1.0 / bugs) * 100).toFixed(0);
-    const fishPercent = fishes == 0 ? 0 : ((fishCollected * 1.0 / fishes) * 100).toFixed(0);
-    const fossilPercent = fossils == 0 ? 0 : ((fossilCollected * 1.0 / fossils) * 100).toFixed(0);
+    useEffect(() => {
+        const tmpMuseum = []
+        for (var i = 0; i < 8; i+=2) {
+            tmpMuseum.push(
+            <TextWithProgressBar
+                key={constants[i / 2].allKey}
+                title={constants[i / 2].text}
+                progress={data[i] ?? 0}
+                total={data[i+1] ?? 1} />)
+        }
+
+        setMuseum(tmpMuseum);
+    }, [data]);
 
     return (
-        <View style={styles.root}>
-            <View style={styles.container}>
-                {/* Name Tab */}
-                <Text style={styles.titleText}>Museum Progress</Text>
+        <SafeAreaView style={{ flex: 1 }}>
+            <ScrollView
+                showsVerticalScrollIndicator={false}
+                style={styles.rootStyle}
+                contentContainerStyle={styles.rootContainer}>
+                <View style={styles.container}>
+                    {/* Name Tab */}
+                    <Text style={styles.titleText}>Museum Progress</Text>
 
-                <View style={styles.museumContainer}>
+                    <View style={styles.museumContainer}>
 
-                    <TextWithProgressBar
-                        title={'Arts'}
-                        progress={artPercent}
-                        progressText={`${artCollected}/${arts} | ${artPercent}%`} />
+                        {museum}
 
-                    <TextWithProgressBar
-                        title={'Bugs'}
-                        progress={bugPercent}
-                        progressText={`${bugCollected}/${bugs} | ${bugPercent}%`} />
-
-                    <TextWithProgressBar
-                        title={'Fishes'}
-                        progress={fishPercent}
-                        progressText={`${fishCollected}/${fishes} | ${fishPercent}%`} />
-
-                    <TextWithProgressBar
-                        title={'Fossils'}
-                        progress={fossilPercent}
-                        progressText={`${fossilCollected}/${fossils} | ${fossilPercent}%`}
-                        containerStyle={{
-                            marginBottom: 10,
-                        }} />
+                    </View>
 
                 </View>
-
-            </View>
-        </View>
+            </ScrollView>
+        </SafeAreaView>
     );
 
 }
 
 const styles = StyleSheet.create({
-    root: {
-        flex: 1,
-        justifyContent: 'flex-start',
-        alignItems: 'center',
+    rootStyle: {
         backgroundColor: Colors.background,
         width: '100%',
+    },
+    rootContainer: {
+        justifyContent: 'flex-start',
+        alignItems: 'center',
     },
     container: {
         justifyContent: 'flex-start',
