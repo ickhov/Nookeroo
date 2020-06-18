@@ -131,19 +131,8 @@ export default function Home({ navigation }) {
         }
         setClothing(tmpClothing);
 
-        const tmpRecipe = [];
-        for (var i = 28; i < 40; i+=2) {
-            tmpRecipe.push(
-            <TextWithProgressBar
-                key={constants[i / 2].allKey}
-                title={constants[i / 2].text}
-                progress={data[i] ?? 0}
-                total={data[i+1] ?? 1} />);
-        }
-        setRecipe(tmpRecipe);
-
         const tmpFurniture = [];
-        for (var i = 40; i < 54; i+=2) {
+        for (var i = 28; i < 40; i+=2) {
             tmpFurniture.push(
             <TextWithProgressBar
                 key={constants[i / 2].allKey}
@@ -152,6 +141,17 @@ export default function Home({ navigation }) {
                 total={data[i+1] ?? 1} />);
         }
         setFurniture(tmpFurniture);
+
+        const tmpRecipe = [];
+        for (var i = 40; i < 54; i+=2) {
+            tmpRecipe.push(
+            <TextWithProgressBar
+                key={constants[i / 2].allKey}
+                title={constants[i / 2].text}
+                progress={data[i] ?? 0}
+                total={data[i+1] ?? 1} />);
+        }
+        setRecipe(tmpRecipe);
     }, [data]);
 
     return (
