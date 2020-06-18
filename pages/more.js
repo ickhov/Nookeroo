@@ -77,7 +77,7 @@ export default function More({ navigation }) {
                     screen: 'RecipeHousewares'
                 },
                 {
-                    name: 'Rugs/Wallpapers/Floorings',
+                    name: 'Decorations',
                     image: require('../assets/icons/miscellaneous/recipe.png'),
                     screen: 'RecipeDecorations'
                 },
