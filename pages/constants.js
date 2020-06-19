@@ -1,4 +1,8 @@
 const CONSTANTS = {
+    version: {
+        number: "1.2.2",
+        key: "app-version"
+    },
     completed: 'You completed this collection!',
     data_timestamp: 'data-timestamp',
     art: {

@@ -158,6 +158,38 @@ export default function LoadingScreen({ route, navigation }) {
         }
     };
 
+    // check for update
+    const getVersionNumber = async () => {
+        try {
+            // get version number to compare
+            const values = await AsyncStorage.getItem(CONSTANTS.version.key);
+            if (values !== null) {
+                console.log(values);
+                if (values !== CONSTANTS.version.number) {
+                    setShowLoading(true);
+                    fetchData();
+                } else {
+                    getDataTimestamp();
+                }
+            } else {
+                setShowLoading(true);
+                fetchData();
+            }
+
+            storeVersionNumber();
+        } catch (e) {
+            error(CONSTANTS.error.retrieving);
+        }
+    };
+
+    const storeVersionNumber = async _ => {
+        try {
+            await AsyncStorage.setItem(CONSTANTS.version.key, CONSTANTS.version.number);
+        } catch (e) {
+            error(CONSTANTS.error.storing);
+        }
+    };
+
     useEffect(() => {
         const unsubscribe = navigation.addListener('focus', () => {
             count = 0;
@@ -165,7 +197,7 @@ export default function LoadingScreen({ route, navigation }) {
             NetInfo.fetch().then(state => {
                 // ensure we retrieve data only once per day
                 if (state.isConnected) {
-                    getDataTimestamp();
+                    getVersionNumber();
                 } else {
                     navigation.navigate('Main');
                 }
