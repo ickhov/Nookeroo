@@ -68,11 +68,12 @@ const styles = StyleSheet.create({
         backgroundColor: '#000',
     },
     imageStyle: {
-        width: '35%',
+        width: '50%',
         resizeMode: 'contain',
     },
     textStyle: {
-        width: '40%',
+        width: '50%',
+        fontFamily: Fonts.medium,
         fontSize: Fonts.size.text,
         textAlign: 'left',
         color: '#fff',

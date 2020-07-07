@@ -23,15 +23,22 @@ import OtherFurnitureDetail from './furniture/otherFurnitureDetail';
 import OtherFurnitureList from './furniture/otherFurnitureList';
 // More Stack
 import More from './more';
+import Arts from './museum/arts/arts';
+import Bugs from './museum/bugs/bugs';
+import Fishes from './museum/fishes/fishes';
+import Fossils from './museum/fossils/fossils';
+import Sea from './museum/sea/sea';
 import ArtDetail from './museum/arts/artDetail';
 import BugDetail from './museum/bugs/bugDetail';
 import FishDetail from './museum/fishes/fishDetail';
 import FossilDetail from './museum/fossils/fossilDetail';
+import SeaDetail from './museum/sea/seaDetail';
 // Museum Stack
 import Museum from './museum/museum';
-import RecipeDetail from './recipes/recipeDetail';
 // Recipe Stack
 import RecipeList from './recipes/recipeList';
+import RecipeDetail from './recipes/recipeDetail';
+// Song Stack
 import SongDetail from './songs/songDetail';
 // Collections Stack
 import Songs from './songs/songs';
@@ -70,11 +77,17 @@ const MuseumStack = () => {
         headerBackTitleStyle: { fontFamily: Fonts.regular }
       })}>
       <Stack.Screen name="Museum" component={Museum} />
+      <Stack.Screen name="Arts" component={Arts} />
+      <Stack.Screen name="Bugs" component={Bugs} />
+      <Stack.Screen name="Fishes" component={Fishes} />
+      <Stack.Screen name="Fossils" component={Fossils} />
+      <Stack.Screen name="Sea" component={Sea} options={{ title: 'Sea Creatures' }}/>
 
       <Stack.Screen name="ArtDetail" component={ArtDetail} options={{ title: 'Details' }} />
       <Stack.Screen name="BugDetail" component={BugDetail} options={{ title: 'Details' }} />
       <Stack.Screen name="FishDetail" component={FishDetail} options={{ title: 'Details' }} />
       <Stack.Screen name="FossilDetail" component={FossilDetail} options={{ title: 'Details' }} />
+      <Stack.Screen name="SeaDetail" component={SeaDetail} options={{ title: 'Details' }} />
     </Stack.Navigator>
   );
 }

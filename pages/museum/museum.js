@@ -5,40 +5,68 @@
  * @flow strict-local
  */
 
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import React from 'react';
 import Colors from '../../assets/colors';
-import Fonts from '../../assets/fonts';
-import Arts from './arts/arts';
-import Bugs from './bugs/bugs';
-import Fishes from './fishes/fishes';
-import Fossils from './fossils/fossils';
+import ImageButtonRow from '../components/imageButtonRow';
+import { SafeAreaView, StyleSheet } from 'react-native';
 
-const TopTab = createMaterialTopTabNavigator();
+export default function Museum({ navigation }) {
 
-export default function Museum() {
+    const screenSelected = name => {
+        navigation.navigate(name)
+    };
+
     return (
-        <TopTab.Navigator
-            tabBarOptions={{
-                activeTintColor: Colors.white,
-                inactiveTintColor: Colors.white,
-                style: {
-                    backgroundColor: Colors.secondary,
-                },
-                labelStyle: {
-                    color: Colors.white,
-                    fontFamily: Fonts.medium,
-                    fontSize: Fonts.size.navigationBar,
-                },
-                indicatorStyle: {
-                    backgroundColor: Colors.white
-                }
-            }}
-        >
-            <TopTab.Screen name="Arts" component={Arts} />
-            <TopTab.Screen name="Bugs" component={Bugs} />
-            <TopTab.Screen name="Fishes" component={Fishes} />
-            <TopTab.Screen name="Fossils" component={Fossils} />
-        </TopTab.Navigator>
+        <SafeAreaView style={styles.root}>
+
+            <ImageButtonRow 
+                style={styles.cardStyle}
+                textStyle={styles.textStyle}
+                imageSource={require('../../assets/icons/museum/art.png')} 
+                text="Arts"
+                onPress={() => screenSelected("Arts")} />
+            <ImageButtonRow 
+                style={styles.cardStyle}
+                textStyle={styles.textStyle}
+                imageSource={require('../../assets/icons/museum/bug.png')} 
+                text="Bugs"
+                onPress={() => screenSelected("Bugs")} />
+            <ImageButtonRow
+                style={styles.cardStyle}
+                textStyle={styles.textStyle}
+                imageSource={require('../../assets/icons/museum/fish.png')} 
+                text="Fishes"
+                onPress={() => screenSelected("Fishes")} />
+            <ImageButtonRow 
+                style={styles.cardStyle}
+                textStyle={styles.textStyle}
+                imageSource={require('../../assets/icons/museum/fossil.png')} 
+                text="Fossils"
+                onPress={() => screenSelected("Fossils")} />
+            <ImageButtonRow 
+                style={styles.cardStyle}
+                textStyle={styles.textStyle}
+                imageSource={require('../../assets/icons/museum/sea.png')} 
+                text="Sea Creatures"
+                onPress={() => screenSelected("Sea")} />
+        </SafeAreaView>
     );
 }
+
+const styles = StyleSheet.create({
+    root: {
+        flex: 1,
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
+        backgroundColor: Colors.background,
+    },
+    cardStyle: {
+        backgroundColor: Colors.subBackground,
+        width: '95%',
+        height: '17%',
+        borderRadius: 20,
+    },
+    textStyle: {
+        fontSize: 20
+    }
+});

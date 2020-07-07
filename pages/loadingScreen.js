@@ -164,7 +164,6 @@ export default function LoadingScreen({ route, navigation }) {
             // get version number to compare
             const values = await AsyncStorage.getItem(CONSTANTS.version.key);
             if (values !== null) {
-                console.log(values);
                 if (values !== CONSTANTS.version.number) {
                     setShowLoading(true);
                     fetchData();
