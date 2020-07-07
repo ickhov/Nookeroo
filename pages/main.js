@@ -6,7 +6,6 @@
  */
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
 import { Image, StyleSheet } from 'react-native';
@@ -81,7 +80,7 @@ const MuseumStack = () => {
       <Stack.Screen name="Bugs" component={Bugs} />
       <Stack.Screen name="Fishes" component={Fishes} />
       <Stack.Screen name="Fossils" component={Fossils} />
-      <Stack.Screen name="Sea" component={Sea} options={{ title: 'Sea Creatures' }}/>
+      <Stack.Screen name="Sea" component={Sea}/>
 
       <Stack.Screen name="ArtDetail" component={ArtDetail} options={{ title: 'Details' }} />
       <Stack.Screen name="BugDetail" component={BugDetail} options={{ title: 'Details' }} />

@@ -19,7 +19,7 @@ import CONSTANTS from './constants';
 export default function LoadingScreen({ route, navigation }) {
 
     var count = 0;
-    const total = 28;
+    const total = 29;
     const [percent, setPercent] = useState(0.0);
     const [completedCount, setCompletedCount] = useState(0);
     const [showAlert, setShowAlert] = useState(false);
@@ -29,14 +29,15 @@ export default function LoadingScreen({ route, navigation }) {
     const constants = [
         // VILLAGERS: 0
         CONSTANTS.villager,
-        // MUSEUM: 1-4
+        // MUSEUM: 1-5
         CONSTANTS.art,
         CONSTANTS.bug,
         CONSTANTS.fish,
         CONSTANTS.fossil,
-        // SONG: 5
+        CONSTANTS.sea,
+        // SONG: 6
         CONSTANTS.song,
-        // CLOTHING: 6-14
+        // CLOTHING: 7-15
         CONSTANTS.clothing.accessories,
         CONSTANTS.clothing.bag,
         CONSTANTS.clothing.bottoms,
@@ -46,14 +47,14 @@ export default function LoadingScreen({ route, navigation }) {
         CONSTANTS.clothing.socks,
         CONSTANTS.clothing.tops,
         CONSTANTS.clothing.umbrella,
-        // FURNITURE: 15-20
+        // FURNITURE: 16-21
         CONSTANTS.furniture.houseware,
         CONSTANTS.furniture.wallmounted,
         CONSTANTS.furniture.misc,
         CONSTANTS.furniture.rug,
         CONSTANTS.furniture.flooring,
         CONSTANTS.furniture.wallpaper,
-        // RECIPE: 21-27
+        // RECIPE: 22-28
         CONSTANTS.recipe.clothing,
         CONSTANTS.recipe.fence,
         CONSTANTS.recipe.houseware,
@@ -88,7 +89,7 @@ export default function LoadingScreen({ route, navigation }) {
 
     const fetchData = () => {
         {/* Fetch bug data from Nookeroo API */ }
-        for (var i = 0; i < 18; i++) {
+        for (var i = 0; i < 19; i++) {
             const url = constants[i].url;
             const key = constants[i].allKey;
             const totalKey = constants[i].totalKey;
@@ -104,7 +105,7 @@ export default function LoadingScreen({ route, navigation }) {
                 });
         }
 
-        for (var i = 18; i < constants.length; i++) {
+        for (var i = 19; i < constants.length; i++) {
             const url = constants[i].url;
             const key = constants[i].allKey;
             const totalKey = constants[i].totalKey;

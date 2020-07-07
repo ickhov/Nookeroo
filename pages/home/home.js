@@ -36,14 +36,15 @@ export default function Home({ navigation }) {
     const [furniture, setFurniture] = useState([]);
 
     const constants = [
-        // MUSEUM: 0-3
+        // MUSEUM: 0-4
         CONSTANTS.art,
         CONSTANTS.bug,
         CONSTANTS.fish,
         CONSTANTS.fossil,
-        // SONG: 4
+        CONSTANTS.sea,
+        // SONG: 5
         CONSTANTS.song,
-        // CLOTHING: 5-13
+        // CLOTHING: 6-14
         CONSTANTS.clothing.accessories,
         CONSTANTS.clothing.bag,
         CONSTANTS.clothing.bottoms,
@@ -53,14 +54,14 @@ export default function Home({ navigation }) {
         CONSTANTS.clothing.socks,
         CONSTANTS.clothing.tops,
         CONSTANTS.clothing.umbrella,
-        // FURNITURE: 14-19
+        // FURNITURE: 15-20
         CONSTANTS.furniture.houseware,
         CONSTANTS.furniture.wallmounted,
         CONSTANTS.furniture.misc,
         CONSTANTS.furniture.rug,
         CONSTANTS.furniture.flooring,
         CONSTANTS.furniture.wallpaper,
-        // RECIPE: 20-26
+        // RECIPE: 21-27
         CONSTANTS.recipe.clothing,
         CONSTANTS.recipe.fence,
         CONSTANTS.recipe.houseware,
@@ -101,7 +102,7 @@ export default function Home({ navigation }) {
 
     useEffect(() => {
         const tmpMuseum = [];
-        for (var i = 0; i < 8; i+=2) {
+        for (var i = 0; i < 10; i+=2) {
             tmpMuseum.push(
             <TextWithProgressBar
                 key={constants[i / 2].allKey}
@@ -116,12 +117,12 @@ export default function Home({ navigation }) {
             <TextWithProgressBar
                 key={constants[4].allKey}
                 title={constants[4].text}
-                progress={data[8] ?? 0}
-                total={data[9] ?? 1} />);
+                progress={data[10] ?? 0}
+                total={data[11] ?? 1} />);
         setSongs(tmpSongs);
 
         const tmpClothing = [];
-        for (var i = 10; i < 28; i+=2) {
+        for (var i = 12; i < 30; i+=2) {
             tmpClothing.push(
             <TextWithProgressBar
                 key={constants[i / 2].allKey}
@@ -132,7 +133,7 @@ export default function Home({ navigation }) {
         setClothing(tmpClothing);
 
         const tmpFurniture = [];
-        for (var i = 28; i < 40; i+=2) {
+        for (var i = 30; i < 42; i+=2) {
             tmpFurniture.push(
             <TextWithProgressBar
                 key={constants[i / 2].allKey}
@@ -143,7 +144,7 @@ export default function Home({ navigation }) {
         setFurniture(tmpFurniture);
 
         const tmpRecipe = [];
-        for (var i = 40; i < 54; i+=2) {
+        for (var i = 42; i < 56; i+=2) {
             tmpRecipe.push(
             <TextWithProgressBar
                 key={constants[i / 2].allKey}

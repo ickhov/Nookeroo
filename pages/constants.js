@@ -1,6 +1,6 @@
 const CONSTANTS = {
     version: {
-        number: "1.2.2",
+        number: "1.3.0",
         key: "app-version"
     },
     completed: 'You completed this collection!',
