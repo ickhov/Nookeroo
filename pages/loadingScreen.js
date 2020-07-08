@@ -87,17 +87,62 @@ export default function LoadingScreen({ route, navigation }) {
         }
     }, [completedCount]);
 
+    // should be removed in version 1.4.0 if not everyone update
+    const updateMuseumCollectedListFormat = useCallback(async (array, i) => {
+
+        console.log(array.length)
+        const key = constants[i].collectedKey;
+
+        try {
+            // get the fossil collected list
+            const values = await AsyncStorage.getItem(key);
+            const collectedArray = values !== null ? JSON.parse(values) : [];
+
+            const updatedValues = collectedArray.map(name => {
+                // get the only item
+                const item = array.filter(e => e.name['name-USen'].toLowerCase() === name);
+                
+                if (item.length == 0) {
+                    return name;
+                }
+
+                return item[0]['file-name'].toLowerCase();
+            });
+            
+            // store the collected list back into storage
+            try {
+                const v = JSON.stringify(updatedValues);
+                await AsyncStorage.setItem(key, v);
+            } catch (e) {
+                error(CONSTANTS.error.storing);
+            }
+            
+        } catch (e) {
+            console.log(e);
+            //error(CONSTANTS.error.retrieving);
+        }
+
+    }, []);
+
     const fetchData = () => {
         {/* Fetch bug data from Nookeroo API */ }
         for (var i = 0; i < 19; i++) {
             const url = constants[i].url;
             const key = constants[i].allKey;
             const totalKey = constants[i].totalKey;
+            const index = i;
             fetch(url)
                 .then((response) => response.json())
                 .then((json) => {
                     // set the data to use to populate the data after filtering
                     const array = Object.values(json);
+
+                    // update fossil data format here
+                    if (index >= 1 && index <= 5) {
+                        console.log("Updating museum format")
+                        updateMuseumCollectedListFormat(array, index);
+                    }
+
                     storeAll(array, key, totalKey);
                 })
                 .catch(e => {
@@ -171,7 +216,7 @@ export default function LoadingScreen({ route, navigation }) {
                 } else {
                     getDataTimestamp();
                 }
-            } else {
+            } else { // no version number so first time loading
                 setShowLoading(true);
                 fetchData();
             }

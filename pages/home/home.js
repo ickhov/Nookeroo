@@ -115,8 +115,8 @@ export default function Home({ navigation }) {
         const tmpSongs = [];
         tmpSongs.push(
             <TextWithProgressBar
-                key={constants[4].allKey}
-                title={constants[4].text}
+                key={constants[5].allKey}
+                title={constants[5].text}
                 progress={data[10] ?? 0}
                 total={data[11] ?? 1} />);
         setSongs(tmpSongs);

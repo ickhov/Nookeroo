@@ -208,6 +208,12 @@ export default function FishDetail({ route, navigation }) {
                         containerStyle={styles.availabilityContainer}
                         titleContainerStyle={styles.availabilityTitle}
                         textContainerStyle={styles.availabilityText} />
+                    {/* Shadow Tab */}
+                    <ContentWithHeader title={'Shadow'}
+                        text={data.shadow}
+                        containerStyle={styles.availabilityContainer}
+                        titleContainerStyle={styles.availabilityTitle}
+                        textContainerStyle={styles.availabilityText} />
 
                     {/* Blathers' Description Tab */}
                     <RoundBorderText
